@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "238964277898",
+    "project_id": "canaa-afb9f",
+    "storage_bucket": "canaa-afb9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238964277898:android:9ef5745096b082c9ac2373",
+        "android_client_info": {
+          "package_name": "com.example.app_acampamentos_hallel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNpnZiRGDPY4dVfvkn8ULCf3NfNLrJEp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
