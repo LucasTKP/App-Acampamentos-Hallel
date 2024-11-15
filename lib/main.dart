@@ -11,17 +11,17 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
-  
+
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MainApp());
 }
 
@@ -32,10 +32,16 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     VersionApp().pubGetVersion();
 
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: InjectionPage(
-        child: WelcomePresenter(),
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'Poppins',
+        ),
+        home: const InjectionPage(
+          child: WelcomePresenter(),
+        ),
       ),
     );
   }

@@ -1,7 +1,7 @@
 name: app_acampamentos_hallel
 description: "A new Flutter project."
 publish_to: 'none'
-version: 1.0.2
+version: 1.0.1
 
 environment:
   sdk: ^3.5.4
@@ -26,6 +26,43 @@ flutter:
 
   assets:
     - .env
-    - assets/logos/canaa/canaa.png
-    - assets/
+    - assets/images/
+    - assets/logos/canaa/
+  
+  fonts:
+  - family: Poppins
+    fonts:
+      - asset: assets/fonts/Poppins-Regular.ttf
+      - asset: assets/fonts/Poppins-Italic.ttf
+        style: italic
+      - asset: assets/fonts/Poppins-Bold.ttf
+        weight: 700
+      - asset: assets/fonts/Poppins-BoldItalic.ttf
+        style: italic
+        weight: 700
+      - asset: assets/fonts/Poppins-ExtraLight.ttf
+        weight: 200
+      - asset: assets/fonts/Poppins-ExtraLightItalic.ttf
+        style: italic 
+        weight: 200
+      - asset: assets/fonts/Poppins-Light.ttf
+        weight: 300
+      - asset: assets/fonts/Poppins-LightItalic.ttf
+        style: italic
+        weight: 300
+      - asset: assets/fonts/Poppins-Medium.ttf
+        weight: 500
+      - asset: assets/fonts/Poppins-MediumItalic.ttf
+        style: italic
+        weight: 500
+      - asset: assets/fonts/Poppins-SemiBold.ttf
+        weight: 600
+      - asset: assets/fonts/Poppins-SemiBoldItalic.ttf
+        style: italic
+        weight: 600
+      - asset: assets/fonts/Poppins-Thin.ttf
+        weight: 100
+      - asset: assets/fonts/Poppins-ThinItalic.ttf
+        style: italic
+        weight: 100
 

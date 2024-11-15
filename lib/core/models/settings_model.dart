@@ -30,3 +30,4 @@ class SettingsModel {
     return 'SettingsModel(versionApp: $versionApp, nameApp: $nameApp, pathLogo: $pathLogo, primaryColor: $primaryColor)';
   }
 }
+
