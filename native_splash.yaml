@@ -1,0 +1,11 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  web: true
+
+  color: "#ffffff"
+  image: assets/logos/canaa/splash_canaa.png
+
+  android_12:
+    color: "#ffffff"
+    image: assets/logos/canaa/splash_canaa.png

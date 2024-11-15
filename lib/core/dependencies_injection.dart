@@ -1,3 +1,7 @@
+import 'package:app_acampamentos_hallel/core/global_controllers/settigs_controller.dart';
+import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
+import 'package:app_acampamentos_hallel/core/repositories/settings_repository.dart';
+import 'package:app_acampamentos_hallel/core/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
 class Dependencies {
@@ -21,5 +25,13 @@ class Dependencies {
 }
 
 Future<bool> setupDependencies(BuildContext context) async {
+  final settingsService = SettingsServiceImpl(db: db);
+  final settingsRepository = SettingsRepositoryImpl(settingsService: settingsService);
+  Dependencies.instance.add<SettingsRepositoryImpl>(settingsRepository);
+  
+  Dependencies.instance.add<SettingsControllerImpl>(SettingsControllerImpl(settingsRepository: settingsRepository));
+
+
+
   return true;
 }

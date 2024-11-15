@@ -1,7 +1,7 @@
 name: app_acampamentos_hallel
 description: "A new Flutter project."
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.2
 
 environment:
   sdk: ^3.5.4
@@ -11,6 +11,10 @@ dependencies:
     sdk: flutter
   firebase_core: ^3.7.0
   flutter_dotenv: ^5.2.1
+  cloud_firestore: ^5.5.0
+  package_info_plus: ^8.1.1
+  flutter_native_splash: ^2.4.2
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +26,6 @@ flutter:
 
   assets:
     - .env
+    - assets/logos/canaa/canaa.png
+    - assets/
+
