@@ -1,8 +1,12 @@
 import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
 import 'package:app_acampamentos_hallel/core/global_controllers/settigs_controller.dart';
+import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
 import 'package:app_acampamentos_hallel/core/libs/firebase_options.dart';
+import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
 import 'package:app_acampamentos_hallel/core/libs/info_plus.dart';
-import 'package:app_acampamentos_hallel/ui/welcome/welcome_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/deprecated_version/deprecated_version_screen.dart';
+import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -36,33 +40,51 @@ class MainApp extends StatelessWidget {
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Poppins',
-        ),
-        home: const InjectionPage(
-          child: WelcomePresenter(),
-        ),
+        theme: ThemeData(fontFamily: 'Poppins', scaffoldBackgroundColor: const Color(0xFFF3F3F3)),
+        home: const InjectionPage(),
       ),
     );
   }
 }
 
 class InjectionPage extends StatefulWidget {
-  final Widget child;
-  const InjectionPage({super.key, required this.child});
+  const InjectionPage({super.key});
 
   @override
   State<InjectionPage> createState() => _InjectionPageState();
 }
 
 class _InjectionPageState extends State<InjectionPage> {
+  late UserController userController;
   late SettingsController settingsController;
 
   @override
   void initState() {
     super.initState();
     setupDependencies(context);
+    userController = Dependencies.instance.get<UserControllerImpl>();
     settingsController = Dependencies.instance.get<SettingsControllerImpl>();
+    auth.setLanguageCode("pt");
+  }
+
+  @override
+  void dispose() {
+    userController.dispose();
+    settingsController.dispose();
+    super.dispose();
+  }
+
+  Widget getChild() {
+    FlutterNativeSplash.remove();
+    if (settingsController.allSettings.versionApp != VersionApp().getVersion()) {
+      return const DeprecatedVersionScreen();
+    }
+
+    if (auth.currentUser != null) {
+      return const HomePresenter();
+    }
+
+    return const WelcomeScreen();
   }
 
   @override
@@ -72,9 +94,9 @@ class _InjectionPageState extends State<InjectionPage> {
       builder: (context, child) {
         if (settingsController.settings == null) {
           settingsController.getSettings();
-          return const Placeholder();
+          return const SizedBox();
         }
-        return widget.child;
+        return getChild();
       },
     );
   }

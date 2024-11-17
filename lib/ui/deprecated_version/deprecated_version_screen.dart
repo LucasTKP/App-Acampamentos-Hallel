@@ -1,9 +1,17 @@
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class DeprecatedVersion extends StatelessWidget {
-  final Function sendToGooglePlayStore;
-  const DeprecatedVersion({super.key, required this.sendToGooglePlayStore});
+class DeprecatedVersionScreen extends StatelessWidget {
+  const DeprecatedVersionScreen({super.key});
+
+  Future<void> sendToGooglePlay() async {
+    final Uri url = Uri.parse('https://acampscanaa.vercel.app/');
+
+    if (!await launchUrl(url)) {
+      throw Exception(url);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +50,18 @@ class DeprecatedVersion extends StatelessWidget {
                 children: [
                   const Text(
                     'Aviso',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black, decoration: TextDecoration.none),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
                   const Text(
                     'Seu aplicativo está desatualizado, clique no botão abaixo e atualize para a última versão.',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, color: Colors.black, decoration: TextDecoration.none),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
                   OutlinedButton(
-                    onPressed: () => sendToGooglePlayStore(),
+                    onPressed: () => sendToGooglePlay(),
                     style: ButtonStyle(
                       shape: WidgetStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),

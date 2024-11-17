@@ -1,6 +1,9 @@
 import 'package:app_acampamentos_hallel/core/global_controllers/settigs_controller.dart';
+import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
 import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
+import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/settings_repository.dart';
+import 'package:app_acampamentos_hallel/core/services/auth_service.dart';
 import 'package:app_acampamentos_hallel/core/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
@@ -28,10 +31,14 @@ Future<bool> setupDependencies(BuildContext context) async {
   final settingsService = SettingsServiceImpl(db: db);
   final settingsRepository = SettingsRepositoryImpl(settingsService: settingsService);
   Dependencies.instance.add<SettingsRepositoryImpl>(settingsRepository);
-  
+
   Dependencies.instance.add<SettingsControllerImpl>(SettingsControllerImpl(settingsRepository: settingsRepository));
 
+  final authService = AuthServiceImpl(auth: auth);
+  Dependencies.instance.add<AuthRepositoryImpl>(AuthRepositoryImpl(authService: authService));
 
+  final userController = UserControllerImpl();
+  Dependencies.instance.add<UserControllerImpl>(userController);
 
   return true;
 }

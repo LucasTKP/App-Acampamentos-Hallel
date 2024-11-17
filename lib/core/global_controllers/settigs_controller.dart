@@ -28,6 +28,7 @@ class SettingsControllerImpl extends SettingsController {
     }
   }
 
+
   @override
   void setSettings(SettingsModel settings) {
     this.settings = settings;

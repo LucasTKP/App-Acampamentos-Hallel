@@ -1,9 +1,8 @@
-import 'package:app_acampamentos_hallel/ui/welcome/welcome_controller.dart';
+import 'package:app_acampamentos_hallel/ui/login/login_presenter.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  final WelcomeController controller;
-  const WelcomeScreen({super.key, required this.controller});
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +11,7 @@ class WelcomeScreen extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/welcome.png'),
-              fit: BoxFit.cover,
-            ),
+            image: DecorationImage(image: AssetImage('assets/images/welcome.png'), fit: BoxFit.cover),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
@@ -38,12 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     const Text(
                       '~ Falta pouco!',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white,
-                        fontStyle: FontStyle.italic,
-                      ),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300, color: Colors.white, fontStyle: FontStyle.italic),
                     ),
                   ],
                 ),
@@ -52,7 +43,7 @@ class WelcomeScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
-                        onPressed: () => {},
+                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPresenter())),
                         style: ButtonStyle(
                           shape: WidgetStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
@@ -62,11 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                         child: const Text(
                           "Login",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
@@ -90,13 +77,7 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Center(
-                      child: Image.asset(
-                        'assets/logos/canaa/canaa_white.png',
-                        width: 80,
-                        height: 80,
-                      ),
-                    ),
+                    Center(child: Image.asset('assets/logos/canaa/canaa_white.png', width: 80, height: 80)),
                   ],
                 ),
               ],
