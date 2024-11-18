@@ -1,0 +1,4 @@
+enum AsyncState {
+  loading,
+  initial,
+}

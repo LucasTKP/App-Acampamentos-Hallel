@@ -4,6 +4,8 @@ import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.
 import 'package:app_acampamentos_hallel/core/libs/firebase_options.dart';
 import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
 import 'package:app_acampamentos_hallel/core/libs/info_plus.dart';
+import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
+import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/ui/deprecated_version/deprecated_version_screen.dart';
 import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/welcome/welcome_screen.dart';
@@ -12,6 +14,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -56,15 +59,20 @@ class InjectionPage extends StatefulWidget {
 
 class _InjectionPageState extends State<InjectionPage> {
   late UserController userController;
+  late PermissionHandler permissionHandler;
   late SettingsController settingsController;
+  late AuthRepository authRepository;
 
   @override
   void initState() {
     super.initState();
     setupDependencies(context);
     userController = Dependencies.instance.get<UserControllerImpl>();
+    permissionHandler = Dependencies.instance.get<PermissionHandlerImpl>();
     settingsController = Dependencies.instance.get<SettingsControllerImpl>();
+    authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
     auth.setLanguageCode("pt");
+    requestPermissionNotification();
   }
 
   @override
@@ -74,13 +82,21 @@ class _InjectionPageState extends State<InjectionPage> {
     super.dispose();
   }
 
+  void requestPermissionNotification() async {
+    final status = await permissionHandler.checkPermissionStatus(Permission.notification);
+    if (status.isGranted) {
+      return;
+    }
+    await permissionHandler.requestPermission(Permission.notification);
+  }
+
   Widget getChild() {
     FlutterNativeSplash.remove();
     if (settingsController.allSettings.versionApp != VersionApp().getVersion()) {
       return const DeprecatedVersionScreen();
     }
 
-    if (auth.currentUser != null) {
+    if (authRepository.getCurrentUser() != null) {
       return const HomePresenter();
     }
 

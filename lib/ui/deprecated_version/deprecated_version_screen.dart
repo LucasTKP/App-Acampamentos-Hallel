@@ -15,74 +15,73 @@ class DeprecatedVersionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      child: Stack(
-        children: [
-          Image.asset(
-            'assets/images/welcome.png',
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset(
+          'assets/images/welcome.png',
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          fit: BoxFit.cover,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.transparent,
+                Colors.black.withOpacity(0.6),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
-          Container(
+        ),
+        Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.7,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(0.6),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              color: const Color.fromARGB(255, 255, 255, 255),
+              border: Border.all(color: ThemeColors.primaryColor, width: 3),
+            ),
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Aviso',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black, decoration: TextDecoration.none),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Seu aplicativo está desatualizado, clique no botão abaixo e atualize para a última versão.',
+                  style: TextStyle(fontSize: 16, color: Colors.black, decoration: TextDecoration.none),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                OutlinedButton(
+                  onPressed: () => sendToGooglePlay(),
+                  style: ButtonStyle(
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    )),
+                    side: WidgetStateProperty.all(
+                      const BorderSide(color: ThemeColors.primaryColor, width: 2),
+                    ),
+                    visualDensity: VisualDensity.compact,
+                    backgroundColor: WidgetStateProperty.all(ThemeColors.primaryColor.withOpacity(0.8)),
+                  ),
+                  child: const Text(
+                    "Atualizar",
+                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
             ),
           ),
-          Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
-                color: const Color.fromARGB(255, 255, 255, 255),
-                border: Border.all(color: ThemeColors.primaryColor, width: 3),
-              ),
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'Aviso',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black, decoration: TextDecoration.none),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Seu aplicativo está desatualizado, clique no botão abaixo e atualize para a última versão.',
-                    style: TextStyle(fontSize: 16, color: Colors.black, decoration: TextDecoration.none),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 16),
-                  OutlinedButton(
-                    onPressed: () => sendToGooglePlay(),
-                    style: ButtonStyle(
-                      shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      )),
-                      side: WidgetStateProperty.all(
-                        const BorderSide(color: ThemeColors.primaryColor, width: 2),
-                      ),
-                      visualDensity: VisualDensity.compact,
-                      backgroundColor: WidgetStateProperty.all(ThemeColors.primaryColor.withOpacity(0.8)),
-                    ),
-                    child: const Text(
-                      "Atualizar",
-                      style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

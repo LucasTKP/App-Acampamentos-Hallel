@@ -5,6 +5,7 @@ abstract class AuthRepository {
   Future<UserCredential> signInWithEmailAndPassword({required String email, required String password});
   Future<void> signOut();
   Future<void> forgotPassword({required String email});
+  User? getCurrentUser();
 }
 
 class AuthRepositoryImpl extends AuthRepository {
@@ -25,5 +26,10 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<void> forgotPassword({required String email}) async {
     await authService.forgotPassword(email: email);
+  }
+
+  @override
+  User? getCurrentUser() {
+    return authService.getCurrentUser();
   }
 }

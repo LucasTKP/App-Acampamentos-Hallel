@@ -1,5 +1,10 @@
-import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
-import 'package:app_acampamentos_hallel/main.dart';
+import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
+import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
+import 'package:app_acampamentos_hallel/core/models/async_state.dart';
+import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
+import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
+import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
+import 'package:app_acampamentos_hallel/ui/home/home_controller.dart';
 import 'package:flutter/material.dart';
 
 class HomePresenter extends StatefulWidget {
@@ -10,21 +15,41 @@ class HomePresenter extends StatefulWidget {
 }
 
 class _HomePresenterState extends State<HomePresenter> {
+  late UserController userController;
+  late AuthRepository authRepository;
+  late UserRepository userRepository;
+  late HomeController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    userController = Dependencies.instance.get<UserControllerImpl>();
+    authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
+    userRepository = Dependencies.instance.get<UserRepositoryImpl>();
+    controller = HomeControllerImpl(
+      userController: userController,
+      authRepository: authRepository,
+      userRepository: userRepository,
+      onShowMessage: onShowMessage,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: TextButton(
-          onPressed: () {
-            auth.signOut();
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const MainApp()),
-              (Route<dynamic> route) => false,
-            );
-          },
-          child: const Text('sair'),
-        ),
+      body: AnimatedBuilder(
+        animation: controller,
+        builder: (context, child) {
+          if (controller.state == AsyncState.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return Container();
+        },
       ),
     );
+  }
+
+  void onShowMessage({required String message, required Color color}) {
+    showMessage(context: context, message: message, color: color);
   }
 }

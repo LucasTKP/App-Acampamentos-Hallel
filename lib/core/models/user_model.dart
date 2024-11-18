@@ -9,6 +9,7 @@ class UserModel {
   String namePhoto;
   String photoUrl;
   bool isAdmin;
+  String? deviceToken;
 
   UserModel({
     required this.id,
@@ -21,6 +22,7 @@ class UserModel {
     required this.namePhoto,
     required this.photoUrl,
     required this.isAdmin,
+    required this.deviceToken,
   });
 
   factory UserModel.fromJSON(Map<String, dynamic> json) {
@@ -30,16 +32,17 @@ class UserModel {
       email: json['email'],
       madeCane: json['madeCane'],
       madeCaneYear: json['madeCaneYear'],
-      lastPresence: DateTime.parse(json['lastPresence']),
+      lastPresence: json['lastPresence'].toDate(),
       totalPresence: json['totalPresence'],
       namePhoto: json['namePhoto'],
       photoUrl: json['photoUrl'],
       isAdmin: json['isAdmin'],
+      deviceToken: json['deviceToken'],
     );
   }
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin)';
+    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, deviceToken: $deviceToken)';
   }
 }
