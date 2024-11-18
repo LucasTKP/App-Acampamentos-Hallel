@@ -4,6 +4,7 @@ import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.
 import 'package:app_acampamentos_hallel/core/libs/firebase_options.dart';
 import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
 import 'package:app_acampamentos_hallel/core/libs/info_plus.dart';
+import 'package:app_acampamentos_hallel/core/libs/notification.dart';
 import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/ui/deprecated_version/deprecated_version_screen.dart';
@@ -28,6 +29,9 @@ void main() async {
   ]);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  await NotificationController.localNotiInit(); //Configs de notificação local
+  await NotificationController.init(); //Configs de notificação do firebase
 
   runApp(const MainApp());
 }
