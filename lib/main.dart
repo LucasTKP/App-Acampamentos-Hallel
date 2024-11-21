@@ -47,7 +47,11 @@ class MainApp extends StatelessWidget {
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily: 'Poppins', scaffoldBackgroundColor: const Color(0xFFF3F3F3)),
+        theme: ThemeData(
+          fontFamily: 'Poppins',
+          scaffoldBackgroundColor: const Color(0xFFF3F3F3),
+          useMaterial3: true,
+        ),
         home: const InjectionPage(),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
 import 'package:app_acampamentos_hallel/ui/home/home_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePresenter extends StatefulWidget {
@@ -36,15 +37,19 @@ class _HomePresenterState extends State<HomePresenter> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) {
-          if (controller.state == AsyncState.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return Container();
-        },
+    return SafeArea(
+      child: Scaffold(
+        body: AnimatedBuilder(
+          animation: controller,
+          builder: (context, child) {
+            if (controller.state == AsyncState.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return ElevatedButton(onPressed:(){
+              FirebaseAuth.instance.signOut();
+            } , child: const Text('Sair'));
+          },
+        ),
       ),
     );
   }

@@ -26,7 +26,13 @@ class _LoginPresenterState extends State<LoginPresenter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LoginScreen(controller: controller),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      body: AnimatedBuilder(
+        animation: controller,
+        builder: (context, child) => LoginScreen(controller: controller),
+      ),
     );
   }
 

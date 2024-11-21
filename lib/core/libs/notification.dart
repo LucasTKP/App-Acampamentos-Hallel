@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:developer' as developer;
 
@@ -39,8 +40,6 @@ class NotificationController {
     // Lidar com notificação quando o aplicativo estiver em primeiro plano
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       developer.log("Got a message in foreground");
-      print(message.notification);
-      print('aaaaaaaaa');
       _handleMessage(message, isBackground: false);
     });
   }
@@ -106,6 +105,14 @@ class NotificationController {
       channelDescription: _channelDesc,
       importance: Importance.max,
       priority: Priority.max,
+      playSound: true,
+      largeIcon: DrawableResourceAndroidBitmap('@drawable/android12splash'),
+      color: Colors.green,
+      colorized: true,
+      ledColor: Colors.red,
+      ledOnMs: 500,
+      ledOffMs: 500,
+      styleInformation: DefaultStyleInformation(true, true),
       ticker: 'ticker',
     );
 

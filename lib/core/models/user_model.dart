@@ -3,7 +3,7 @@ class UserModel {
   String name;
   String email;
   bool madeCane;
-  int madeCaneYear;
+  int? madeCaneYear;
   DateTime lastPresence;
   int totalPresence;
   String namePhoto;

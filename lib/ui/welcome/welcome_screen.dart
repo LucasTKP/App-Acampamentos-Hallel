@@ -1,4 +1,5 @@
 import 'package:app_acampamentos_hallel/ui/login/login_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/register/register_user_presenter.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -65,14 +66,17 @@ class WelcomeScreen extends StatelessWidget {
                           shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                           overlayColor: WidgetStatePropertyAll(Colors.white.withOpacity(0.4)),
                         ),
-                        child: const Text(
-                          'Criar uma conta',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            decoration: TextDecoration.underline,
-                            decorationColor: Colors.white,
+                        child: TextButton(
+                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterUserPresenter())),
+                          child: const Text(
+                            'Criar uma conta',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.white,
+                            ),
                           ),
                         ),
                       ),
