@@ -39,6 +39,9 @@ class _HomePresenterState extends State<HomePresenter> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Home'),
+        ),
         body: AnimatedBuilder(
           animation: controller,
           builder: (context, child) {

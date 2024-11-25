@@ -8,7 +8,7 @@ import 'package:app_acampamentos_hallel/core/libs/notification.dart';
 import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/ui/deprecated_version/deprecated_version_screen.dart';
-import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/routes/routes.presenter.dart';
 import 'package:app_acampamentos_hallel/ui/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -105,7 +105,7 @@ class _InjectionPageState extends State<InjectionPage> {
     }
 
     if (authRepository.getCurrentUser() != null) {
-      return const HomePresenter();
+      return const RoutesPresenter();
     }
 
     return const WelcomeScreen();
