@@ -25,132 +25,157 @@ class RegisterUserScreen extends StatelessWidget {
             fit: BoxFit.fitWidth,
           ),
         ),
-        Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            child: Form(
-                key: controller.formKey,
-                child: Column(
-                  children: [
-                    const Text(
-                      'Faça seu cadastro',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w700,
-                        color: ThemeColors.primaryColor,
+        SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Form(
+              key: controller.formKey,
+              child: Column(
+                children: [
+                  const Text(
+                    'Faça seu cadastro',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                      color: ThemeColors.primaryColor,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    '- Aqui é a sua Terra Prometida -',
+                    style: TextStyle(fontSize: 16, color: ThemeColors.primaryColor),
+                  ),
+                  const SizedBox(height: 24),
+                  CustomInputs.standard(
+                    controller: controller.name,
+                    contentPadding: EdgeInsets.zero,
+                    label: 'Nome Completo',
+                    obscureText: false,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Campo obrigatório';
+                      }
+                      return null;
+                    },
+                    prefixIcon: const Icon(Icons.person, color: ThemeColors.primaryColor, size: 26),
+                    suffixIcon: null,
+                  ),
+                  const SizedBox(height: 16),
+                  CustomInputs.standard(
+                    controller: controller.email,
+                    contentPadding: EdgeInsets.zero,
+                    label: 'E-mail',
+                    obscureText: false,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Campo obrigatório';
+                      }
+                      final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+                      if (!emailRegex.hasMatch(value)) {
+                        return 'E-mail inválido';
+                      }
+                      return null;
+                    },
+                    prefixIcon: const Icon(Icons.email, color: ThemeColors.primaryColor, size: 26),
+                    suffixIcon: null,
+                  ),
+                  const SizedBox(height: 16),
+                  CustomInputs.standard(
+                    controller: controller.dateOfBirth,
+                    contentPadding: EdgeInsets.zero,
+                    label: 'Data de Nascimento',
+                    obscureText: false,
+                    hintText: '11/11/2004',
+                    validator: validateDate,
+                    prefixIcon: const Icon(Icons.date_range, color: ThemeColors.primaryColor, size: 26),
+                    suffixIcon: null,
+                    inputFormatters: [
+                      MaskTextInputFormatter(
+                        mask: '##/##/####',
+                        filter: {'#': RegExp(r'[0-9]')},
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    CustomInputs.standard(
-                      controller: controller.name,
-                      contentPadding: EdgeInsets.zero,
-                      label: 'Nome Completo',
-                      obscureText: false,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Campo obrigatório';
-                        }
-                        return null;
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  CustomInputs.standard(
+                    controller: controller.password,
+                    label: 'Senha',
+                    obscureText: !controller.passwordVisible,
+                    contentPadding: EdgeInsets.zero,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Campo obrigatório';
+                      }
+                      if (value.length < 6) {
+                        return 'Senha deve ter no mínimo 6 caracteres';
+                      }
+                      return null;
+                    },
+                    prefixIcon: const Icon(Icons.lock, color: ThemeColors.primaryColor, size: 26),
+                    suffixIcon: IconButton(
+                      focusNode: FocusNode(skipTraversal: true),
+                      onPressed: () {
+                        controller.setPasswordVisible(!controller.passwordVisible);
                       },
-                      prefixIcon: const Icon(Icons.person, color: ThemeColors.primaryColor, size: 26),
-                      suffixIcon: null,
+                      icon: Icon(controller.passwordVisible ? Icons.visibility : Icons.visibility_off, color: ThemeColors.primaryColor),
                     ),
-                    const SizedBox(height: 16),
-                    CustomInputs.standard(
-                      controller: controller.email,
-                      contentPadding: EdgeInsets.zero,
-                      label: 'E-mail',
-                      obscureText: false,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Campo obrigatório';
-                        }
-                        final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-                        if (!emailRegex.hasMatch(value)) {
-                          return 'E-mail inválido';
-                        }
-                        return null;
+                  ),
+                  const SizedBox(height: 16),
+                  CustomInputs.standard(
+                    controller: controller.confirmPassword,
+                    label: 'Confirme a senha',
+                    obscureText: !controller.passwordVisible,
+                    contentPadding: EdgeInsets.zero,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Campo obrigatório';
+                      }
+                      if (value != controller.password.text) {
+                        return 'as Senhas são difetentes';
+                      }
+                      return null;
+                    },
+                    prefixIcon: const Icon(Icons.lock, color: ThemeColors.primaryColor, size: 26),
+                    suffixIcon: IconButton(
+                      focusNode: FocusNode(skipTraversal: true),
+                      onPressed: () {
+                        controller.setPasswordVisible(!controller.passwordVisible);
                       },
-                      prefixIcon: const Icon(Icons.email, color: ThemeColors.primaryColor, size: 26),
-                      suffixIcon: null,
+                      icon: Icon(controller.passwordVisible ? Icons.visibility : Icons.visibility_off, color: ThemeColors.primaryColor),
                     ),
-                    const SizedBox(height: 16),
-                    CustomInputs.standard(
-                      controller: controller.dateOfBirth,
-                      contentPadding: EdgeInsets.zero,
-                      label: 'Data de Nascimento',
-                      obscureText: false,
-                      hintText: '11/11/2004',
-                      validator: validateDate,
-                      prefixIcon: const Icon(Icons.date_range, color: ThemeColors.primaryColor, size: 26),
-                      suffixIcon: null,
-                      inputFormatters: [
-                        MaskTextInputFormatter(
-                          mask: '##/##/####',
-                          filter: {'#': RegExp(r'[0-9]')},
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    CustomInputs.standard(
-                      controller: controller.password,
-                      label: 'Senha',
-                      obscureText: !controller.passwordVisible,
-                      contentPadding: EdgeInsets.zero,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Campo obrigatório';
-                        }
-                        if (value.length < 6) {
-                          return 'Senha deve ter no mínimo 6 caracteres';
-                        }
-                        return null;
-                      },
-                      prefixIcon: const Icon(Icons.lock, color: ThemeColors.primaryColor, size: 26),
-                      suffixIcon: IconButton(
-                        focusNode: FocusNode(skipTraversal: true),
-                        onPressed: () {
-                          controller.setPasswordVisible(!controller.passwordVisible);
-                        },
-                        icon: Icon(controller.passwordVisible ? Icons.visibility : Icons.visibility_off, color: ThemeColors.primaryColor),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    CustomInputs.standard(
-                      controller: controller.confirmPassword,
-                      label: 'Confirme a senha',
-                      obscureText: !controller.passwordVisible,
-                      contentPadding: EdgeInsets.zero,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Campo obrigatório';
-                        }
-                        if (value != controller.password.text) {
-                          return 'as Senhas são difetentes';
-                        }
-                        return null;
-                      },
-                      prefixIcon: const Icon(Icons.lock, color: ThemeColors.primaryColor, size: 26),
-                      suffixIcon: IconButton(
-                        focusNode: FocusNode(skipTraversal: true),
-                        onPressed: () {
-                          controller.setPasswordVisible(!controller.passwordVisible);
-                        },
-                        icon: Icon(controller.passwordVisible ? Icons.visibility : Icons.visibility_off, color: ThemeColors.primaryColor),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    CustomDropDown.standard(
-                      items: controller.itemsDropdownOne,
+                  ),
+                  const SizedBox(height: 16),
+                  CustomDropDown.standard(
+                    items: controller.itemsDropdownOne,
+                    onChanged: (value) {
+                      if (value != null) {
+                        controller.setMadeCamping(value);
+                      }
+                    },
+                    textLabel: 'Você já fez o acampamento?',
+                    icon: const Icon(Icons.park, color: ThemeColors.primaryColor, size: 26),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                    value: controller.madeCamping,
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Campo obrigatório';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  Visibility(
+                    visible: controller.madeCamping.value == 'true',
+                    child: CustomDropDown.standard(
+                      items: controller.itemsDropdownTwo,
                       onChanged: (value) {
                         if (value != null) {
-                          controller.setMadeCamping(value);
+                          controller.setYear(value);
                         }
                       },
-                      textLabel: 'Você já fez o acampamento?',
-                      icon: const Icon(Icons.park, color: ThemeColors.primaryColor, size: 26),
+                      textLabel: 'Em que ano você fez?',
+                      icon: const Icon(Icons.calendar_today, color: ThemeColors.primaryColor, size: 26),
                       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
-                      value: controller.madeCamping,
+                      value: controller.year,
                       validator: (value) {
                         if (value == null) {
                           return 'Campo obrigatório';
@@ -158,49 +183,27 @@ class RegisterUserScreen extends StatelessWidget {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 16),
-                    Visibility(
-                      visible: controller.madeCamping.value == 'true',
-                      child: CustomDropDown.standard(
-                        items: controller.itemsDropdownTwo,
-                        onChanged: (value) {
-                          if (value != null) {
-                            controller.setYear(value);
-                          }
-                        },
-                        textLabel: 'Em que ano você fez?',
-                        icon: const Icon(Icons.calendar_today, color: ThemeColors.primaryColor, size: 26),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
-                        value: controller.year,
-                        validator: (value) {
-                          if (value == null) {
-                            return 'Campo obrigatório';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 64),
-                    CustomButton.standard(
-                      buttonIsLoading: controller.buttonIsLoading,
-                      onPressed: () async {
-                        final response = await controller.onRegisterUser();
-                        if (response) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RoutesPresenter(),
-                              ),
-                            );
-                          });
-                        }
-                      },
-                      label: 'Cadastrar',
-                    )
-                  ],
-                )),
-          ),
+                  ),
+                  const SizedBox(height: 32),
+                  CustomButton.standard(
+                    buttonIsLoading: controller.buttonIsLoading,
+                    onPressed: () async {
+                      final response = await controller.onRegisterUser();
+                      if (response) {
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RoutesPresenter(),
+                            ),
+                          );
+                        });
+                      }
+                    },
+                    label: 'Cadastrar',
+                  ),
+                ],
+              )),
         )
       ],
     );

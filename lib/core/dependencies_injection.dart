@@ -5,11 +5,13 @@ import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
 import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/daily_liturgy_repository.dart';
+import 'package:app_acampamentos_hallel/core/repositories/meetings_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/settings_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/services/api_client.dart';
 import 'package:app_acampamentos_hallel/core/services/auth_service.dart';
 import 'package:app_acampamentos_hallel/core/services/daily_liturgy_service.dart';
+import 'package:app_acampamentos_hallel/core/services/meetings_service.dart';
 import 'package:app_acampamentos_hallel/core/services/settings_service.dart';
 import 'package:app_acampamentos_hallel/core/services/user.service.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +48,6 @@ Future<bool> setupDependencies(BuildContext context) async {
   final dailyLiturgyService = DailyLiturgyServiceImpl(api: api);
   Dependencies.instance.add<DailyLiturgyRepository>(DailyLiturgyRepositoryImpl(service: dailyLiturgyService));
 
-
-
   Dependencies.instance.add<SettingsControllerImpl>(SettingsControllerImpl(settingsRepository: settingsRepository));
 
   Dependencies.instance.add<PermissionHandlerImpl>(PermissionHandlerImpl());
@@ -57,6 +57,10 @@ Future<bool> setupDependencies(BuildContext context) async {
 
   final userService = UserServiceImpl();
   Dependencies.instance.add<UserRepositoryImpl>(UserRepositoryImpl(userService: userService));
+
+  final meetingsService = MeetingsServiceImpl(db: db);
+  final meetingsRepository = MeetingsRepositoryImpl(service: meetingsService);
+  Dependencies.instance.add<MeetingsRepositoryImpl>(meetingsRepository);
 
   final userController = UserControllerImpl();
   Dependencies.instance.add<UserControllerImpl>(userController);

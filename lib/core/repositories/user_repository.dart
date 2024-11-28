@@ -6,6 +6,7 @@ abstract class UserRepository {
   Future<void> registerUser(RegisteUserDto user);
   Future<UserModel> getUser(String idUser);
   Future<void> updateUser(String idUser, Map<String, dynamic> data);
+  Future<List<UserModel>> getUsers();
 }
 
 class UserRepositoryImpl extends UserRepository {
@@ -27,5 +28,11 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<void> updateUser(String idUser, Map<String, dynamic> data) async {
     return await userService.updateUser(idUser, data);
+  }
+
+  @override
+  Future<List<UserModel>> getUsers() async {
+    final response = await userService.getUsers();
+    return response.docs.map((e) => UserModel.fromJSON(e.data())).toList();
   }
 }

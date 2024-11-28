@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                     color: ThemeColors.primaryColor,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
                 const Text(
                   '- o filho pródigo a casa torna -',
                   style: TextStyle(fontSize: 16, color: ThemeColors.primaryColor),

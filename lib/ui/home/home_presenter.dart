@@ -1,5 +1,7 @@
+import 'dart:developer';
+
 import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/repositories/daily_liturgy_repository.dart';
+import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
 import 'package:app_acampamentos_hallel/ui/home/home_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,14 +15,16 @@ class HomePresenter extends StatefulWidget {
 }
 
 class _HomePresenterState extends State<HomePresenter> {
-  late DailyLiturgyRepository dailyLiturgyRepository;
+  late UserRepository userRepository;
   late HomeController controller;
 
   @override
   void initState() {
     super.initState();
-    dailyLiturgyRepository = Dependencies.instance.get<DailyLiturgyRepository>();
-    dailyLiturgyRepository.getDailyLiturgy(day: '01', month: '01');
+    userRepository = Dependencies.instance.get<UserRepositoryImpl>();
+    userRepository.getUsers().then((value) {
+      log('value: $value');
+    });
     controller = HomeControllerImpl();
   }
 

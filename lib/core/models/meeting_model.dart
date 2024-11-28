@@ -23,7 +23,7 @@ class MeetingModel {
       theme: json['theme'],
       description: json['description'],
       password: json['password'],
-      date: DateTime.parse(json['date']),
+      date:json['date'].toDate(),
       isVisible: json['isVisible'],
       isOpen: json['isOpen'],
     );

@@ -39,6 +39,9 @@ class _RegisterUserPresenterState extends State<RegisterUserPresenter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {

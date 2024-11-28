@@ -4,6 +4,7 @@ abstract class UserService {
   Future<void> registerUser(Map<String, dynamic> data);
   Future<DocumentSnapshot<Map<String, dynamic>>> getUser(String idUser);
   Future<void> updateUser(String idUser, Map<String, dynamic> data);
+  Future<QuerySnapshot<Map<String, dynamic>>> getUsers();
 }
 
 class UserServiceImpl extends UserService {
@@ -22,5 +23,10 @@ class UserServiceImpl extends UserService {
   @override
   Future<void> updateUser(String idUser, Map<String, dynamic> data) async {
     return await db.collection('users').doc(idUser).update(data);
+  }
+
+  @override
+  Future<QuerySnapshot<Map<String, dynamic>>> getUsers() async {
+    return await db.collection('users').get();
   }
 }

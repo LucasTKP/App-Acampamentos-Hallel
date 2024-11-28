@@ -36,7 +36,7 @@ class UserModel {
       totalPresence: json['totalPresence'],
       namePhoto: json['namePhoto'],
       photoUrl: json['photoUrl'],
-      isAdmin: json['isAdmin'],
+      isAdmin: json['isAdmin'] ?? false,
       deviceToken: json['deviceToken'],
     );
   }
