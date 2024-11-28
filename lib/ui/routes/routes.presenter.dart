@@ -1,4 +1,9 @@
+import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
+import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
+import 'package:app_acampamentos_hallel/core/models/async_state.dart';
 import 'package:app_acampamentos_hallel/core/models/routes.dart';
+import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
+import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
 import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/routes/routes_controller.dart';
@@ -12,11 +17,22 @@ class RoutesPresenter extends StatefulWidget {
 }
 
 class _RoutesPresenterState extends State<RoutesPresenter> {
+  late UserController userController;
+  late AuthRepository authRepository;
+  late UserRepository userRepository;
   late RoutesController controller;
 
   @override
   void initState() {
-    controller = RoutesControllerImpl();
+    userController = Dependencies.instance.get<UserControllerImpl>();
+    authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
+    userRepository = Dependencies.instance.get<UserRepositoryImpl>();
+    controller = RoutesControllerImpl(
+      userController: userController,
+      authRepository: authRepository,
+      userRepository: userRepository,
+      onShowMessage: onShowMessage,
+    );
     super.initState();
   }
 
@@ -26,6 +42,10 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
       body: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
+          if (controller.state == AsyncState.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
           switch (controller.currentRoute) {
             case Routes.home:
               return const HomePresenter();
@@ -41,6 +61,9 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
       bottomNavigationBar: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
+          if (controller.state == AsyncState.loading) {
+            return const SizedBox();
+          }
           return BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
@@ -73,5 +96,12 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
         },
       ),
     );
+  }
+
+  void onShowMessage({required String message, required Color color}) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: color,
+    ));
   }
 }

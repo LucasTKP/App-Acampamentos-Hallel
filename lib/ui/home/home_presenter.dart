@@ -1,8 +1,5 @@
 import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
-import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
+import 'package:app_acampamentos_hallel/core/repositories/daily_liturgy_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
 import 'package:app_acampamentos_hallel/ui/home/home_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,23 +13,15 @@ class HomePresenter extends StatefulWidget {
 }
 
 class _HomePresenterState extends State<HomePresenter> {
-  late UserController userController;
-  late AuthRepository authRepository;
-  late UserRepository userRepository;
+  late DailyLiturgyRepository dailyLiturgyRepository;
   late HomeController controller;
 
   @override
   void initState() {
     super.initState();
-    userController = Dependencies.instance.get<UserControllerImpl>();
-    authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
-    userRepository = Dependencies.instance.get<UserRepositoryImpl>();
-    controller = HomeControllerImpl(
-      userController: userController,
-      authRepository: authRepository,
-      userRepository: userRepository,
-      onShowMessage: onShowMessage,
-    );
+    dailyLiturgyRepository = Dependencies.instance.get<DailyLiturgyRepository>();
+    dailyLiturgyRepository.getDailyLiturgy(day: '01', month: '01');
+    controller = HomeControllerImpl();
   }
 
   @override
@@ -45,12 +34,14 @@ class _HomePresenterState extends State<HomePresenter> {
         body: AnimatedBuilder(
           animation: controller,
           builder: (context, child) {
-            if (controller.state == AsyncState.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            return ElevatedButton(onPressed:(){
-              FirebaseAuth.instance.signOut();
-            } , child: const Text('Sair'));
+            // if (controller.state == AsyncState.loading) {
+            //   return const Center(child: CircularProgressIndicator());
+            // }
+            return ElevatedButton(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                },
+                child: const Text('Sair'));
           },
         ),
       ),
