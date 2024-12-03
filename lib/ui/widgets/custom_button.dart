@@ -10,7 +10,11 @@ class CustomButton {
     return LayoutBuilder(
       builder: (context, constraints) {
         return OutlinedButton(
-          onPressed: () => onPressed(),
+          onPressed: (){
+            if (!buttonIsLoading) {
+              onPressed();
+            }
+          },
           style: OutlinedButton.styleFrom(
             backgroundColor: ThemeColors.primaryColor,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonIsLoading ? 100 : 10)),

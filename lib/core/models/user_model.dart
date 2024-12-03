@@ -10,6 +10,7 @@ class UserModel {
   String photoUrl;
   bool isAdmin;
   String? deviceToken;
+  String? dateOfBirth;
 
   UserModel({
     required this.id,
@@ -23,6 +24,7 @@ class UserModel {
     required this.photoUrl,
     required this.isAdmin,
     required this.deviceToken,
+    required this.dateOfBirth,
   });
 
   factory UserModel.fromJSON(Map<String, dynamic> json) {
@@ -38,11 +40,42 @@ class UserModel {
       photoUrl: json['photoUrl'],
       isAdmin: json['isAdmin'] ?? false,
       deviceToken: json['deviceToken'],
+      dateOfBirth: json['dateOfBirth'],
+    );
+  }
+
+  UserModel copyWith({
+    String? id,
+    String? name,
+    String? email,
+    bool? madeCane,
+    int? madeCaneYear,
+    DateTime? lastPresence,
+    int? totalPresence,
+    String? namePhoto,
+    String? photoUrl,
+    bool? isAdmin,
+    String? deviceToken,
+    String? dateOfBirth,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      madeCane: madeCane ?? this.madeCane,
+      madeCaneYear: madeCaneYear ?? this.madeCaneYear,
+      lastPresence: lastPresence ?? this.lastPresence,
+      totalPresence: totalPresence ?? this.totalPresence,
+      namePhoto: namePhoto ?? this.namePhoto,
+      photoUrl: photoUrl ?? this.photoUrl,
+      isAdmin: isAdmin ?? this.isAdmin,
+      deviceToken: deviceToken ?? this.deviceToken,
+      dateOfBirth: dateOfBirth ?? this.dateOfBirth,
     );
   }
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, deviceToken: $deviceToken)';
+    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, deviceToken: $deviceToken, dateOfBirth: $dateOfBirth)';
   }
 }

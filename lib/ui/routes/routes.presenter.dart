@@ -6,6 +6,7 @@ import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
 import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/request_birthday/request_birthday_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/routes/routes_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -42,8 +43,12 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
       body: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
-          if (controller.state == AsyncState.loading) {
-            return const Center(child: CircularProgressIndicator());
+          if (controller.state == AsyncState.loading || userController.user == null) {
+            return const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor));
+          }
+
+          if (userController.user?.dateOfBirth == null) {
+            return const RequestDateOfBirthday();
           }
 
           switch (controller.currentRoute) {
@@ -61,7 +66,7 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
       bottomNavigationBar: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
-          if (controller.state == AsyncState.loading) {
+          if (controller.state == AsyncState.loading || userController.user == null || userController.user?.dateOfBirth == null) {
             return const SizedBox();
           }
           return BottomNavigationBar(

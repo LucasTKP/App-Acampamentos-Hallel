@@ -96,7 +96,6 @@ class LoginScreen extends StatelessWidget {
                       CustomButton.standard(
                         buttonIsLoading: controller.buttonLoginIsLoading,
                         onPressed: () async {
-                          if (controller.buttonLoginIsLoading) return;
                           final response = await controller.login();
                           if (response) {
                             WidgetsBinding.instance.addPostFrameCallback((_) {
