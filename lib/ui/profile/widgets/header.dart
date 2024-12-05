@@ -22,7 +22,7 @@ class Header extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: 0,
+          bottom: -30,
           left: 0,
           right: 0,
           child: Center(

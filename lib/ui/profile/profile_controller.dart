@@ -79,8 +79,9 @@ class ProfileControllerImpl extends ProfileController {
         userController.setUser(userController.userLogged.copyWith(photoUrl: response, namePhoto: nameImage));
 
         setUrlImage(response);
-
-        await userRepository.deleteFile(storagePathDelete);
+        if (nameImage != "jesus.jpg") {
+          await userRepository.deleteFile(storagePathDelete);
+        }
 
         onShowMessage(message: 'Imagem atualizada com sucesso', color: Colors.green);
       }
