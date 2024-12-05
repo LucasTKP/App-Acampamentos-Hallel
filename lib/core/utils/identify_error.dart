@@ -1,3 +1,4 @@
+import 'package:app_acampamentos_hallel/core/utils/internal_errors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -28,6 +29,10 @@ String identifyError({required dynamic error, required String message}) {
   }
   if(error is TypeError) {
     messageError = 'Erro de tipo.';
+  }
+
+  if(error is InternalErrors) {
+    messageError = error.message;
   }
 
   return messageError;

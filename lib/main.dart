@@ -120,7 +120,7 @@ class _InjectionPageState extends State<InjectionPage> {
           settingsController.getSettings();
           return const SizedBox();
         }
-        return getChild();
+        return SafeArea(child: getChild());
       },
     );
   }

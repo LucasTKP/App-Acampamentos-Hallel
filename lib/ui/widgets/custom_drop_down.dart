@@ -7,33 +7,39 @@ class CustomDropDown {
     required List<DropdownModel> items,
     required Function(DropdownModel?) onChanged,
     required String textLabel,
-    Icon? icon,
+    IconData? icon,
     DropdownModel? value,
     InputDecoration? decoration,
     String? Function(DropdownModel?)? validator,
     EdgeInsetsGeometry? contentPadding,
+    bool enabled = true,
   }) {
     return DropdownButtonFormField<DropdownModel>(
       value: value,
-      onChanged: onChanged,
+      menuMaxHeight: 200,
+      onChanged: enabled ? onChanged : null,
       hint: Text(textLabel, style: const TextStyle(color: ThemeColors.primaryColor)),
       items: items.map((DropdownModel model) {
         return DropdownMenuItem<DropdownModel>(
           value: model,
-          child: Text(model.label),
+          child: Text(
+            model.label,
+            style: TextStyle(
+              color: enabled ? ThemeColors.primaryColor : Colors.grey,
+            ),
+          ),
         );
       }).toList(),
-      iconEnabledColor: ThemeColors.primaryColor,
       decoration: InputDecoration(
-        
+        prefixIconColor: enabled ? ThemeColors.primaryColor : Colors.grey,
         contentPadding: contentPadding,
         filled: true,
         fillColor: const Color(0XFFE9E9E9),
         labelText: textLabel,
-        labelStyle: const TextStyle(color: ThemeColors.primaryColor),
-        prefixIcon: icon,
+        labelStyle: TextStyle(color: enabled ? ThemeColors.primaryColor : Colors.grey),
+        prefixIcon: Icon(icon),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: ThemeColors.primaryColor),
+          borderSide: BorderSide(color: enabled ? ThemeColors.primaryColor : Colors.grey),
           borderRadius: BorderRadius.circular(6),
         ),
         focusedBorder: OutlineInputBorder(
@@ -41,9 +47,13 @@ class CustomDropDown {
           borderRadius: BorderRadius.circular(6),
         ),
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: ThemeColors.primaryColor),
+          borderSide: BorderSide(color: enabled ? ThemeColors.primaryColor : Colors.grey),
           borderRadius: BorderRadius.circular(6),
         ),
+      ),
+      icon: Icon(
+        Icons.arrow_drop_down, 
+        color: enabled ? ThemeColors.primaryColor : Colors.grey,
       ),
     );
   }

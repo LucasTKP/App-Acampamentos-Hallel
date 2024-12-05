@@ -94,7 +94,7 @@ class _RequestDateOfBirthdayState extends State<RequestDateOfBirthday> {
                       obscureText: false,
                       hintText: '11/11/2004',
                       validator: validateDate,
-                      prefixIcon: const Icon(Icons.date_range, color: ThemeColors.primaryColor, size: 26),
+                      prefixIcon: Icons.date_range,
                       suffixIcon: null,
                       inputFormatters: [
                         MaskTextInputFormatter(

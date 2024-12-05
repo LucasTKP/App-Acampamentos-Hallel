@@ -57,7 +57,7 @@ class RegisterUserScreen extends StatelessWidget {
                       }
                       return null;
                     },
-                    prefixIcon: const Icon(Icons.person, color: ThemeColors.primaryColor, size: 26),
+                    prefixIcon: Icons.person,
                     suffixIcon: null,
                   ),
                   const SizedBox(height: 16),
@@ -76,7 +76,7 @@ class RegisterUserScreen extends StatelessWidget {
                       }
                       return null;
                     },
-                    prefixIcon: const Icon(Icons.email, color: ThemeColors.primaryColor, size: 26),
+                    prefixIcon: Icons.email,
                     suffixIcon: null,
                   ),
                   const SizedBox(height: 16),
@@ -87,7 +87,7 @@ class RegisterUserScreen extends StatelessWidget {
                     obscureText: false,
                     hintText: '11/11/2004',
                     validator: validateDate,
-                    prefixIcon: const Icon(Icons.date_range, color: ThemeColors.primaryColor, size: 26),
+                    prefixIcon: Icons.date_range,
                     suffixIcon: null,
                     inputFormatters: [
                       MaskTextInputFormatter(
@@ -111,7 +111,7 @@ class RegisterUserScreen extends StatelessWidget {
                       }
                       return null;
                     },
-                    prefixIcon: const Icon(Icons.lock, color: ThemeColors.primaryColor, size: 26),
+                    prefixIcon: Icons.lock,
                     suffixIcon: IconButton(
                       focusNode: FocusNode(skipTraversal: true),
                       onPressed: () {
@@ -135,7 +135,7 @@ class RegisterUserScreen extends StatelessWidget {
                       }
                       return null;
                     },
-                    prefixIcon: const Icon(Icons.lock, color: ThemeColors.primaryColor, size: 26),
+                    prefixIcon: Icons.lock,
                     suffixIcon: IconButton(
                       focusNode: FocusNode(skipTraversal: true),
                       onPressed: () {
@@ -152,8 +152,8 @@ class RegisterUserScreen extends StatelessWidget {
                         controller.setMadeCamping(value);
                       }
                     },
-                    textLabel: 'Você já fez o acampamento?',
-                    icon: const Icon(Icons.park, color: ThemeColors.primaryColor, size: 26),
+                    textLabel: 'Já fez o acampamento?',
+                    icon: Icons.park,
                     contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
                     value: controller.madeCamping,
                     validator: (value) {
@@ -174,7 +174,7 @@ class RegisterUserScreen extends StatelessWidget {
                         }
                       },
                       textLabel: 'Em que ano você fez?',
-                      icon: const Icon(Icons.calendar_today, color: ThemeColors.primaryColor, size: 26),
+                      icon: Icons.calendar_today,
                       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
                       value: controller.year,
                       validator: (value) {
@@ -210,4 +210,3 @@ class RegisterUserScreen extends StatelessWidget {
     );
   }
 }
-

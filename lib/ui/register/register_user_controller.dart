@@ -44,7 +44,7 @@ class RegisterUserControllerImpl extends RegisterUserController {
   @override
   Future<bool> onRegisterUser() async {
     try {
-      if(!formKey.currentState!.validate()) return false;
+      if (!formKey.currentState!.validate()) return false;
       setButtonIsLoading(true);
       final userCredential = await onRegitserUserAuth();
       if (userCredential.user != null) {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 abstract class UserController extends ChangeNotifier {
   UserModel? user;
 
-  get userLogged => user!;
+  UserModel get userLogged => user!;
 
   void setUser(UserModel user);
 }

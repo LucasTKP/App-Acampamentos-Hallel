@@ -20,11 +20,11 @@ class WelcomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
+                const SizedBox(),
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                    const Text(
+                    Text(
                       'A caminho\nda Terra\nPrometida',
                       style: TextStyle(
                         fontSize: 45,
@@ -32,8 +32,8 @@ class WelcomeScreen extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
+                    SizedBox(height: 16),
+                    Text(
                       '~ Falta pouco!',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300, color: Colors.white, fontStyle: FontStyle.italic),
                     ),

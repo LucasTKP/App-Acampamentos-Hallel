@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
@@ -23,7 +21,7 @@ class _HomePresenterState extends State<HomePresenter> {
     super.initState();
     userRepository = Dependencies.instance.get<UserRepositoryImpl>();
     userRepository.getUsers().then((value) {
-      log('value: $value');
+      // log('value: $value');
     });
     controller = HomeControllerImpl();
   }

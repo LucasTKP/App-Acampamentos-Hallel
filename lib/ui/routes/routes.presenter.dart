@@ -6,6 +6,7 @@ import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
 import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/profile/profile_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/request_birthday/request_birthday_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/routes/routes_controller.dart';
 import 'package:flutter/material.dart';
@@ -54,12 +55,12 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
           switch (controller.currentRoute) {
             case Routes.home:
               return const HomePresenter();
-            case Routes.profile:
-              return const Center(child: Text('Perfil'));
             case Routes.users:
               return const Center(child: Text('Usuários'));
             case Routes.meetings:
               return const Center(child: Text('Reuniões'));
+            case Routes.profile:
+              return const ProfilePresenter();
           }
         },
       ),
@@ -77,11 +78,6 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
                 label: 'Início',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.business, color: Colors.grey),
-                activeIcon: Icon(Icons.business, color: ThemeColors.primaryColor),
-                label: 'Perfil',
-              ),
-              BottomNavigationBarItem(
                 icon: Icon(Icons.school, color: Colors.grey),
                 activeIcon: Icon(Icons.school, color: ThemeColors.primaryColor),
                 label: 'Usuários',
@@ -90,6 +86,11 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
                 icon: Icon(Icons.school, color: Colors.grey),
                 activeIcon: Icon(Icons.school, color: ThemeColors.primaryColor),
                 label: 'Reuniões',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person, color: Colors.grey),
+                activeIcon: Icon(Icons.person, color: ThemeColors.primaryColor),
+                label: 'Perfil',
               ),
             ],
             currentIndex: controller.getCurrentIndex(),

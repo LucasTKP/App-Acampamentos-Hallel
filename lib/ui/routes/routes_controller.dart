@@ -72,7 +72,7 @@ class RoutesControllerImpl extends RoutesController {
   Future<void> updateDeviceToken(UserModel user) async {
     final fcmToken = await messaging.getToken(vapidKey: dotenv.env['FIREBASE_WEB_VAPID']);
     if (fcmToken != null && userController.user?.deviceToken != fcmToken) {
-      await userRepository.updateUser(userController.user!.id, {'deviceToken': fcmToken});
+      await userRepository.updateUser(idUser: user.id, data: {'deviceToken': fcmToken});
     }
   }
 

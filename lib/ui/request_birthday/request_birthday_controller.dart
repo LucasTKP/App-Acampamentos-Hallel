@@ -25,7 +25,7 @@ class RequestBirthdayControllerImpl extends RequestBirthdayController {
     try {
       setButtonRequestBirthdayInLoading(true);
       if (formKey.currentState!.validate()) {
-        await userRepository.updateUser(userController.user!.id, {'dateOfBirth': birthdayController.text});
+        await userRepository.updateUser(idUser: userController.user!.id, data: {'dateOfBirth': birthdayController.text});
         onShowMessage(message: 'Data de nascimento atualizada com sucesso', color: Colors.green);
         userController.setUser(userController.user!.copyWith(dateOfBirth: birthdayController.text));
       }
