@@ -103,11 +103,12 @@ class LoginScreen extends StatelessWidget {
                               final response = await controller.login();
                               if (response) {
                                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                                  Navigator.pushReplacement(
+                                  Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => const RoutesPresenter(),
                                     ),
+                                    (Route<dynamic> route) => false,
                                   );
                                 });
                               }

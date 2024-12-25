@@ -5,7 +5,7 @@ import 'package:app_acampamentos_hallel/core/models/routes.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/meetings/meetings_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/profile/profile_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/request_birthday/request_birthday_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/routes/routes_controller.dart';
@@ -54,7 +54,7 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
 
           switch (controller.currentRoute) {
             case Routes.home:
-              return const HomePresenter();
+              return const MeetingsPresenter();
             case Routes.users:
               return const Center(child: Text('Usuários'));
             case Routes.meetings:
@@ -73,9 +73,9 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
           return BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.home, color: Colors.grey),
-                activeIcon: Icon(Icons.home, color: ThemeColors.primaryColor),
-                label: 'Início',
+                icon: Icon(Icons.meeting_room, color: Colors.grey),
+                activeIcon: Icon(Icons.event, color: ThemeColors.primaryColor),
+                label: 'Reuniões',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.school, color: Colors.grey),

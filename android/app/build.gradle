@@ -14,7 +14,7 @@ android {
     }
 
     namespace = "com.example.app_acampamentos_hallel"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -31,7 +31,7 @@ android {
         applicationId = "com.example.app_acampamentos_hallel"
         // Defina explicitamente o minSdk
         minSdk = 23 // ou flutter.minSdkVersion se for maior que 21
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
 
