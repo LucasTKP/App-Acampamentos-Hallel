@@ -1,4 +1,5 @@
 import 'package:app_acampamentos_hallel/ui/meetings/meetings_controller.dart';
+import 'package:app_acampamentos_hallel/ui/meetings/widgets/check_presence_meeting.dart';
 import 'package:app_acampamentos_hallel/ui/widgets/card_meeting.dart';
 import 'package:flutter/material.dart';
 
@@ -53,9 +54,21 @@ class MeetingsScreen extends StatelessWidget {
             children: [
               ListView.separated(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final meeting = controller.meetingsOpen[index];
-                  return CardMeeting(meeting: meeting, color: const Color(0xFF1bbf9b));
+                  return CardMeeting(
+                    meeting: meeting,
+                    color: const Color(0xFF1bbf9b),
+                    checkPresence: (String idMeeting) async {
+                      return await showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => CheckPresenceMeeting(controller: controller, meetingId: idMeeting),
+                      );
+                    },
+                    buttonCheckPresence: true,
+                    verifyPresenceMeeting: controller.getStatusPresenceMeeting,
+                  );
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 5),
                 itemCount: controller.meetingsOpen.length,
@@ -100,9 +113,10 @@ class MeetingsScreen extends StatelessWidget {
             children: [
               ListView.separated(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final meeting = controller.meetingsClosed[index];
-                  return CardMeeting(meeting: meeting, color: const Color(0xFF5CAFFF));
+                  return CardMeeting(meeting: meeting, color: const Color(0xFF5CAFFF), buttonCheckPresence: false, verifyPresenceMeeting: controller.getStatusPresenceMeeting);
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 5),
                 itemCount: controller.meetingsClosed.length,

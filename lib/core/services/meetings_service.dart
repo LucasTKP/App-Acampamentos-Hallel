@@ -11,6 +11,6 @@ class MeetingsServiceImpl extends MeetingsService {
 
   @override
   Future<QuerySnapshot<Map<String, dynamic>>> getMeetings() async {
-    return await db.collection('meetings').get();
+    return await db.collection('meetings').orderBy('date', descending: true).get();
   }
 }

@@ -2,6 +2,7 @@ import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as developer;
 
 abstract class RequestBirthdayController extends ChangeNotifier {
   bool buttonRequestBirthdayIsLoading = false;
@@ -30,6 +31,7 @@ class RequestBirthdayControllerImpl extends RequestBirthdayController {
         userController.setUser(userController.user!.copyWith(dateOfBirth: birthdayController.text));
       }
     } catch (e) {
+      developer.log(e.toString());
       onShowMessage(message: identifyError(error: e, message: 'Erro ao atualizar data de nascimento'), color: Colors.red);
     } finally {
       setButtonRequestBirthdayInLoading(false);

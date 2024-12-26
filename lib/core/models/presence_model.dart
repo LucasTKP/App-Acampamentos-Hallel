@@ -9,9 +9,9 @@ class PresenceModel {
   factory PresenceModel.fromJson(Map<String, dynamic> json) {
     return PresenceModel(
       id: json['id'],
-      idMeeting: json['idMeeting'],
-      idUser: json['idUser'],
-      date: DateTime.parse(json['date']),
+      idMeeting: json['id_meeting'],
+      idUser: json['id_user'],
+      date: json['date'].toDate(),
     );
   }
 

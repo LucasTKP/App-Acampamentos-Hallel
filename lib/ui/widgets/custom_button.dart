@@ -6,6 +6,7 @@ class CustomButton {
     required bool buttonIsLoading,
     required Function onPressed,
     required String label,
+    double height = 45,
   }) {
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -21,10 +22,11 @@ class CustomButton {
           ),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            height: 45,
+            height: height,
             width: buttonIsLoading ? 100 : constraints.maxWidth,
             curve: Curves.decelerate,
             alignment: Alignment.center,
+            
             child: buttonIsLoading
                 ? const SizedBox(
                     height: 24,

@@ -5,6 +5,7 @@ import 'package:app_acampamentos_hallel/core/models/routes.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
+import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/meetings/meetings_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/profile/profile_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/request_birthday/request_birthday_presenter.dart';
@@ -56,7 +57,7 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
             case Routes.home:
               return const MeetingsPresenter();
             case Routes.users:
-              return const Center(child: Text('Usuários'));
+              return const HomePresenter();
             case Routes.meetings:
               return const Center(child: Text('Reuniões'));
             case Routes.profile:
