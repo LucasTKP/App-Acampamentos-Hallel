@@ -1,6 +1,5 @@
 enum Routes {
-  home,
-  users,
   meetings,
+  liturgy,
   profile,
 }

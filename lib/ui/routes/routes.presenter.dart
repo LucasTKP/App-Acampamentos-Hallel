@@ -5,7 +5,7 @@ import 'package:app_acampamentos_hallel/core/models/routes.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/meetings/meetings_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/profile/profile_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/request_birthday/request_birthday_presenter.dart';
@@ -54,12 +54,10 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
           }
 
           switch (controller.currentRoute) {
-            case Routes.home:
-              return const MeetingsPresenter();
-            case Routes.users:
-              return const HomePresenter();
             case Routes.meetings:
-              return const Center(child: Text('Reuniões'));
+              return const MeetingsPresenter();
+            case Routes.liturgy:
+              return const LiturgyPresenter();
             case Routes.profile:
               return const ProfilePresenter();
           }
@@ -74,19 +72,14 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
           return BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.meeting_room, color: Colors.grey),
+                icon: Icon(Icons.event, color: Colors.grey),
                 activeIcon: Icon(Icons.event, color: ThemeColors.primaryColor),
                 label: 'Reuniões',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.school, color: Colors.grey),
-                activeIcon: Icon(Icons.school, color: ThemeColors.primaryColor),
-                label: 'Usuários',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.school, color: Colors.grey),
-                activeIcon: Icon(Icons.school, color: ThemeColors.primaryColor),
-                label: 'Reuniões',
+                icon: Icon(Icons.menu_book, color: Colors.grey),
+                activeIcon: Icon(Icons.menu_book, color: ThemeColors.primaryColor),
+                label: 'Liturgia',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person, color: Colors.grey),
@@ -106,9 +99,11 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
   }
 
   void onShowMessage({required String message, required Color color}) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-      backgroundColor: color,
-    ));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
   }
 }

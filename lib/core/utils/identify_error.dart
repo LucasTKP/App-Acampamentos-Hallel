@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:app_acampamentos_hallel/core/utils/internal_errors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 String identifyError({required dynamic error, required String message}) {
@@ -27,12 +30,16 @@ String identifyError({required dynamic error, required String message}) {
       messageError = 'Falha na conexão. Verifique sua conexão com a internet.';
     }
   }
-  if(error is TypeError) {
+  if (error is TypeError) {
     messageError = 'Erro de tipo.';
   }
 
-  if(error is InternalErrors) {
+  if (error is InternalErrors) {
     messageError = error.message;
+  }
+
+  if (error is DioException && error.error is SocketException) {
+    messageError = 'Sem internet, por favor reconecte';
   }
 
   return messageError;

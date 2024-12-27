@@ -7,6 +7,7 @@ import 'package:app_acampamentos_hallel/core/models/status_presence_meeting.dart
 import 'package:app_acampamentos_hallel/core/repositories/meetings_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/presences_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
+import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
 import 'package:app_acampamentos_hallel/ui/meetings/presence_dto.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
@@ -81,7 +82,7 @@ class MeetingsControllerImpl extends MeetingsController {
       final presences = await presenceRepository.getPresencesByUser(userController.userLogged.id);
       setPresences(presences);
     } catch (e) {
-      onShowMessage(message: 'Erro ao buscar presenças', color: Colors.red);
+      onShowMessage(message: identifyError(error: e, message: 'Erro ao buscar presenças'), color: Colors.red);
       developer.log(e.toString());
     }
   }
@@ -100,7 +101,7 @@ class MeetingsControllerImpl extends MeetingsController {
       init();
       return true;
     } catch (e) {
-      onShowMessage(message: 'Erro ao confirmar presença', color: Colors.red);
+      onShowMessage(message: identifyError(error: e, message: 'Erro ao confirmar presença'), color: Colors.red);
       developer.log(e.toString());
       return false;
     } finally {

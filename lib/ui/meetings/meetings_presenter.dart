@@ -36,14 +36,15 @@ class _MeetingsPresenterState extends State<MeetingsPresenter> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedBuilder(
-          animation: controller,
-          builder: (context, _) {
-            if (controller.asyncState == AsyncState.loading) {
-              return const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor));
-            }
+        animation: controller,
+        builder: (context, _) {
+          if (controller.asyncState == AsyncState.loading) {
+            return const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor));
+          }
 
-            return MeetingsScreen(controller: controller);
-          }),
+          return MeetingsScreen(controller: controller);
+        },
+      ),
     );
   }
 

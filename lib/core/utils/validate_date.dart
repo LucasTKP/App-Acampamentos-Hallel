@@ -29,15 +29,5 @@ String? validateDate(String? date) {
   if (day < 1 || day > daysInMonth[month - 1]) {
     return 'Dia inválido';
   }
-
-  // Optional: Age restrictions (e.g., must be at least 18)
-  final now = DateTime.now();
-  final birthDate = DateTime(year, month, day);
-  final age = now.year - birthDate.year;
-
-  if (age < 18 || (age == 18 && (now.month < month || (now.month == month && now.day < day)))) {
-    return 'Você deve ter pelo menos 18 anos';
-  }
-
   return null;
 }

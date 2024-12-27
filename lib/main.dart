@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -53,6 +54,14 @@ class MainApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const InjectionPage(),
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('pt', 'BR'),
+        ],
       ),
     );
   }
@@ -81,13 +90,6 @@ class _InjectionPageState extends State<InjectionPage> {
     authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
     auth.setLanguageCode("pt");
     requestPermissionNotification();
-  }
-
-  @override
-  void dispose() {
-    userController.dispose();
-    settingsController.dispose();
-    super.dispose();
   }
 
   void requestPermissionNotification() async {

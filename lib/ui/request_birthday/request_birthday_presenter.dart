@@ -32,7 +32,7 @@ class _RequestDateOfBirthdayState extends State<RequestDateOfBirthday> {
 
   @override
   void dispose() {
-    controller.birthdayController.dispose();
+    controller.dispose();
     super.dispose();
   }
 

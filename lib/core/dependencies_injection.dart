@@ -4,14 +4,14 @@ import 'package:app_acampamentos_hallel/core/libs/dio.dart';
 import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
 import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
-import 'package:app_acampamentos_hallel/core/repositories/daily_liturgy_repository.dart';
+import 'package:app_acampamentos_hallel/core/repositories/liturgy_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/meetings_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/presences_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/settings_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/services/api_client.dart';
 import 'package:app_acampamentos_hallel/core/services/auth_service.dart';
-import 'package:app_acampamentos_hallel/core/services/daily_liturgy_service.dart';
+import 'package:app_acampamentos_hallel/core/services/liturgy_service.dart';
 import 'package:app_acampamentos_hallel/core/services/meetings_service.dart';
 import 'package:app_acampamentos_hallel/core/services/presences_service.dart';
 import 'package:app_acampamentos_hallel/core/services/settings_service.dart';
@@ -47,8 +47,8 @@ Future<bool> setupDependencies(BuildContext context) async {
   final settingsRepository = SettingsRepositoryImpl(settingsService: settingsService);
   Dependencies.instance.add<SettingsRepositoryImpl>(settingsRepository);
 
-  final dailyLiturgyService = DailyLiturgyServiceImpl(api: api);
-  Dependencies.instance.add<DailyLiturgyRepository>(DailyLiturgyRepositoryImpl(service: dailyLiturgyService));
+  final dailyLiturgyService = LiturgyServiceImpl(api: api);
+  Dependencies.instance.add<LiturgyRepositoryImpl>(LiturgyRepositoryImpl(service: dailyLiturgyService));
 
   Dependencies.instance.add<SettingsControllerImpl>(SettingsControllerImpl(settingsRepository: settingsRepository));
 

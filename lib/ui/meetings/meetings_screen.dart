@@ -116,7 +116,12 @@ class MeetingsScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final meeting = controller.meetingsClosed[index];
-                  return CardMeeting(meeting: meeting, color: const Color(0xFF5CAFFF), buttonCheckPresence: false, verifyPresenceMeeting: controller.getStatusPresenceMeeting);
+                  return CardMeeting(
+                    meeting: meeting,
+                    color: const Color(0xFF5CAFFF),
+                    buttonCheckPresence: false,
+                    verifyPresenceMeeting: controller.getStatusPresenceMeeting,
+                  );
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 5),
                 itemCount: controller.meetingsClosed.length,

@@ -52,7 +52,6 @@ class CheckPresenceMeeting extends StatelessWidget {
                       }
 
                       if (controller.verifyPassword(meeting.password) == false) {
-                        print(meeting);
                         return 'Senha incorreta';
                       }
                       return null;
