@@ -8,53 +8,75 @@ class LiturgyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
+    const Map<String, int> textWeights = {
+      '1ª Leitura': 3,
+      'Salmo': 2,
+      '2ª Leitura': 3,
+      'Evangelho': 3,
+    };
+
+    return Container(
+      height: 32,
+      color: const Color.fromARGB(255, 222, 228, 219),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (controller.liturgy?.firstLiturgy != null)
-            _LiturgyButton(
-              text: '1ª Leitura',
-              typeLiturgy: TypeLiturgy.primary,
-              onTap: () {
-                controller.setLiturgySelected(TypeLiturgy.primary);
-                controller.pageController.animateToPage(0, duration: const Duration(milliseconds: 10), curve: Curves.easeInOut);
-              },
-              controller: controller,
+          if (controller.liturgy?.firstLiturgy != null) ...[
+            Flexible(
+              flex: textWeights['1ª Leitura']!,
+              child: _LiturgyButton(
+                text: '1ª Leitura',
+                typeLiturgy: TypeLiturgy.primary,
+                onTap: () {
+                  controller.setLiturgySelected(TypeLiturgy.primary);
+                  controller.pageController.animateToPage(0, duration: const Duration(milliseconds: 10), curve: Curves.easeInOut);
+                },
+                controller: controller,
+              ),
             ),
-          if (controller.liturgy?.firstLiturgy != null) _VerticalDivider(),
-          if (controller.liturgy?.psalmLiturgy != null)
-            _LiturgyButton(
-              text: 'Salmo',
-              typeLiturgy: TypeLiturgy.psalm,
-              onTap: () {
-                controller.setLiturgySelected(TypeLiturgy.psalm);
-                controller.pageController.animateToPage(1, duration: const Duration(milliseconds: 10), curve: Curves.easeInOut);
-              },
-              controller: controller,
+            _VerticalDivider(),
+          ],
+          if (controller.liturgy?.psalmLiturgy != null) ...[
+            Flexible(
+              flex: textWeights['Salmo']!,
+              child: _LiturgyButton(
+                text: 'Salmo',
+                typeLiturgy: TypeLiturgy.psalm,
+                onTap: () {
+                  controller.setLiturgySelected(TypeLiturgy.psalm);
+                  controller.pageController.animateToPage(1, duration: const Duration(milliseconds: 10), curve: Curves.easeInOut);
+                },
+                controller: controller,
+              ),
             ),
-          if (controller.liturgy?.psalmLiturgy != null) _VerticalDivider(),
-          if (controller.liturgy?.secondLiturgy != null)
-            _LiturgyButton(
-              text: '2ª Leitura',
-              typeLiturgy: TypeLiturgy.secondary,
-              onTap: () {
-                controller.setLiturgySelected(TypeLiturgy.secondary);
-                controller.pageController.animateToPage(2, duration: const Duration(milliseconds: 10), curve: Curves.easeInOut);
-              },
-              controller: controller,
+            _VerticalDivider(),
+          ],
+          if (controller.liturgy?.secondLiturgy != null) ...[
+            Flexible(
+              flex: textWeights['2ª Leitura']!,
+              child: _LiturgyButton(
+                text: '2ª Leitura',
+                typeLiturgy: TypeLiturgy.secondary,
+                onTap: () {
+                  controller.setLiturgySelected(TypeLiturgy.secondary);
+                  controller.pageController.animateToPage(2, duration: const Duration(milliseconds: 10), curve: Curves.easeInOut);
+                },
+                controller: controller,
+              ),
             ),
-          if (controller.liturgy?.secondLiturgy != null) _VerticalDivider(),
+            _VerticalDivider(),
+          ],
           if (controller.liturgy?.gospelLiturgy != null)
-            _LiturgyButton(
-              text: 'Evangelho',
-              typeLiturgy: TypeLiturgy.gospel,
-              onTap: () {
-                controller.setLiturgySelected(TypeLiturgy.gospel);
-                controller.pageController.animateToPage(3, duration: const Duration(milliseconds: 10), curve: Curves.easeInOut);
-              },
-              controller: controller,
+            Flexible(
+              flex: textWeights['Evangelho']!,
+              child: _LiturgyButton(
+                text: 'Evangelho',
+                typeLiturgy: TypeLiturgy.gospel,
+                onTap: () {
+                  controller.setLiturgySelected(TypeLiturgy.gospel);
+                  controller.pageController.animateToPage(3, duration: const Duration(milliseconds: 10), curve: Curves.easeInOut);
+                },
+                controller: controller,
+              ),
             ),
         ],
       ),
@@ -77,11 +99,14 @@ class _LiturgyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      width: double.infinity,
       child: TextButton(
         onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(controller.backgroundButtonColor(typeLiturgy)),
+          padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 0)),
+          visualDensity: VisualDensity.compact,
           shape: WidgetStateProperty.all(
             const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
@@ -90,7 +115,10 @@ class _LiturgyButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(color: controller.textButtonColor(typeLiturgy)),
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: controller.textButtonColor(typeLiturgy),
+          ),
         ),
       ),
     );

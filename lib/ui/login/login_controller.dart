@@ -27,7 +27,7 @@ class LoginControllerImpl extends LoginController {
     try {
       setButtonLoginInLoading(true);
       if (formKey.currentState!.validate()) {
-        await authRepository.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+        await authRepository.signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text);
         return true;
       }
       return false;

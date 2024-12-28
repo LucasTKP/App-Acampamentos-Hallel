@@ -41,59 +41,61 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) {
-          if (controller.state == AsyncState.loading || userController.user == null) {
-            return const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor));
-          }
-
-          if (userController.user?.dateOfBirth == null) {
-            return const RequestDateOfBirthday();
-          }
-
-          switch (controller.currentRoute) {
-            case Routes.meetings:
-              return const MeetingsPresenter();
-            case Routes.liturgy:
-              return const LiturgyPresenter();
-            case Routes.profile:
-              return const ProfilePresenter();
-          }
-        },
-      ),
-      bottomNavigationBar: AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) {
-          if (controller.state == AsyncState.loading || userController.user == null || userController.user?.dateOfBirth == null) {
-            return const SizedBox();
-          }
-          return BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.event, color: Colors.grey),
-                activeIcon: Icon(Icons.event, color: ThemeColors.primaryColor),
-                label: 'Reuniões',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.menu_book, color: Colors.grey),
-                activeIcon: Icon(Icons.menu_book, color: ThemeColors.primaryColor),
-                label: 'Liturgia',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person, color: Colors.grey),
-                activeIcon: Icon(Icons.person, color: ThemeColors.primaryColor),
-                label: 'Perfil',
-              ),
-            ],
-            currentIndex: controller.getCurrentIndex(),
-            selectedItemColor: ThemeColors.primaryColor,
-            onTap: (index) {
-              controller.setCurrentRoute(Routes.values[index]);
-            },
-          );
-        },
+    return SafeArea(
+      child: Scaffold(
+        body: AnimatedBuilder(
+          animation: controller,
+          builder: (context, child) {
+            if (controller.state == AsyncState.loading || userController.user == null) {
+              return const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor));
+            }
+      
+            if (userController.user?.dateOfBirth == null) {
+              return const RequestDateOfBirthday();
+            }
+      
+            switch (controller.currentRoute) {
+              case Routes.meetings:
+                return const MeetingsPresenter();
+              case Routes.liturgy:
+                return const LiturgyPresenter();
+              case Routes.profile:
+                return const ProfilePresenter();
+            }
+          },
+        ),
+        bottomNavigationBar: AnimatedBuilder(
+          animation: controller,
+          builder: (context, child) {
+            if (controller.state == AsyncState.loading || userController.user == null || userController.user?.dateOfBirth == null) {
+              return const SizedBox();
+            }
+            return BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.event, color: Colors.grey),
+                  activeIcon: Icon(Icons.event, color: ThemeColors.primaryColor),
+                  label: 'Reuniões',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.menu_book, color: Colors.grey),
+                  activeIcon: Icon(Icons.menu_book, color: ThemeColors.primaryColor),
+                  label: 'Liturgia',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person, color: Colors.grey),
+                  activeIcon: Icon(Icons.person, color: ThemeColors.primaryColor),
+                  label: 'Perfil',
+                ),
+              ],
+              currentIndex: controller.getCurrentIndex(),
+              selectedItemColor: ThemeColors.primaryColor,
+              onTap: (index) {
+                controller.setCurrentRoute(Routes.values[index]);
+              },
+            );
+          },
+        ),
       ),
     );
   }
