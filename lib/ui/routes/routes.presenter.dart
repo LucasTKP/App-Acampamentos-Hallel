@@ -5,6 +5,7 @@ import 'package:app_acampamentos_hallel/core/models/routes.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
+import 'package:app_acampamentos_hallel/ui/home/home_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/meetings/meetings_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/profile/profile_presenter.dart';
@@ -49,16 +50,18 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
             if (controller.state == AsyncState.loading || userController.user == null) {
               return const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor));
             }
-      
+
             if (userController.user?.dateOfBirth == null) {
               return const RequestDateOfBirthday();
             }
-      
+
             switch (controller.currentRoute) {
               case Routes.meetings:
                 return const MeetingsPresenter();
               case Routes.liturgy:
                 return const LiturgyPresenter();
+              case Routes.home:
+                return const HomePresenter();
               case Routes.profile:
                 return const ProfilePresenter();
             }
@@ -81,6 +84,11 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
                   icon: Icon(Icons.menu_book, color: Colors.grey),
                   activeIcon: Icon(Icons.menu_book, color: ThemeColors.primaryColor),
                   label: 'Liturgia',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home, color: Colors.grey),
+                  activeIcon: Icon(Icons.home, color: ThemeColors.primaryColor),
+                  label: 'Início',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person, color: Colors.grey),

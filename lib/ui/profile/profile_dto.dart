@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UpdateUserDto {
   String name;
   bool madeCane;
   int? madeCaneYear;
-  String dateOfBirth;
+  Timestamp dateOfBirth;
 
   UpdateUserDto({
     required this.name,

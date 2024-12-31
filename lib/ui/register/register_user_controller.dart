@@ -1,3 +1,4 @@
+import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
 import 'package:app_acampamentos_hallel/core/models/dropdown.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
@@ -33,10 +34,10 @@ abstract class RegisterUserController extends ChangeNotifier {
 
 class RegisterUserControllerImpl extends RegisterUserController {
   final AuthRepository authRepository;
-  final UserRepository firestoreRepository;
+  final UserRepository userRepository;
   final Function({required String message, required Color color}) onShowMessage;
 
-  RegisterUserControllerImpl({required this.authRepository, required this.firestoreRepository, required this.onShowMessage}) {
+  RegisterUserControllerImpl({required this.authRepository, required this.userRepository, required this.onShowMessage}) {
     setMadeCamping(itemsDropdownOne.last);
     setYear(itemsDropdownTwo.first);
   }
@@ -81,13 +82,13 @@ class RegisterUserControllerImpl extends RegisterUserController {
       madeCaneYear: null,
       totalPresence: 0,
       lastPresence: DateTime.now(),
-      dateOfBirth: dateOfBirth.text,
+      dateOfBirth: dateOfBirth.text.toTimestamp(),
     );
     if (bool.parse(madeCamping.value)) {
       userFirestore.madeCaneYear = int.parse(year.value);
     }
 
-    return await firestoreRepository.registerUser(userFirestore);
+    return await userRepository.registerUser(userFirestore);
   }
 
   @override

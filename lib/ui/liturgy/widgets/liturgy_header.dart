@@ -22,6 +22,7 @@ class LiturgyHeader extends StatelessWidget {
         children: [
           if (controller.liturgy?.firstLiturgy != null) ...[
             Flexible(
+              
               flex: textWeights['1ª Leitura']!,
               child: _LiturgyButton(
                 text: '1ª Leitura',

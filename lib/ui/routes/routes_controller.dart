@@ -12,7 +12,7 @@ import 'dart:developer' as developer;
 
 abstract class RoutesController extends ChangeNotifier {
   AsyncState state = AsyncState.initial;
-  Routes currentRoute = Routes.liturgy;
+  Routes currentRoute = Routes.home;
 
   Future<void> init();
   Future<bool> getUser();

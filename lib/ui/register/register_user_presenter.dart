@@ -25,7 +25,7 @@ class _RegisterUserPresenterState extends State<RegisterUserPresenter> {
     authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
     controller = RegisterUserControllerImpl(
       authRepository: authRepository,
-      firestoreRepository: userRepository,
+      userRepository: userRepository,
       onShowMessage: onShowMessage,
     );
   }

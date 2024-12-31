@@ -1,3 +1,4 @@
+import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
 import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
@@ -26,9 +27,10 @@ class RequestBirthdayControllerImpl extends RequestBirthdayController {
     try {
       setButtonRequestBirthdayInLoading(true);
       if (formKey.currentState!.validate()) {
-        await userRepository.updateUser(idUser: userController.user!.id, data: {'dateOfBirth': birthdayController.text});
+        final dateOfBirthDay = birthdayController.text.toTimestamp();
+        await userRepository.updateUser(idUser: userController.user!.id, data: {'dateOfBirth': dateOfBirthDay});
         onShowMessage(message: 'Data de nascimento atualizada com sucesso', color: Colors.green);
-        userController.setUser(userController.user!.copyWith(dateOfBirth: birthdayController.text));
+        userController.setUser(userController.user!.copyWith(dateOfBirth: dateOfBirthDay));
       }
     } catch (e) {
       developer.log(e.toString());

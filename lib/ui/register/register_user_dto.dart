@@ -1,4 +1,4 @@
-import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisteUserDto {
   String id;
@@ -10,7 +10,7 @@ class RegisteUserDto {
   String photoUrl;
   int totalPresence;
   DateTime lastPresence;
-  String dateOfBirth;
+  Timestamp dateOfBirth;
   bool isAdmin;
 
   RegisteUserDto({
@@ -38,7 +38,7 @@ class RegisteUserDto {
       'photoUrl': photoUrl,
       'totalPresence': totalPresence,
       'lastPresence': lastPresence,
-      'dateOfBirth': dateOfBirth.toTimestamp(),
+      'dateOfBirth': dateOfBirth,
       'isAdmin': isAdmin,
     };
   }

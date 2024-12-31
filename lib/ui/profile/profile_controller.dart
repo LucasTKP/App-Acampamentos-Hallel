@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
+import 'package:app_acampamentos_hallel/core/extensions/time_stamp_extension.dart';
 import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
 import 'package:app_acampamentos_hallel/core/models/async_state.dart';
 import 'package:app_acampamentos_hallel/core/models/dropdown.dart';
@@ -52,7 +54,7 @@ class ProfileControllerImpl extends ProfileController {
     setUrlImage(userController.userLogged.photoUrl);
     nameController.text = userController.userLogged.name;
     emailController.text = userController.userLogged.email;
-    dateOfBirthController.text = userController.userLogged.dateOfBirth ?? '';
+    dateOfBirthController.text = userController.userLogged.dateOfBirth?.toDDMMYYYY() ?? '';
     madeCamping = itemsDropdownOne.where((element) => element.value == userController.userLogged.madeCane.toString()).first;
     madeCaneYear = itemsDropdownTwo.first;
     totalPresenceController.text = userController.userLogged.totalPresence.toString();
@@ -157,7 +159,7 @@ class ProfileControllerImpl extends ProfileController {
         name: nameController.text,
         madeCane: madeCamping.value == 'true',
         madeCaneYear: madeCamping.value == 'true' ? int.parse(madeCaneYear.value) : null,
-        dateOfBirth: dateOfBirthController.text,
+        dateOfBirth: dateOfBirthController.text.toTimestamp(),
       );
       await userRepository.updateUser(idUser: userController.userLogged.id, data: updateUser.toJson());
       onShowMessage(message: 'Perfil atualizado com sucesso', color: Colors.green);
@@ -166,7 +168,7 @@ class ProfileControllerImpl extends ProfileController {
           name: nameController.text,
           madeCane: madeCamping.value == 'true',
           madeCaneYear: int.parse(madeCaneYear.value),
-          dateOfBirth: dateOfBirthController.text,
+          dateOfBirth: dateOfBirthController.text.toTimestamp(),
         ),
       );
       setIsEdit(false);

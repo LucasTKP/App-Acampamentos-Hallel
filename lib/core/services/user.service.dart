@@ -10,6 +10,7 @@ abstract class UserService {
   Future<QuerySnapshot<Map<String, dynamic>>> getUsers();
   Future<TaskSnapshot> uploadFile({required File file, required String storagePath});
   Future<void> deleteFile(String storagePath);
+  Future<QuerySnapshot<Map<String, dynamic>>> getUserBirthdays(DateTime date);
 }
 
 class UserServiceImpl extends UserService {
@@ -47,5 +48,21 @@ class UserServiceImpl extends UserService {
   @override
   Future<void> deleteFile(String storagePath) async {
     return await FirebaseStorage.instance.ref(storagePath).delete();
+  }
+
+  @override
+  Future<QuerySnapshot<Map<String, dynamic>>> getUserBirthdays(DateTime date) async {
+    final compareDate = DateTime(2000, date.month, date.day).toUtc().subtract(const Duration(hours: 2));
+
+    print('Compare Timestamp: ${Timestamp.fromDate(compareDate)}');
+
+
+    return await db
+        .collection('users')
+        .where(
+          'dateOfBirth',
+          isEqualTo: Timestamp.fromDate(compareDate),
+        )
+        .get();
   }
 }

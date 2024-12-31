@@ -11,6 +11,7 @@ abstract class UserRepository {
   Future<List<UserModel>> getUsers();
   Future<String> uploadFile({required File file, required String storagePath});
   Future<void> deleteFile(String storagePath);
+  Future<List<UserModel>> getUserBirthdays();
 }
 
 class UserRepositoryImpl extends UserRepository {
@@ -49,5 +50,11 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<void> deleteFile(String storagePath) async {
     return await userService.deleteFile(storagePath);
+  }
+
+  @override
+  Future<List<UserModel>> getUserBirthdays() async {
+    final response = await userService.getUserBirthdays(DateTime(11, 11, 2004));
+    return response.docs.map((user) => UserModel.fromJSON(user.data())).toList();
   }
 }

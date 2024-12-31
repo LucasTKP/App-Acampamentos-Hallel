@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   String id;
   String name;
@@ -10,7 +12,7 @@ class UserModel {
   String photoUrl;
   bool isAdmin;
   String? deviceToken;
-  String? dateOfBirth;
+  Timestamp? dateOfBirth;
 
   UserModel({
     required this.id,
@@ -40,7 +42,7 @@ class UserModel {
       photoUrl: json['photoUrl'],
       isAdmin: json['isAdmin'] ?? false,
       deviceToken: json['deviceToken'],
-      dateOfBirth: json['dateOfBirth'],
+      dateOfBirth: json['dateOfBirth'] ?? Timestamp(0, 0),
     );
   }
 
@@ -56,7 +58,7 @@ class UserModel {
     String? photoUrl,
     bool? isAdmin,
     String? deviceToken,
-    String? dateOfBirth,
+    Timestamp? dateOfBirth,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -76,6 +78,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, deviceToken: $deviceToken, dateOfBirth: $dateOfBirth)';
+    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, deviceToken: $deviceToken, dateOfBirth: $dateOfBirth,)';
   }
 }
