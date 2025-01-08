@@ -1,3 +1,4 @@
+import 'package:app_acampamentos_hallel/core/extensions/date_time_extension.dart';
 import 'package:app_acampamentos_hallel/ui/meetings/meetings_controller.dart';
 import 'package:app_acampamentos_hallel/ui/widgets/custom_button.dart';
 import 'package:app_acampamentos_hallel/ui/widgets/custom_inputs.dart';
@@ -28,7 +29,7 @@ class CheckPresenceMeeting extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Reunião do dia ${meeting.date.day}/${meeting.date.month}/${meeting.date.year}',
+                    'Reunião do dia ${meeting.date.toDDMMYYYY()}',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,

@@ -13,7 +13,8 @@ class CustomInputs {
     String? hintText,
     EdgeInsetsGeometry? contentPadding,
     List<TextInputFormatter>? inputFormatters,
-    enabled = true,
+    bool enabled = true,
+    int maxLines = 1,
   }) {
     return TextFormField(
       controller: controller,
@@ -22,9 +23,11 @@ class CustomInputs {
       inputFormatters: inputFormatters,
       enabled: enabled,
       style: TextStyle(color: enabled ? ThemeColors.primaryColor : Colors.grey, fontWeight: FontWeight.w500),
+      maxLines: maxLines,
       decoration: InputDecoration(
         prefixIcon: Icon(prefixIcon, color: enabled ? ThemeColors.primaryColor : Colors.grey),
         suffixIcon: suffixIcon,
+        alignLabelWithHint: true,
         labelText: label,
         hintText: hintText,
         hintStyle: TextStyle(color: enabled ? ThemeColors.primaryColor : Colors.grey),

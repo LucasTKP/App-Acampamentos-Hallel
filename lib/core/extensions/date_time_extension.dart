@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 extension DateTimeExtension on DateTime {
   String toDDMMYYYY() {
     final day = this.day.toString().padLeft(2, '0');
@@ -22,5 +24,13 @@ extension DateTimeExtension on DateTime {
       case 12: return 'Dez';
       default: return '';
     }
+  }
+
+  Timestamp toTimestamp() {
+    return Timestamp.fromDate(this);
+  }
+
+  DateTime zeroTime() {
+    return DateTime(year, month, day);
   }
 }

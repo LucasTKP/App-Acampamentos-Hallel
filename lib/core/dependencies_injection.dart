@@ -6,6 +6,7 @@ import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/liturgy_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/meetings_repository.dart';
+import 'package:app_acampamentos_hallel/core/repositories/prayers_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/presences_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/settings_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
@@ -13,6 +14,7 @@ import 'package:app_acampamentos_hallel/core/services/api_client.dart';
 import 'package:app_acampamentos_hallel/core/services/auth_service.dart';
 import 'package:app_acampamentos_hallel/core/services/liturgy_service.dart';
 import 'package:app_acampamentos_hallel/core/services/meetings_service.dart';
+import 'package:app_acampamentos_hallel/core/services/prayers_service.dart';
 import 'package:app_acampamentos_hallel/core/services/presences_service.dart';
 import 'package:app_acampamentos_hallel/core/services/settings_service.dart';
 import 'package:app_acampamentos_hallel/core/services/user.service.dart';
@@ -65,8 +67,12 @@ Future<bool> setupDependencies(BuildContext context) async {
   Dependencies.instance.add<MeetingsRepositoryImpl>(meetingsRepository);
 
   final presencesService = PresencesServiceImpl(db: db);
-  final presencesRepository =  PresencesRepositoryImpl(service: presencesService);
+  final presencesRepository = PresencesRepositoryImpl(service: presencesService);
   Dependencies.instance.add<PresencesRepositoryImpl>(presencesRepository);
+
+  final prayerService = PrayersServiceImpl(db: db);
+  final prayerRepository = PrayersRepositoryImpl(service: prayerService);
+  Dependencies.instance.add<PrayersRepositoryImpl>(prayerRepository);
 
   final userController = UserControllerImpl();
   Dependencies.instance.add<UserControllerImpl>(userController);

@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:app_acampamentos_hallel/core/models/today_birth_model.dart';
 import 'package:app_acampamentos_hallel/core/models/user_model.dart';
 import 'package:app_acampamentos_hallel/core/services/user.service.dart';
 import 'package:app_acampamentos_hallel/ui/register/register_user_dto.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class UserRepository {
   Future<void> registerUser(RegisteUserDto user);
@@ -11,7 +13,7 @@ abstract class UserRepository {
   Future<List<UserModel>> getUsers();
   Future<String> uploadFile({required File file, required String storagePath});
   Future<void> deleteFile(String storagePath);
-  Future<List<UserModel>> getUserBirthdays();
+  Future<TodayBirthModel> getTodayBirth();
 }
 
 class UserRepositoryImpl extends UserRepository {
@@ -53,8 +55,13 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<List<UserModel>> getUserBirthdays() async {
-    final response = await userService.getUserBirthdays(DateTime(11, 11, 2004));
-    return response.docs.map((user) => UserModel.fromJSON(user.data())).toList();
+  Future<TodayBirthModel> getTodayBirth() async {
+    final dateNow = DateTime.now();
+    final response = await userService.getTodayBirth();
+    final data = response.data();
+    if (data == null) {
+      return TodayBirthModel(date: Timestamp.fromDate(dateNow), users: []);
+    }
+    return TodayBirthModel.fromJSON(data);
   }
 }
