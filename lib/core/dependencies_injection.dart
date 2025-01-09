@@ -59,7 +59,7 @@ Future<bool> setupDependencies(BuildContext context) async {
   final authService = AuthServiceImpl(auth: auth);
   Dependencies.instance.add<AuthRepositoryImpl>(AuthRepositoryImpl(authService: authService));
 
-  final userService = UserServiceImpl();
+  final userService = UserServiceImpl(api: api);
   Dependencies.instance.add<UserRepositoryImpl>(UserRepositoryImpl(userService: userService));
 
   final meetingsService = MeetingsServiceImpl(db: db);

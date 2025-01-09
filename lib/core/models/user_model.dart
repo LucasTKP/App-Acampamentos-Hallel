@@ -11,7 +11,6 @@ class UserModel {
   String namePhoto;
   String photoUrl;
   bool isAdmin;
-  String? deviceToken;
   Timestamp? dateOfBirth;
 
   UserModel({
@@ -25,7 +24,6 @@ class UserModel {
     required this.namePhoto,
     required this.photoUrl,
     required this.isAdmin,
-    required this.deviceToken,
     required this.dateOfBirth,
   });
 
@@ -41,7 +39,6 @@ class UserModel {
       namePhoto: json['namePhoto'],
       photoUrl: json['photoUrl'],
       isAdmin: json['isAdmin'] ?? false,
-      deviceToken: json['deviceToken'],
       dateOfBirth: json['dateOfBirth'] ?? Timestamp(0, 0),
     );
   }
@@ -71,13 +68,12 @@ class UserModel {
       namePhoto: namePhoto ?? this.namePhoto,
       photoUrl: photoUrl ?? this.photoUrl,
       isAdmin: isAdmin ?? this.isAdmin,
-      deviceToken: deviceToken ?? this.deviceToken,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,
     );
   }
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, deviceToken: $deviceToken, dateOfBirth: $dateOfBirth,)';
+    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, dateOfBirth: $dateOfBirth,)';
   }
 }

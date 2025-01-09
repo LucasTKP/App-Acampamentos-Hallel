@@ -46,23 +46,21 @@ class _ProfilePresenterState extends State<ProfilePresenter> {
       body: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
-          if(controller.asyncState == AsyncState.loading) {
+          if (controller.asyncState == AsyncState.loading) {
             return const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor));
           }
-          return ProfileScreen(controller: controller);
+          return ProfileScreen(controller: controller, user: userController.userLogged);
         },
       ),
       floatingActionButton: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
-          if(controller.asyncState == AsyncState.loading) {
+          if (controller.asyncState == AsyncState.loading) {
             return const SizedBox();
           }
           return FloatingActionButton(
             backgroundColor: ThemeColors.primaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50), 
-            ),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             onPressed: () {
               controller.isEdit ? controller.updateProfile() : controller.setIsEdit(true);
             },

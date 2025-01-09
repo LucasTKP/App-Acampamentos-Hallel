@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:app_acampamentos_hallel/core/services/api_client.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 abstract class UserService {
@@ -11,11 +13,15 @@ abstract class UserService {
   Future<TaskSnapshot> uploadFile({required File file, required String storagePath});
   Future<void> deleteFile(String storagePath);
   Future<DocumentSnapshot<Map<String, dynamic>>> getTodayBirth();
+  Future<Response<dynamic>> sendNotification(Map<String, dynamic> data);
 }
 
 class UserServiceImpl extends UserService {
   final db = FirebaseFirestore.instance;
   final storage = FirebaseStorage.instance;
+  final ApiService api;
+
+  UserServiceImpl({required this.api});
 
   @override
   Future<void> registerUser(Map<String, dynamic> data) async {
@@ -54,5 +60,16 @@ class UserServiceImpl extends UserService {
   Future<DocumentSnapshot<Map<String, dynamic>>> getTodayBirth() async {
     //dentro da coleção today quero o documento usersBirth
     return await db.collection('today').doc('usersBirth').get();
+  }
+
+  @override
+  Future<Response<dynamic>> sendNotification(Map<String, dynamic> data) async {
+    return await api.client.post(
+      'https://canaa-backend-30b0337f14fb.herokuapp.com/api/sendNotification',
+      options: Options(
+        headers: {"x-custom-header": "TerraPrometida"},
+      ),
+      data: data,
+    );
   }
 }

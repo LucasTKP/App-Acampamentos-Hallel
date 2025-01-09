@@ -1,13 +1,11 @@
 import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/core/libs/firebase_service.dart';
 import 'package:app_acampamentos_hallel/core/models/async_state.dart';
 import 'package:app_acampamentos_hallel/core/models/routes.dart';
-import 'package:app_acampamentos_hallel/core/models/user_model.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:developer' as developer;
 
 abstract class RoutesController extends ChangeNotifier {
@@ -16,9 +14,9 @@ abstract class RoutesController extends ChangeNotifier {
 
   Future<void> init();
   Future<bool> getUser();
-  Future<void> updateDeviceToken(UserModel user);
   List<Routes> routes = Routes.values;
   int getCurrentIndex();
+  Future<void> subscribeToTopic();
 
   void setCurrentRoute(Routes route);
   void setAsyncState(AsyncState asyncState);
@@ -57,7 +55,7 @@ class RoutesControllerImpl extends RoutesController {
       if (userAuth != null) {
         final user = await userRepository.getUser(userAuth.uid);
         userController.setUser(user);
-        updateDeviceToken(user);
+        await subscribeToTopic();
         return true;
       }
       return false;
@@ -69,10 +67,11 @@ class RoutesControllerImpl extends RoutesController {
   }
 
   @override
-  Future<void> updateDeviceToken(UserModel user) async {
-    final fcmToken = await messaging.getToken(vapidKey: dotenv.env['FIREBASE_WEB_VAPID']);
-    if (fcmToken != null && userController.user?.deviceToken != fcmToken) {
-      await userRepository.updateUser(idUser: user.id, data: {'deviceToken': fcmToken});
+  Future<void> subscribeToTopic() async {
+    try {
+      await FirebaseMessaging.instance.subscribeToTopic("all");
+    } catch (e) {
+      developer.log(e.toString());
     }
   }
 

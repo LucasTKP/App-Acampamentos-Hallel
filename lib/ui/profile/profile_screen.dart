@@ -1,4 +1,7 @@
+import 'package:app_acampamentos_hallel/core/models/user_model.dart';
+import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
 import 'package:app_acampamentos_hallel/core/utils/validate_date.dart';
+import 'package:app_acampamentos_hallel/ui/dashboard_admin/dashboard.presenter.dart';
 import 'package:app_acampamentos_hallel/ui/profile/profile_controller.dart';
 import 'package:app_acampamentos_hallel/ui/profile/widgets/header.dart';
 import 'package:app_acampamentos_hallel/ui/welcome/welcome_screen.dart';
@@ -8,7 +11,8 @@ import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
   final ProfileController controller;
-  const ProfileScreen({super.key, required this.controller});
+  final UserModel user;
+  const ProfileScreen({super.key, required this.controller, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +133,25 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
+                  if(user.isAdmin)
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardAdmin()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ThemeColors.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        'Painel do administrador',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
