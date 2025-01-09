@@ -44,7 +44,7 @@ class TodayBirthControllerImpl extends TodayBirthController {
       setState(AsyncState.loading);
       final response = await userRepository.getTodayBirth();
       setTodayBirth(response);
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       setState(AsyncState.initial);
     } catch (e) {
       developer.log('Buscar aniversariantes:', error: e);

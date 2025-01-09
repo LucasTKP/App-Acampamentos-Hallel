@@ -1,6 +1,7 @@
 import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
 import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
 import 'package:app_acampamentos_hallel/core/models/async_state.dart';
+import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
@@ -28,6 +29,7 @@ class _ProfilePresenterState extends State<ProfilePresenter> {
       userController: userController,
       userRepository: userRepository,
       onShowMessage: onShowMessage,
+      authRepository: Dependencies.instance.get<AuthRepositoryImpl>(),
     );
     super.initState();
   }

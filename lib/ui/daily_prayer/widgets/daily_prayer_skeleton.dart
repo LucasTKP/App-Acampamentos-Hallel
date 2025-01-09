@@ -1,60 +1,42 @@
 import 'package:flutter/material.dart';
 
-class UsersBirthLoading extends StatelessWidget {
-  const UsersBirthLoading({super.key});
+class DailyPrayerSkeleton extends StatelessWidget {
+  const DailyPrayerSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       width: double.infinity,
-      height: 130,
+      height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.black12,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: LayoutBuilder(
+        builder: (context, contrains) {
+          final width = contrains.maxWidth;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SkeletonAnimation(
-                width: 80,
-                height: 80,
-                shape: BoxShape.circle,
-              ),
-              SizedBox(width: 16),
-              // Esqueleto dos textos
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SkeletonAnimation(width: 120, height: 16),
-                    SizedBox(height: 12),
-                    SkeletonAnimation(width: 180, height: 12),
-                    SizedBox(height: 4),
-                    SkeletonAnimation(width: 180, height: 12),
-                  ],
-                ),
-              ),
+              SkeletonAnimation(width: width * 0.9, height: 14),
+              const SizedBox(height: 4),
+              SkeletonAnimation(width: width * 0.8, height: 14),
+              const SizedBox(height: 4),
+              SkeletonAnimation(width: width * 0.6, height: 14),
+              const SizedBox(height: 12),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SkeletonAnimation(width: 20, height: 20, shape: BoxShape.circle),
+                  SizedBox(width: 8),
+                  SkeletonAnimation(width: 120, height: 14),
+                ],
+              )
             ],
-          ),
-          const SizedBox(height: 16),
-          // Indicadores de página como esqueleto
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(3, (index) {
-              return const SkeletonAnimation(
-                width: 12,
-                height: 12,
-                shape: BoxShape.circle,
-                margin: EdgeInsets.symmetric(horizontal: 4),
-              );
-            }),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

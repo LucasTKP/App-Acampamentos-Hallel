@@ -48,7 +48,7 @@ class TodayBirthScreen extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     switch (controller.state) {
       case AsyncState.loading:
-        return const UsersBirthSkeleton();
+        return const UsersBirthLoading();
 
       case AsyncState.error:
         return Container(
@@ -92,7 +92,7 @@ class TodayBirthScreen extends StatelessWidget {
           width: double.infinity,
           height: 130,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
             color: ThemeColors.primaryColor,
           ),
           child: PageView.builder(

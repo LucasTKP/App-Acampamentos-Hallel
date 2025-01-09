@@ -31,7 +31,7 @@ class AuthServiceImpl extends AuthService {
 
   @override
   Future<void> signOut() async {
-    await auth.signOut();
+    return await auth.signOut();
   }
 
   @override

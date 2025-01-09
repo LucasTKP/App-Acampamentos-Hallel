@@ -21,7 +21,7 @@ void dialogNotificationDisabled(BuildContext context) {
               const Text(
                 'Notificações desativadas',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
               ),

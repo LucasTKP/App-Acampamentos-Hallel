@@ -1,6 +1,7 @@
 import 'package:app_acampamentos_hallel/core/utils/validate_date.dart';
 import 'package:app_acampamentos_hallel/ui/profile/profile_controller.dart';
 import 'package:app_acampamentos_hallel/ui/profile/widgets/header.dart';
+import 'package:app_acampamentos_hallel/ui/welcome/welcome_screen.dart';
 import 'package:app_acampamentos_hallel/ui/widgets/custom_drop_down.dart';
 import 'package:app_acampamentos_hallel/ui/widgets/custom_inputs.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Visibility(
                     visible: controller.isEdit == false,
-                    child:const SizedBox(height: 16),
+                    child: const SizedBox(height: 16),
                   ),
                   Visibility(
                     visible: controller.isEdit == false,
@@ -127,6 +128,36 @@ class ProfileScreen extends StatelessWidget {
                       enabled: false,
                     ),
                   ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final response = await controller.signOut();
+                        if (response) {
+                          if (context.mounted) {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+                                (Route<dynamic> route) => false,
+                              );
+                            });
+                          }
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red[400],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        'Sair da conta',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),

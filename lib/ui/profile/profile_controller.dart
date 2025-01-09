@@ -4,6 +4,7 @@ import 'package:app_acampamentos_hallel/core/extensions/time_stamp_extension.dar
 import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
 import 'package:app_acampamentos_hallel/core/models/async_state.dart';
 import 'package:app_acampamentos_hallel/core/models/dropdown.dart';
+import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
 import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
 import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
 import 'package:app_acampamentos_hallel/core/utils/internal_errors.dart';
@@ -32,6 +33,7 @@ abstract class ProfileController extends ChangeNotifier {
   void init();
   Future<void> updateImage();
   Future<void> updateProfile();
+  Future<bool> signOut();
 
   void setIsEdit(bool value);
   void setMadeCamping(DropdownModel value);
@@ -41,11 +43,12 @@ abstract class ProfileController extends ChangeNotifier {
 }
 
 class ProfileControllerImpl extends ProfileController {
+  final AuthRepository authRepository;
   final UserController userController;
   final UserRepository userRepository;
   final Function({required String message, required Color color}) onShowMessage;
 
-  ProfileControllerImpl({required this.userController, required this.userRepository, required this.onShowMessage}) {
+  ProfileControllerImpl({required this.userController, required this.userRepository, required this.onShowMessage, required this.authRepository}) {
     init();
   }
 
@@ -89,7 +92,7 @@ class ProfileControllerImpl extends ProfileController {
       }
     } catch (e) {
       developer.log(e.toString());
-      onShowMessage(message: identifyError(error: e, message: "Não foi possivél atualizar a imagem."), color: Colors.red);
+      onShowMessage(message: identifyError(error: e, message: "Não foi possível atualizar a imagem."), color: Colors.red);
     } finally {
       setAsyncState(AsyncState.initial);
     }
@@ -177,6 +180,18 @@ class ProfileControllerImpl extends ProfileController {
       developer.log(e.toString());
     } finally {
       setAsyncState(AsyncState.initial);
+    }
+  }
+
+  @override
+  Future<bool> signOut() async {
+    try {
+      await authRepository.signOut();
+      return true;
+    } catch (e) {
+      onShowMessage(message: identifyError(error: e, message: 'Não foi possível sair da sua conta'), color: Colors.red);
+      developer.log(e.toString());
+      return false;
     }
   }
 

@@ -14,6 +14,7 @@ class Header extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 150,
+          alignment: Alignment.topLeft,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/profile.png'),

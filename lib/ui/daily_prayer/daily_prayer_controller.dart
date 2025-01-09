@@ -100,6 +100,7 @@ class DailyPrayerControllerImpl extends DailyPrayerController {
       final dateYesterday = dateNow.subtract(const Duration(days: 1));
       final prayers = await repository.getDailyPrayer(dateNow.toTimestamp());
       final prayersYesterday = await repository.getDailyPrayer(dateYesterday.toTimestamp());
+      await Future.delayed(const Duration(seconds: 1));
       setPrayersToday(prayers);
       setPrayersYesterday(prayersYesterday);
       setState(AsyncState.initial);
