@@ -12,6 +12,7 @@ class UserModel {
   String photoUrl;
   bool isAdmin;
   Timestamp? dateOfBirth;
+  String? cellPhone;
 
   UserModel({
     required this.id,
@@ -25,6 +26,7 @@ class UserModel {
     required this.photoUrl,
     required this.isAdmin,
     required this.dateOfBirth,
+    required this.cellPhone,
   });
 
   factory UserModel.fromJSON(Map<String, dynamic> json) {
@@ -39,7 +41,8 @@ class UserModel {
       namePhoto: json['namePhoto'],
       photoUrl: json['photoUrl'],
       isAdmin: json['isAdmin'] ?? false,
-      dateOfBirth: json['dateOfBirth'] ?? Timestamp(0, 0),
+      dateOfBirth: json['dateOfBirth'],
+      cellPhone: json['cellPhone'],
     );
   }
 
@@ -56,6 +59,7 @@ class UserModel {
     bool? isAdmin,
     String? deviceToken,
     Timestamp? dateOfBirth,
+    String? cellPhone,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -69,11 +73,12 @@ class UserModel {
       photoUrl: photoUrl ?? this.photoUrl,
       isAdmin: isAdmin ?? this.isAdmin,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+      cellPhone: cellPhone ?? this.cellPhone,
     );
   }
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, dateOfBirth: $dateOfBirth,)';
+    return 'UserModel(id: $id, name: $name, email: $email, madeCane: $madeCane, madeCaneYear: $madeCaneYear, lastPresence: $lastPresence, totalPresence: $totalPresence, namePhoto: $namePhoto, photoUrl: $photoUrl, isAdmin: $isAdmin, dateOfBirth: $dateOfBirth, cellPhone: $cellPhone)';
   }
 }

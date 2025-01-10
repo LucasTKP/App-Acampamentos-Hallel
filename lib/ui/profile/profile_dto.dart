@@ -5,12 +5,14 @@ class UpdateUserDto {
   bool madeCane;
   int? madeCaneYear;
   Timestamp dateOfBirth;
+  String cellPhone;
 
   UpdateUserDto({
     required this.name,
     required this.madeCane,
     this.madeCaneYear,
     required this.dateOfBirth,
+    required this.cellPhone,
   });
 
   Map<String, dynamic> toJson() {
@@ -19,6 +21,7 @@ class UpdateUserDto {
       'madeCane': madeCane,
       'madeCaneYear': madeCaneYear,
       'dateOfBirth': dateOfBirth,
+      'cellPhone': cellPhone,
     };
   }
 }

@@ -1,5 +1,6 @@
 import 'package:app_acampamentos_hallel/core/models/user_model.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
+import 'package:app_acampamentos_hallel/core/utils/validate_cellphone.dart';
 import 'package:app_acampamentos_hallel/core/utils/validate_date.dart';
 import 'package:app_acampamentos_hallel/ui/dashboard_admin/dashboard.presenter.dart';
 import 'package:app_acampamentos_hallel/ui/profile/profile_controller.dart';
@@ -8,6 +9,7 @@ import 'package:app_acampamentos_hallel/ui/welcome/welcome_screen.dart';
 import 'package:app_acampamentos_hallel/ui/widgets/custom_drop_down.dart';
 import 'package:app_acampamentos_hallel/ui/widgets/custom_inputs.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ProfileScreen extends StatelessWidget {
   final ProfileController controller;
@@ -21,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Header(controller: controller),
-          const SizedBox(height: 40),
+          const SizedBox(height: 10),
           Form(
             key: controller.formKey,
             child: Padding(
@@ -72,6 +74,28 @@ class ProfileScreen extends StatelessWidget {
                     prefixIcon: Icons.calendar_today,
                     suffixIcon: null,
                     enabled: controller.isEdit,
+                    inputFormatters: [
+                      MaskTextInputFormatter(
+                        mask: '##/##/####',
+                        filter: {'#': RegExp(r'[0-9]')},
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  CustomInputs.standard(
+                    controller: controller.cellPhone,
+                    label: 'Número de celular',
+                    obscureText: false,
+                    validator: validateCellPhone,
+                    prefixIcon: Icons.phone,
+                    suffixIcon: null,
+                    enabled: controller.isEdit,
+                    inputFormatters: [
+                      MaskTextInputFormatter(
+                        mask: '(##) #####-####',
+                        filter: {'#': RegExp(r'[0-9]')},
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 16),
                   CustomDropDown.standard(
@@ -133,25 +157,25 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  if(user.isAdmin)
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardAdmin()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ThemeColors.primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                  if (user.isAdmin)
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardAdmin()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ThemeColors.primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'Painel do administrador',
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      child: const Text(
-                        'Painel do administrador',
-                        style: TextStyle(color: Colors.white),
-                      ),
                     ),
-                  ),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(

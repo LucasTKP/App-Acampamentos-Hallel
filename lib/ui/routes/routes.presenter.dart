@@ -10,6 +10,7 @@ import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/meetings/meetings_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/profile/profile_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/request_birthday/request_birthday_presenter.dart';
+import 'package:app_acampamentos_hallel/ui/request_cellphone/request_cellphone_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/routes/routes_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +54,10 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
 
             if (userController.user?.dateOfBirth == null) {
               return const RequestDateOfBirthday();
+            }
+
+            if(userController.user?.cellPhone == null) {
+              return const RequestCellPhonePresenter();
             }
 
             switch (controller.currentRoute) {

@@ -17,7 +17,7 @@ abstract class RegisterUserController extends ChangeNotifier {
   TextEditingController confirmPassword = TextEditingController();
   TextEditingController dateOfBirth = TextEditingController();
   List<DropdownModel> itemsDropdownOne = [DropdownModel(value: 'true', label: 'Sim'), DropdownModel(value: 'false', label: 'Não')];
-  List<DropdownModel> itemsDropdownTwo = List.generate(18, (index) => DropdownModel(value: '${2024 - index}', label: '${2024 - index}')).toList();
+  List<DropdownModel> itemsDropdownTwo = List.generate(18, (index) => DropdownModel(value: '${DateTime.now().year - index}', label: '${DateTime.now().year - index}')).toList();
   late DropdownModel madeCamping;
   late DropdownModel year;
   bool passwordVisible = false;

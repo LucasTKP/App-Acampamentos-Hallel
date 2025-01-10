@@ -23,6 +23,10 @@ class DeprecatedVersionScreen extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) => const Icon(
+            Icons.error,
+            color: Colors.black87,
+          ),
         ),
         Container(
           decoration: BoxDecoration(

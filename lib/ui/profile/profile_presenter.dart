@@ -58,9 +58,10 @@ class _ProfilePresenterState extends State<ProfilePresenter> {
           if (controller.asyncState == AsyncState.loading) {
             return const SizedBox();
           }
-          return FloatingActionButton(
+          return FloatingActionButton.small(
             backgroundColor: ThemeColors.primaryColor,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            
             onPressed: () {
               controller.isEdit ? controller.updateProfile() : controller.setIsEdit(true);
             },

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:app_acampamentos_hallel/core/models/today_birth_model.dart';
 import 'package:app_acampamentos_hallel/core/models/user_model.dart';
 import 'package:app_acampamentos_hallel/core/services/user.service.dart';
+import 'package:app_acampamentos_hallel/core/utils/internal_errors.dart';
 import 'package:app_acampamentos_hallel/ui/register/register_user_dto.dart';
 import 'package:app_acampamentos_hallel/ui/send_notification/send_notification_dto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,6 +33,9 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<UserModel> getUser(String idUser) async {
     final response = await userService.getUser(idUser);
+    if (response.data() == null) {
+      throw InternalErrors(message: 'Usuário não encontrado');
+    }
     return UserModel.fromJSON(response.data()!);
   }
 

@@ -18,7 +18,7 @@ import 'package:image_picker/image_picker.dart';
 abstract class ProfileController extends ChangeNotifier {
   AsyncState asyncState = AsyncState.initial;
   List<DropdownModel> itemsDropdownOne = [DropdownModel(value: 'true', label: 'Sim'), DropdownModel(value: 'false', label: 'Não')];
-  List<DropdownModel> itemsDropdownTwo = List.generate(18, (index) => DropdownModel(value: '${2024 - index}', label: '${2024 - index}')).toList();
+  List<DropdownModel> itemsDropdownTwo = List.generate(18, (index) => DropdownModel(value: '${DateTime.now().year - index}', label: '${DateTime.now().year - index}')).toList();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isEdit = false;
 
@@ -26,6 +26,7 @@ abstract class ProfileController extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController dateOfBirthController = TextEditingController();
+  TextEditingController cellPhone = TextEditingController();
   late DropdownModel madeCamping;
   late DropdownModel madeCaneYear;
   TextEditingController totalPresenceController = TextEditingController();
@@ -58,8 +59,12 @@ class ProfileControllerImpl extends ProfileController {
     nameController.text = userController.userLogged.name;
     emailController.text = userController.userLogged.email;
     dateOfBirthController.text = userController.userLogged.dateOfBirth?.toDDMMYYYY() ?? '';
+    cellPhone.text = userController.userLogged.cellPhone ?? '';
     madeCamping = itemsDropdownOne.where((element) => element.value == userController.userLogged.madeCane.toString()).first;
-    madeCaneYear = itemsDropdownTwo.first;
+    madeCaneYear = itemsDropdownTwo.firstWhere(
+      (element) => element.value == userController.userLogged.madeCaneYear.toString(),
+      orElse: () => itemsDropdownTwo.first,
+    );
     totalPresenceController.text = userController.userLogged.totalPresence.toString();
   }
 
@@ -81,12 +86,12 @@ class ProfileControllerImpl extends ProfileController {
 
         await userRepository.updateUser(idUser: idUser, data: {'photoUrl': response, 'namePhoto': nameImage});
 
-        userController.setUser(userController.userLogged.copyWith(photoUrl: response, namePhoto: nameImage));
-
         setUrlImage(response);
-        if (nameImage != "jesus.jpg") {
+        if (userController.userLogged.namePhoto != "jesus.jpg") {
           await userRepository.deleteFile(storagePathDelete);
         }
+
+        userController.setUser(userController.userLogged.copyWith(photoUrl: response, namePhoto: nameImage));
 
         onShowMessage(message: 'Imagem atualizada com sucesso', color: Colors.green);
       }
@@ -163,6 +168,7 @@ class ProfileControllerImpl extends ProfileController {
         madeCane: madeCamping.value == 'true',
         madeCaneYear: madeCamping.value == 'true' ? int.parse(madeCaneYear.value) : null,
         dateOfBirth: dateOfBirthController.text.toTimestamp(),
+        cellPhone: cellPhone.text,
       );
       await userRepository.updateUser(idUser: userController.userLogged.id, data: updateUser.toJson());
       onShowMessage(message: 'Perfil atualizado com sucesso', color: Colors.green);
@@ -172,6 +178,7 @@ class ProfileControllerImpl extends ProfileController {
           madeCane: madeCamping.value == 'true',
           madeCaneYear: int.parse(madeCaneYear.value),
           dateOfBirth: dateOfBirthController.text.toTimestamp(),
+          cellPhone: cellPhone.text,
         ),
       );
       setIsEdit(false);

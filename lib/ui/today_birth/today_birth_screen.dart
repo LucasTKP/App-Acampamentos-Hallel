@@ -76,13 +76,18 @@ class TodayBirthScreen extends StatelessWidget {
             height: 130,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: ThemeColors.primaryColor,
+              color: const Color.fromARGB(255, 228, 228, 228),
             ),
-            child: const Center(
-              child: Text(
-                'Hoje não temos nenhum aniversariante',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.info, color: ThemeColors.primaryColor),
+                SizedBox(height: 8),
+                Text(
+                  'Hoje não temos nenhum aniversariante',
+                  style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
           );
         }
@@ -113,7 +118,9 @@ class TodayBirthScreen extends StatelessWidget {
                           radius: 40,
                           child: Image.network(
                             user.photoUrl,
-                            errorBuilder: (context, error, stackTrace) => const Icon(Icons.person),
+                            errorBuilder: (context, error, stackTrace) => Image.asset(
+                              'assets/images/jesus.jpg',
+                            ),
                           ),
                         ),
                       ),

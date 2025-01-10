@@ -49,3 +49,31 @@ class UserRequestPrayerModel {
     return 'UserRequestPrayer{id: $id, name: $name, photoUrl: $photoUrl}';
   }
 }
+
+class ReactionPrayerDto {
+  final String userId;
+  final String name;
+  final String photo;
+  final Timestamp createdAt;
+
+  ReactionPrayerDto({
+    required this.userId,
+    required this.name,
+    required this.photo,
+    required this.createdAt,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'userId': userId,
+      'name': name,
+      'createdAt': createdAt,
+      'photo': photo,
+    };
+  }
+
+  @override
+  String toString() {
+    return 'ReactionPrayerDto{userId: $userId, name: $name, photoUrl: $photo, createdAt: $createdAt}';
+  }
+}

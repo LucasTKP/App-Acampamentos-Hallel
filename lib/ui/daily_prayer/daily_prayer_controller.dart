@@ -21,6 +21,8 @@ abstract class DailyPrayerController extends ChangeNotifier {
   Future<bool> createPrayer();
   Future<bool> updatePrayer(PrayerModel prayer);
   Future<void> getDailyPrayers();
+  Future<void> removeReaction(PrayerModel prayer);
+  Future<void> addReaction(PrayerModel prayer);
 
   void setState(AsyncState value);
   void setPrayersToday(List<PrayerModel> value);
@@ -108,6 +110,39 @@ class DailyPrayerControllerImpl extends DailyPrayerController {
       developer.log('Error on getDailyPrayers', error: e);
       onShowMessage(message: identifyError(error: e, message: 'Erro ao buscar orações'), color: Colors.red);
       setState(AsyncState.error);
+    }
+  }
+
+  @override
+  Future<void> addReaction(PrayerModel prayer) async {
+    try {
+      final user = userController.userLogged;
+
+      final reaction = ReactionPrayerDto(
+        userId: user.id,
+        name: user.name,
+        photo: user.photoUrl,
+        createdAt: DateTime.now().toTimestamp(),
+      );
+      await repository.addReaction(reaction, prayer.id);
+      prayer.reactions.add(UserPrayer.fromJSON(reaction.toJson()));
+      notifyListeners();
+    } catch (e) {
+      developer.log('Error on handleReaction', error: e);
+      onShowMessage(message: identifyError(error: e, message: 'Erro ao reagir a oração'), color: Colors.red);
+    }
+  }
+
+  @override
+  Future<void> removeReaction(PrayerModel prayer) async {
+    try {
+      final user = userController.userLogged;
+      await repository.removeReaction(userId: user.id, prayerId: prayer.id);
+      prayer.reactions.removeWhere((element) => element.userId == user.id);
+      notifyListeners();
+    } catch (e) {
+      developer.log('Error on handleReaction', error: e);
+      onShowMessage(message: identifyError(error: e, message: 'Erro ao reagir a oração'), color: Colors.red);
     }
   }
 

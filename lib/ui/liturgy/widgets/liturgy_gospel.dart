@@ -21,7 +21,7 @@ class LiturgyGospel extends StatelessWidget {
           const SizedBox(height: 16),
           Text(gospelLiturgy.title, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
           const SizedBox(height: 16),
-          const Text("- Gloria a vós, Senhor.", style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
+          const Text("- Gloria a vós, Senhor.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
           const SizedBox(height: 8),
           Text(gospelLiturgy.text, style: const TextStyle(fontSize: 16, height: 2), textAlign: TextAlign.justify),
           const SizedBox(height: 16),

@@ -6,4 +6,9 @@ extension TimeStampExtension on Timestamp {
     final date = toDate();
     return DateFormat('dd/MM/yyyy').format(date);
   }
+
+  String toDDMMYYYYHHMM() {
+    final date = toDate();
+    return DateFormat('dd/MM/yyyy HH:mm').format(date);
+  }
 }

@@ -53,7 +53,7 @@ class DailyPrayerScreen extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 4),
         Row(
           children: [
             Expanded(
@@ -142,7 +142,14 @@ class DailyPrayerScreen extends StatelessWidget {
             children: [
               Icon(Icons.info, color: ThemeColors.primaryColor),
               SizedBox(height: 8),
-              Text('Não encontramos nenhuma solicitação de oração.', textAlign: TextAlign.center),
+              Text(
+                'Não encontramos nenhuma solicitação de oração.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ],
           ),
         );
@@ -175,7 +182,14 @@ class DailyPrayerScreen extends StatelessWidget {
             children: [
               Icon(Icons.info, color: ThemeColors.primaryColor),
               SizedBox(height: 8),
-              Text('Não encontramos nenhuma solicitação de oração.', textAlign: TextAlign.center),
+              Text(
+                'Não encontramos nenhuma solicitação de oração.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ],
           ),
         );
