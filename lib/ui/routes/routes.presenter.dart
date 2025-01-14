@@ -29,9 +29,9 @@ class _RoutesPresenterState extends State<RoutesPresenter> {
 
   @override
   void initState() {
-    userController = Dependencies.instance.get<UserControllerImpl>();
-    authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
-    userRepository = Dependencies.instance.get<UserRepositoryImpl>();
+    userController = getIt<UserControllerImpl>();
+    authRepository = getIt<AuthRepositoryImpl>();
+    userRepository = getIt<UserRepositoryImpl>();
     controller = RoutesControllerImpl(
       userController: userController,
       authRepository: authRepository,

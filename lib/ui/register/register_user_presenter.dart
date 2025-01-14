@@ -21,8 +21,8 @@ class _RegisterUserPresenterState extends State<RegisterUserPresenter> {
   @override
   void initState() {
     super.initState();
-    userRepository = Dependencies.instance.get<UserRepositoryImpl>();
-    authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
+    userRepository = getIt<UserRepositoryImpl>();
+    authRepository = getIt<AuthRepositoryImpl>();
     controller = RegisterUserControllerImpl(
       authRepository: authRepository,
       userRepository: userRepository,

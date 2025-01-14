@@ -23,8 +23,8 @@ class _RequestCellPhonePresenterState extends State<RequestCellPhonePresenter> {
   @override
   void initState() {
     controller = RequestCellPhoneControllerImpl(
-      userRepository: Dependencies.instance.get<UserRepositoryImpl>(),
-      userController: Dependencies.instance.get<UserControllerImpl>(),
+      userRepository: getIt<UserRepositoryImpl>(),
+      userController: getIt<UserControllerImpl>(),
       onShowMessage: onShowMessage,
     );
     super.initState();
@@ -109,6 +109,7 @@ class _RequestCellPhonePresenterState extends State<RequestCellPhonePresenter> {
                     buttonIsLoading: controller.buttonRequestCellphoneIsLoading,
                     label: 'Atualizar',
                     onPressed: controller.updateCellPhone,
+                    height: 35
                   ),
                 ],
               ),

@@ -14,6 +14,7 @@ import 'dart:developer' as developer;
 
 abstract class MeetingsController extends ChangeNotifier {
   AsyncState asyncState = AsyncState.initial;
+  bool buttonGetMeetingsPaginationIsLoading = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool buttonCheckPresenceIsLoading = false;
   List<MeetingModel> meetingsOpen = [];
@@ -22,8 +23,11 @@ abstract class MeetingsController extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
 
   Future<void> init();
+  Future<void> loadingMoreMeetings();
   Future<void> getMeetings();
+  Future<void> getMeetingsPagination();
   Future<void> getPresences();
+  Future<void> getPresencesPagination();
   Future<bool> checkPresence(MeetingModel meeting);
   Future<void> createPresence(String idMeeting, DateTime dateMeeting);
   Future<void> updatePresenceUser(DateTime dateMeeting);
@@ -35,6 +39,7 @@ abstract class MeetingsController extends ChangeNotifier {
   void setPresences(List<PresenceModel> value);
   void setButtonCheckPresenceIsLoading(bool value);
   void setAsyncState(AsyncState state);
+  void setButtonGetMeetingsPaginationIsLoading(bool value);
 }
 
 class MeetingsControllerImpl extends MeetingsController {
@@ -65,9 +70,20 @@ class MeetingsControllerImpl extends MeetingsController {
   }
 
   @override
+  Future<void> loadingMoreMeetings() async {
+    if (buttonGetMeetingsPaginationIsLoading) {
+      return;
+    }
+    setButtonCheckPresenceIsLoading(true);
+    await getMeetingsPagination();
+    await getPresencesPagination();
+    setButtonCheckPresenceIsLoading(false);
+  }
+
+  @override
   Future<void> getMeetings() async {
     try {
-      final meetings = await meetingsRepository.getMeetings();
+      final meetings = await meetingsRepository.getMeetings(null);
       setMeetingsOpen(meetings.where((element) => element.isOpen).toList());
       setMeetingsClosed(meetings.where((element) => !element.isOpen).toList());
     } catch (e) {
@@ -77,9 +93,37 @@ class MeetingsControllerImpl extends MeetingsController {
   }
 
   @override
+  Future<void> getMeetingsPagination() async {
+    String? lastDocumentId;
+    if (meetingsClosed.isNotEmpty) {
+      lastDocumentId = meetingsClosed.last.id;
+    }
+    try {
+      final meetings = await meetingsRepository.getMeetings(lastDocumentId);
+      setMeetingsOpen(meetingsOpen..addAll(meetings.where((element) => element.isOpen).toList()));
+      setMeetingsClosed(meetingsClosed..addAll(meetings.where((element) => !element.isOpen).toList()));
+    } catch (e) {
+      onShowMessage(message: 'Erro ao buscar reuniões', color: Colors.red);
+      developer.log(e.toString());
+    }
+  }
+
+  @override
   Future<void> getPresences() async {
     try {
-      final presences = await presenceRepository.getPresencesByUser(userController.userLogged.id);
+      final presences = await presenceRepository.getPresencesByUser(userController.userLogged.id, null);
+      setPresences(presences);
+    } catch (e) {
+      onShowMessage(message: identifyError(error: e, message: 'Erro ao buscar presenças'), color: Colors.red);
+      developer.log(e.toString());
+    }
+  }
+
+  @override
+  Future<void> getPresencesPagination() async {
+    try {
+      final lastDateMeeting = meetingsClosed.last.date;
+      final presences = await presenceRepository.getPresencesByUser(userController.userLogged.id, lastDateMeeting);
       setPresences(presences);
     } catch (e) {
       onShowMessage(message: identifyError(error: e, message: 'Erro ao buscar presenças'), color: Colors.red);
@@ -180,6 +224,12 @@ class MeetingsControllerImpl extends MeetingsController {
   @override
   void setAsyncState(AsyncState state) {
     asyncState = state;
+    notifyListeners();
+  }
+
+  @override
+  void setButtonGetMeetingsPaginationIsLoading(bool value) {
+    buttonGetMeetingsPaginationIsLoading = value;
     notifyListeners();
   }
 }

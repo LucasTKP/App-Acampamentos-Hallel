@@ -27,7 +27,7 @@ class DailyPrayerScreen extends StatelessWidget {
                 Text(
                   'Orações Diárias',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF535353),
                   ),

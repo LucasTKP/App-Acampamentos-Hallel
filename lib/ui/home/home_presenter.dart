@@ -3,6 +3,7 @@ import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
 import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_presenter.dart';
 import 'package:app_acampamentos_hallel/ui/examination_conscience/exame_conscience.dart';
+import 'package:app_acampamentos_hallel/ui/home/widgets/dialog_info.dart';
 import 'package:app_acampamentos_hallel/ui/home/widgets/dialog_notification_disabled.dart';
 import 'package:app_acampamentos_hallel/ui/today_birth/today_birth_presenter.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _HomePresenterState extends State<HomePresenter> with WidgetsBindingObserv
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    permissionHandler = Dependencies.instance.get<PermissionHandlerImpl>();
+    permissionHandler = getIt<PermissionHandlerImpl>();
   }
 
   @override
@@ -52,43 +53,65 @@ class _HomePresenterState extends State<HomePresenter> with WidgetsBindingObserv
                 child: Column(
                   children: [
                     const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text(
-                              'Início',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    IntrinsicHeight(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Text(
+                                'Início',
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Transform.translate(
+                                offset: const Offset(0, -6),
+                                child: Container(
+                                  width: 80,
+                                  height: 5,
+                                  color: ThemeColors.primaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ExameConscience()));
+                            },
+                            child: Container(
+                              height: double.infinity,
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'Exame de consciência',
+                                style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  color: Colors.black54,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.black54,
+                                ),
                               ),
                             ),
-                            Transform.translate(
-                              offset: const Offset(0, -6),
-                              child: Container(
-                                width: 80,
-                                height: 5,
-                                color: ThemeColors.primaryColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                        FutureBuilder<Widget>(
-                          future: getButtonNotificationDisabled(context),
-                          builder: (context, snapshot) {
-                            return snapshot.data ?? const SizedBox();
-                          },
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    FutureBuilder<Widget>(
+                      future: getButtonNotificationDisabled(context),
+                      builder: (context, snapshot) {
+                        return snapshot.data ?? const SizedBox();
+                      },
                     ),
                     const SizedBox(height: 16),
                     const TodayBirthPresenter(),
                     const SizedBox(height: 24),
                     const DailyPrayerPresenter(),
+                    const SizedBox(height: 32),
                   ],
                 ),
               ),
@@ -96,14 +119,9 @@ class _HomePresenterState extends State<HomePresenter> with WidgetsBindingObserv
           ),
         ),
         floatingActionButton: FloatingActionButton.small(
-          //quero borda redonda
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          backgroundColor: const Color.fromARGB(255, 238, 220, 117),
-
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const ExameConscience()));
-          },
-          child: const Icon(Icons.psychology),
+          onPressed: () => dialogInfoApp(context),
+          backgroundColor: Colors.yellow[300],
+          child: const Icon(Icons.info, color: Colors.black87),
         ),
       ),
     );
@@ -114,15 +132,47 @@ class _HomePresenterState extends State<HomePresenter> with WidgetsBindingObserv
       return const SizedBox();
     }
 
-    return IconButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         dialogNotificationDisabled(context);
       },
-      style: ButtonStyle(
-        backgroundColor: WidgetStatePropertyAll(Colors.yellow[600]),
-      ),
-      icon: const Icon(
-        Icons.notification_important,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.yellow[100],
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.yellow[800]!),
+        ),
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.info, color: Colors.yellow[800]),
+            const SizedBox(width: 4),
+            Expanded(
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Notificações desativadas ",
+                      style: TextStyle(color: Colors.yellow[800]),
+                    ),
+                    TextSpan(
+                      text: "Clique Aqui",
+                      style: TextStyle(
+                        color: Colors.yellow[800],
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w600,
+                        decorationColor: Colors.yellow[800],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(width: 4),
+          ],
+        ),
       ),
     );
   }

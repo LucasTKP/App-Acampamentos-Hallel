@@ -14,68 +14,55 @@ import 'package:app_acampamentos_hallel/core/services/api_client.dart';
 import 'package:app_acampamentos_hallel/core/services/auth_service.dart';
 import 'package:app_acampamentos_hallel/core/services/liturgy_service.dart';
 import 'package:app_acampamentos_hallel/core/services/meetings_service.dart';
+import 'package:app_acampamentos_hallel/core/services/message_service.dart';
 import 'package:app_acampamentos_hallel/core/services/prayers_service.dart';
 import 'package:app_acampamentos_hallel/core/services/presences_service.dart';
 import 'package:app_acampamentos_hallel/core/services/settings_service.dart';
 import 'package:app_acampamentos_hallel/core/services/user.service.dart';
-import 'package:flutter/material.dart';
+import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_controller.dart';
+import 'package:get_it/get_it.dart';
 
-class Dependencies {
-  static Dependencies? _instance;
+final getIt = GetIt.instance;
 
-  static Dependencies get instance => _instance ??= Dependencies._();
+Future<void> setupDependencies() async {
+  getIt.registerLazySingleton(() => MessageService());
 
-  Dependencies._();
+  // API e Dio setup
+  getIt.registerLazySingleton(() => DioConfig());
+  getIt.registerLazySingleton(() => ApiService(client: getIt<DioConfig>().dio));
 
-  final Map<Type, dynamic> _objects = {};
+  // Settings
+  getIt.registerLazySingleton(() => SettingsServiceImpl(db: db));
+  getIt.registerLazySingleton(() => SettingsRepositoryImpl(settingsService: getIt<SettingsServiceImpl>()));
+  getIt.registerLazySingleton(() => SettingsControllerImpl(settingsRepository: getIt<SettingsRepositoryImpl>()));
 
-  bool contains<T>() => _objects.containsKey(T);
+  // Liturgy
+  getIt.registerLazySingleton(() => LiturgyServiceImpl(api: getIt<ApiService>()));
+  getIt.registerLazySingleton(() => LiturgyRepositoryImpl(service: getIt<LiturgyServiceImpl>()));
 
-  void add<T>(T instance) => contains<T>() ? throw Exception('Class ${T.runtimeType} already registered!') : _objects[T] = instance;
+  // Permission Handler
+  getIt.registerLazySingleton(() => PermissionHandlerImpl());
 
-  T get<T>() => contains<T>() ? _objects[T] : throw Exception('Class ${T.runtimeType} not registered!');
+  // Auth
+  getIt.registerLazySingleton(() => AuthServiceImpl(auth: auth));
+  getIt.registerLazySingleton(() => AuthRepositoryImpl(authService: getIt<AuthServiceImpl>()));
 
-  void remove<T>() => _objects.remove(T);
+  // User
+  getIt.registerLazySingleton(() => UserServiceImpl(api: getIt<ApiService>(), db: db, storage: storage));
+  getIt.registerLazySingleton(() => UserRepositoryImpl(userService: getIt<UserServiceImpl>()));
+  getIt.registerLazySingleton(() => UserControllerImpl());
 
-  void clear() => _objects.clear();
-}
+  // Meetings
+  getIt.registerLazySingleton(() => MeetingsServiceImpl(db: db));
+  getIt.registerLazySingleton(() => MeetingsRepositoryImpl(service: getIt<MeetingsServiceImpl>()));
 
-Future<bool> setupDependencies(BuildContext context) async {
-  final DioConfig dioConfig = DioConfig();
-  final ApiService api = ApiService(client: dioConfig.dio);
-  Dependencies.instance.add<ApiService>(api);
+  // Presences
+  getIt.registerLazySingleton(() => PresencesServiceImpl(db: db));
+  getIt.registerLazySingleton(() => PresencesRepositoryImpl(service: getIt<PresencesServiceImpl>()));
 
-  final settingsService = SettingsServiceImpl(db: db);
-  final settingsRepository = SettingsRepositoryImpl(settingsService: settingsService);
-  Dependencies.instance.add<SettingsRepositoryImpl>(settingsRepository);
+  // Prayers
+  getIt.registerLazySingleton(() => PrayersServiceImpl(db: db));
+  getIt.registerLazySingleton(() => PrayersRepositoryImpl(service: getIt<PrayersServiceImpl>()));
 
-  final dailyLiturgyService = LiturgyServiceImpl(api: api);
-  Dependencies.instance.add<LiturgyRepositoryImpl>(LiturgyRepositoryImpl(service: dailyLiturgyService));
-
-  Dependencies.instance.add<SettingsControllerImpl>(SettingsControllerImpl(settingsRepository: settingsRepository));
-
-  Dependencies.instance.add<PermissionHandlerImpl>(PermissionHandlerImpl());
-
-  final authService = AuthServiceImpl(auth: auth);
-  Dependencies.instance.add<AuthRepositoryImpl>(AuthRepositoryImpl(authService: authService));
-
-  final userService = UserServiceImpl(api: api);
-  Dependencies.instance.add<UserRepositoryImpl>(UserRepositoryImpl(userService: userService));
-
-  final meetingsService = MeetingsServiceImpl(db: db);
-  final meetingsRepository = MeetingsRepositoryImpl(service: meetingsService);
-  Dependencies.instance.add<MeetingsRepositoryImpl>(meetingsRepository);
-
-  final presencesService = PresencesServiceImpl(db: db);
-  final presencesRepository = PresencesRepositoryImpl(service: presencesService);
-  Dependencies.instance.add<PresencesRepositoryImpl>(presencesRepository);
-
-  final prayerService = PrayersServiceImpl(db: db);
-  final prayerRepository = PrayersRepositoryImpl(service: prayerService);
-  Dependencies.instance.add<PrayersRepositoryImpl>(prayerRepository);
-
-  final userController = UserControllerImpl();
-  Dependencies.instance.add<UserControllerImpl>(userController);
-
-  return true;
+  getIt.registerLazySingleton(() => DailyPrayerControllerImpl(messageService: getIt<MessageService>(), repository: getIt<PrayersRepositoryImpl>(), userController: getIt<UserControllerImpl>()));
 }

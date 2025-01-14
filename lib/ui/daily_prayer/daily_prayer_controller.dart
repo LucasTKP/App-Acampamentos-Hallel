@@ -3,6 +3,7 @@ import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.
 import 'package:app_acampamentos_hallel/core/models/async_state.dart';
 import 'package:app_acampamentos_hallel/core/models/prayer.dart';
 import 'package:app_acampamentos_hallel/core/repositories/prayers_repository.dart';
+import 'package:app_acampamentos_hallel/core/services/message_service.dart';
 import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
 import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_dto.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +35,9 @@ abstract class DailyPrayerController extends ChangeNotifier {
 class DailyPrayerControllerImpl extends DailyPrayerController {
   final PrayersRepository repository;
   final UserController userController;
-  final Function({required String message, required Color color}) onShowMessage;
+  final MessageService messageService;
 
-  DailyPrayerControllerImpl({required this.repository, required this.userController, required this.onShowMessage}) {
+  DailyPrayerControllerImpl({required this.repository, required this.userController, required this.messageService}) {
     getDailyPrayers();
   }
 
@@ -57,14 +58,14 @@ class DailyPrayerControllerImpl extends DailyPrayerController {
       await Future.delayed(const Duration(seconds: 1));
 
       textEditingController.clear();
-      onShowMessage(message: 'Oração registrada com sucesso', color: Colors.green);
+      messageService.showMessage(message: 'Oração registrada com sucesso', color: Colors.green);
       getDailyPrayers();
       setButtonSaveIsLoading(false);
 
       return true;
     } catch (e) {
       developer.log('Error on createPrayer', error: e);
-      onShowMessage(message: identifyError(error: e, message: 'Erro ao registrar pedido oração'), color: Colors.red);
+      messageService.showMessage(message: identifyError(error: e, message: 'Erro ao registrar pedido oração'), color: Colors.red);
       setButtonSaveIsLoading(false);
 
       return false;
@@ -80,14 +81,14 @@ class DailyPrayerControllerImpl extends DailyPrayerController {
       await Future.delayed(const Duration(seconds: 1));
 
       textEditingController.clear();
-      onShowMessage(message: 'Oração atualizada com sucesso', color: Colors.green);
+      messageService.showMessage(message: 'Oração atualizada com sucesso', color: Colors.green);
       getDailyPrayers();
       setButtonSaveIsLoading(false);
 
       return true;
     } catch (e) {
       developer.log('Error on updatePrayer', error: e);
-      onShowMessage(message: identifyError(error: e, message: 'Erro ao atualizar pedido oração'), color: Colors.red);
+      messageService.showMessage(message: identifyError(error: e, message: 'Erro ao atualizar pedido oração'), color: Colors.red);
       setButtonSaveIsLoading(false);
 
       return false;
@@ -108,7 +109,7 @@ class DailyPrayerControllerImpl extends DailyPrayerController {
       setState(AsyncState.initial);
     } catch (e) {
       developer.log('Error on getDailyPrayers', error: e);
-      onShowMessage(message: identifyError(error: e, message: 'Erro ao buscar orações'), color: Colors.red);
+      messageService.showMessage(message: identifyError(error: e, message: 'Erro ao buscar orações'), color: Colors.red);
       setState(AsyncState.error);
     }
   }
@@ -128,8 +129,8 @@ class DailyPrayerControllerImpl extends DailyPrayerController {
       prayer.reactions.add(UserPrayer.fromJSON(reaction.toJson()));
       notifyListeners();
     } catch (e) {
-      developer.log('Error on handleReaction', error: e);
-      onShowMessage(message: identifyError(error: e, message: 'Erro ao reagir a oração'), color: Colors.red);
+      developer.log('Error add reaction', error: e);
+      messageService.showMessage(message: identifyError(error: e, message: 'Erro ao reagir a oração'), color: Colors.red);
     }
   }
 
@@ -142,7 +143,7 @@ class DailyPrayerControllerImpl extends DailyPrayerController {
       notifyListeners();
     } catch (e) {
       developer.log('Error on handleReaction', error: e);
-      onShowMessage(message: identifyError(error: e, message: 'Erro ao reagir a oração'), color: Colors.red);
+      messageService.showMessage(message: identifyError(error: e, message: 'Erro ao reagir a oração'), color: Colors.red);
     }
   }
 

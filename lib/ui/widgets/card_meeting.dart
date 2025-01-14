@@ -86,7 +86,7 @@ class CardMeeting extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(meeting.date.toDDMMYYYY(), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                        Text(meeting.date.toDDMMYYYY(), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black87)),
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
@@ -101,7 +101,7 @@ class CardMeeting extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 5),
-                    Text("Tema: ${meeting.theme}", maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 16)),
+                    Text("Tema: ${meeting.theme}", maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 16, color: Colors.black87)),
                     Text("Descrição: ${meeting.description}", maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.black54)),
                     if (status == StatusPresenceMeeting.open)
                       SizedBox(

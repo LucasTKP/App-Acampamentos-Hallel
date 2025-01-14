@@ -1,3 +1,4 @@
+import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
 import 'package:app_acampamentos_hallel/core/models/liturgy_model.dart';
 import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_controller.dart';
 import 'package:app_acampamentos_hallel/ui/liturgy/widgets/liturgy_hero.dart';
@@ -16,14 +17,20 @@ class LiturgyGospel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LiturgyHero(controller: controller),
-          const SizedBox(height: 30),
+          const SizedBox(height: 16),
           Text("Evangelho (${gospelLiturgy.reference})", style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
           const SizedBox(height: 16),
           Text(gospelLiturgy.title, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
           const SizedBox(height: 16),
           const Text("- Gloria a vós, Senhor.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
           const SizedBox(height: 8),
-          Text(gospelLiturgy.text, style: const TextStyle(fontSize: 16, height: 2), textAlign: TextAlign.justify),
+          RichText(
+            text: TextSpan(
+              style: const TextStyle(fontSize: 18, height: 2, color: Colors.black),
+              children: gospelLiturgy.text.formatGospelWithBoldNumbers(),
+            ),
+            textAlign: TextAlign.justify,
+          ),
           const SizedBox(height: 16),
           const Text("- Palavra da Salvação.", style: TextStyle(fontSize: 16), textAlign: TextAlign.justify),
           const SizedBox(height: 16),

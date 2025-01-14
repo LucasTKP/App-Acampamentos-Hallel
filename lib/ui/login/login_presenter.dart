@@ -19,7 +19,7 @@ class _LoginPresenterState extends State<LoginPresenter> {
   @override
   void initState() {
     super.initState();
-    authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
+    authRepository = getIt<AuthRepositoryImpl>();
     controller = LoginControllerImpl(authRepository: authRepository, onShowMessage: onShowMessage);
   }
 

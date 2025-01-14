@@ -22,7 +22,7 @@ class _LiturgyPresenterState extends State<LiturgyPresenter> {
   void initState() {
     super.initState();
     controller = LiturgyControllerImpl(
-      liturgyRepository: Dependencies.instance.get<LiturgyRepositoryImpl>(),
+      liturgyRepository: getIt<LiturgyRepositoryImpl>(),
       onShowMessage: onShowMessage,
     );
   }

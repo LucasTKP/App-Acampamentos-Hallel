@@ -7,6 +7,7 @@ import 'package:app_acampamentos_hallel/core/libs/info_plus.dart';
 import 'package:app_acampamentos_hallel/core/libs/notification.dart';
 import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
 import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
+import 'package:app_acampamentos_hallel/core/services/message_service.dart';
 import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
 import 'package:app_acampamentos_hallel/ui/deprecated_version/deprecated_version_screen.dart';
 import 'package:app_acampamentos_hallel/ui/routes/routes.presenter.dart';
@@ -32,9 +33,9 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  await NotificationController.localNotiInit(); //Configs de notificação local
-  await NotificationController.init(); //Configs de notificação do firebase
-
+  await NotificationController.localNotiInit(); 
+  await NotificationController.init();
+  await setupDependencies();
   runApp(const MainApp());
 }
 
@@ -48,18 +49,13 @@ class MainApp extends StatelessWidget {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
       child: MaterialApp(
+        scaffoldMessengerKey: MessageService.scaffoldMessengerKey,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Poppins',
           scaffoldBackgroundColor: const Color(0xFFF3F3F3),
           useMaterial3: true,
-          appBarTheme: const AppBarTheme(
-            titleTextStyle: TextStyle(fontSize: 22, color: Colors.white),
-            iconTheme: IconThemeData(color: Colors.white),
-            centerTitle: true,
-            backgroundColor: ThemeColors.primaryColor
-            
-          ),
+          appBarTheme: const AppBarTheme(titleTextStyle: TextStyle(fontSize: 22, color: Colors.white), iconTheme: IconThemeData(color: Colors.white), centerTitle: true, backgroundColor: ThemeColors.primaryColor),
         ),
         home: const InjectionPage(),
         localizationsDelegates: const [
@@ -91,11 +87,10 @@ class _InjectionPageState extends State<InjectionPage> {
   @override
   void initState() {
     super.initState();
-    setupDependencies(context);
-    userController = Dependencies.instance.get<UserControllerImpl>();
-    permissionHandler = Dependencies.instance.get<PermissionHandlerImpl>();
-    settingsController = Dependencies.instance.get<SettingsControllerImpl>();
-    authRepository = Dependencies.instance.get<AuthRepositoryImpl>();
+    userController = getIt<UserControllerImpl>();
+    permissionHandler = getIt<PermissionHandlerImpl>();
+    settingsController = getIt<SettingsControllerImpl>();
+    authRepository = getIt<AuthRepositoryImpl>();
     auth.setLanguageCode("pt");
     requestPermissionNotification();
   }

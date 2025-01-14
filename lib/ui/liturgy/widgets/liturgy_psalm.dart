@@ -16,7 +16,7 @@ class LiturgyPsalm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LiturgyHero(controller: controller),
-          const SizedBox(height: 30),
+          const SizedBox(height: 16),
           Text("Salmo Responsório (${liturgyPsalm.reference})", style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
           const SizedBox(height: 16),
           Text(liturgyPsalm.title, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),

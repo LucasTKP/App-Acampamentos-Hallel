@@ -19,7 +19,7 @@ class _SendNotificationPresenterState extends State<SendNotificationPresenter> {
   void initState() {
     super.initState();
     controller = SendNotificationControllerImpl(
-      userRepository: Dependencies.instance.get<UserRepositoryImpl>(),
+      userRepository: getIt<UserRepositoryImpl>(),
       onShowMessage: onShowMessage,
     );
   }

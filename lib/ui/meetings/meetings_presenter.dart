@@ -23,10 +23,10 @@ class _MeetingsPresenterState extends State<MeetingsPresenter> {
   @override
   void initState() {
     controller = MeetingsControllerImpl(
-      meetingsRepository: Dependencies.instance.get<MeetingsRepositoryImpl>(),
-      presenceRepository: Dependencies.instance.get<PresencesRepositoryImpl>(),
-      userRepository: Dependencies.instance.get<UserRepositoryImpl>(),
-      userController: Dependencies.instance.get<UserControllerImpl>(),
+      meetingsRepository: getIt<MeetingsRepositoryImpl>(),
+      presenceRepository: getIt<PresencesRepositoryImpl>(),
+      userRepository: getIt<UserRepositoryImpl>(),
+      userController: getIt<UserControllerImpl>(),
       onShowMessage: onShowMessage,
     );
     super.initState();

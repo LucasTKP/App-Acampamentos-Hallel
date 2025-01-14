@@ -16,13 +16,11 @@ class LiturgyHeader extends StatelessWidget {
     };
 
     return Container(
-      height: 32,
       color: const Color.fromARGB(255, 222, 228, 219),
       child: Row(
         children: [
           if (controller.liturgy?.firstLiturgy != null) ...[
             Flexible(
-              
               flex: textWeights['1ª Leitura']!,
               child: _LiturgyButton(
                 text: '1ª Leitura',
@@ -106,7 +104,7 @@ class _LiturgyButton extends StatelessWidget {
         onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(controller.backgroundButtonColor(typeLiturgy)),
-          padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 0)),
+          padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 0, vertical: 18)),
           visualDensity: VisualDensity.compact,
           shape: WidgetStateProperty.all(
             const RoundedRectangleBorder(

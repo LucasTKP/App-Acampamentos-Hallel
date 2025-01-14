@@ -4,7 +4,7 @@ import 'package:app_acampamentos_hallel/ui/meetings/presence_dto.dart';
 
 abstract class PresencesRepository {
   Future<void> createPresence(PresenceDto presence);
-  Future<List<PresenceModel>> getPresencesByUser(String idUser);
+  Future<List<PresenceModel>> getPresencesByUser(String idUser, DateTime? maxDate);
 }
 
 class PresencesRepositoryImpl extends PresencesRepository {
@@ -18,8 +18,8 @@ class PresencesRepositoryImpl extends PresencesRepository {
   }
 
   @override
-  Future<List<PresenceModel>> getPresencesByUser(String idUser) async {
-    final presences = await service.getPresencesByUser(idUser);
+  Future<List<PresenceModel>> getPresencesByUser(String idUser, DateTime? maxDate) async {
+    final presences = await service.getPresencesByUser(idUser, maxDate);
     final a = presences.docs.map((e) => PresenceModel.fromJson(e.data())).toList();
     return a;
   }

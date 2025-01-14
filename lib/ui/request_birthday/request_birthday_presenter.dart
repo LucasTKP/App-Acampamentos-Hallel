@@ -23,8 +23,8 @@ class _RequestDateOfBirthdayState extends State<RequestDateOfBirthday> {
   @override
   void initState() {
     controller = RequestBirthdayControllerImpl(
-      userRepository: Dependencies.instance.get<UserRepositoryImpl>(),
-      userController: Dependencies.instance.get<UserControllerImpl>(),
+      userRepository: getIt<UserRepositoryImpl>(),
+      userController: getIt<UserControllerImpl>(),
       onShowMessage: onShowMessage,
     );
     super.initState();
@@ -109,6 +109,7 @@ class _RequestDateOfBirthdayState extends State<RequestDateOfBirthday> {
                     buttonIsLoading: controller.buttonRequestBirthdayIsLoading,
                     label: 'Atualizar',
                     onPressed: controller.updateBirthday,
+                    height: 35
                   ),
                 ],
               ),

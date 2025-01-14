@@ -54,10 +54,10 @@ class CardPrayer extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          const Expanded(
+                           Expanded(
                             child: Text(
-                              'asd asda sdad',
-                              style: TextStyle(
+                              prayer.userRequest.name,
+                              style: const TextStyle(
                                 fontSize: 12,
                                 color: Color(0xFF737373),
                                 overflow: TextOverflow.ellipsis,

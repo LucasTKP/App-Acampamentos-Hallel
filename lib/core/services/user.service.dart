@@ -17,35 +17,40 @@ abstract class UserService {
 }
 
 class UserServiceImpl extends UserService {
-  final db = FirebaseFirestore.instance;
-  final storage = FirebaseStorage.instance;
+  final FirebaseFirestore db;
+  final FirebaseStorage storage;
   final ApiService api;
-
-  UserServiceImpl({required this.api});
+  final Duration timeout;
+  UserServiceImpl({
+    required this.api,
+    required this.db,
+    required this.storage,
+    this.timeout = const Duration(seconds: 10),
+  });
 
   @override
   Future<void> registerUser(Map<String, dynamic> data) async {
-    return await db.collection('users').doc(data['id']).set(data);
+    return await db.collection('users').doc(data['id']).set(data).timeout(timeout);
   }
 
   @override
   Future<DocumentSnapshot<Map<String, dynamic>>> getUser(String idUser) async {
-    return await db.collection('users').doc(idUser).get();
+    return await db.collection('users').doc(idUser).get().timeout(timeout);
   }
 
   @override
   Future<void> updateUser(String idUser, Map<String, dynamic> data) async {
-    return await db.collection('users').doc(idUser).update(data);
+    return await db.collection('users').doc(idUser).update(data).timeout(timeout);
   }
 
   @override
   Future<QuerySnapshot<Map<String, dynamic>>> getUsers() async {
-    return await db.collection('users').get();
+    return await db.collection('users').get().timeout(timeout);
   }
 
   @override
   Future<TaskSnapshot> uploadFile({required File file, required String storagePath}) async {
-    final storageReference = FirebaseStorage.instance.ref(storagePath);
+    final storageReference = storage.ref(storagePath);
     final uploadTask = storageReference.putFile(file);
     final taskSnapshot = await uploadTask;
     return taskSnapshot;
@@ -53,13 +58,13 @@ class UserServiceImpl extends UserService {
 
   @override
   Future<void> deleteFile(String storagePath) async {
-    return await FirebaseStorage.instance.ref(storagePath).delete();
+    return await storage.ref(storagePath).delete();
   }
 
   @override
   Future<DocumentSnapshot<Map<String, dynamic>>> getTodayBirth() async {
     //dentro da coleção today quero o documento usersBirth
-    return await db.collection('today').doc('usersBirth').get();
+    return await db.collection('today').doc('usersBirth').get().timeout(timeout);
   }
 
   @override

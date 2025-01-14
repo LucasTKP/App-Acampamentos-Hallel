@@ -23,13 +23,13 @@ class _ProfilePresenterState extends State<ProfilePresenter> {
 
   @override
   void initState() {
-    userController = Dependencies.instance.get<UserControllerImpl>();
-    userRepository = Dependencies.instance.get<UserRepositoryImpl>();
+    userController = getIt<UserControllerImpl>();
+    userRepository = getIt<UserRepositoryImpl>();
     controller = ProfileControllerImpl(
       userController: userController,
       userRepository: userRepository,
       onShowMessage: onShowMessage,
-      authRepository: Dependencies.instance.get<AuthRepositoryImpl>(),
+      authRepository: getIt<AuthRepositoryImpl>(),
     );
     super.initState();
   }
@@ -60,8 +60,6 @@ class _ProfilePresenterState extends State<ProfilePresenter> {
           }
           return FloatingActionButton.small(
             backgroundColor: ThemeColors.primaryColor,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            
             onPressed: () {
               controller.isEdit ? controller.updateProfile() : controller.setIsEdit(true);
             },

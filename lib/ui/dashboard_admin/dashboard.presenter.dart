@@ -14,7 +14,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
   late UserController userController;
   @override
   void initState() {
-    userController = Dependencies.instance.get<UserControllerImpl>();
+    userController = getIt<UserControllerImpl>();
     final user = userController.userLogged;
     if (user.isAdmin == false) {
       Navigator.of(context).pop();

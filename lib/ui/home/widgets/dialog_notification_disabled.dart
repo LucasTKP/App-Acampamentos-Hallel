@@ -4,7 +4,7 @@ import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 void dialogNotificationDisabled(BuildContext context) {
-  final PermissionHandlerImpl permissionHandler = Dependencies.instance.get<PermissionHandlerImpl>();
+  final PermissionHandlerImpl permissionHandler = getIt<PermissionHandlerImpl>();
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -22,7 +22,7 @@ void dialogNotificationDisabled(BuildContext context) {
                 'Notificações desativadas',
                 style: TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 8),

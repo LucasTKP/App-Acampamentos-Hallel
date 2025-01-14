@@ -1,3 +1,4 @@
+import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
 import 'package:app_acampamentos_hallel/core/models/liturgy_model.dart';
 import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_controller.dart';
 import 'package:app_acampamentos_hallel/ui/liturgy/widgets/liturgy_hero.dart';
@@ -16,12 +17,18 @@ class LiturgySecond extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LiturgyHero(controller: controller),
-          const SizedBox(height: 30),
+          const SizedBox(height: 16),
           Text("Segunda leitura (${secondLiturgy.reference})", style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
           const SizedBox(height: 16),
           Text(secondLiturgy.title, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
           const SizedBox(height: 8),
-          Text(secondLiturgy.text, style: const TextStyle(fontSize: 16, height: 2), textAlign: TextAlign.justify),
+          RichText(
+            text: TextSpan(
+              style: const TextStyle(fontSize: 18, height: 2, color: Colors.black),
+              children: secondLiturgy.text.formatGospelWithBoldNumbers(),
+            ),
+            textAlign: TextAlign.justify,
+          ),
           const SizedBox(height: 16),
           const Text("- Palavra do Senhor.", style: TextStyle(fontSize: 16), textAlign: TextAlign.justify),
           const SizedBox(height: 16),

@@ -1,6 +1,7 @@
 import 'package:app_acampamentos_hallel/ui/meetings/meetings_controller.dart';
 import 'package:app_acampamentos_hallel/ui/meetings/widgets/check_presence_meeting.dart';
 import 'package:app_acampamentos_hallel/ui/widgets/card_meeting.dart';
+import 'package:app_acampamentos_hallel/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class MeetingsScreen extends StatelessWidget {
@@ -14,8 +15,19 @@ class MeetingsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 20),
-          const Text('Reuniões', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500)),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Reuniões', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+              InkWell(
+                onTap: () {
+                  controller.init();
+                },
+                child: const Icon(Icons.refresh, color: Colors.black87),
+              ),
+            ],
+          ),
           ExpansionTile(
             shape: Border.all(color: Colors.transparent, width: 0),
             tilePadding: const EdgeInsets.all(0),
@@ -33,7 +45,7 @@ class MeetingsScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
-                Text('Abertas (${controller.meetingsOpen.length})', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                Text('Abertas (${controller.meetingsOpen.length})', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xFF535353))),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Row(
@@ -92,7 +104,7 @@ class MeetingsScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
-                Text('Fechadas (${controller.meetingsClosed.length})', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                Text('Fechadas (${controller.meetingsClosed.length})', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xFF535353))),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Row(
@@ -115,6 +127,19 @@ class MeetingsScreen extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
+                  if (index == controller.meetingsClosed.length) {
+                    return Center(
+                      child: CustomButton.standard(
+                        buttonIsLoading: controller.buttonGetMeetingsPaginationIsLoading,
+                        onPressed: () {
+                          controller.loadingMoreMeetings();
+                        },
+                        label: 'Carregar mais',
+                        height: 35,
+                      ),
+                    );
+                  }
+
                   final meeting = controller.meetingsClosed[index];
                   return CardMeeting(
                     meeting: meeting,
@@ -124,8 +149,8 @@ class MeetingsScreen extends StatelessWidget {
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 5),
-                itemCount: controller.meetingsClosed.length,
-              ),
+                itemCount: controller.meetingsClosed.length + 1,
+              )
             ],
           ),
         ],

@@ -24,7 +24,7 @@ class TodayBirthScreen extends StatelessWidget {
                 Text(
                   'Aniversariantes',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF535353),
                   ),
@@ -85,6 +85,7 @@ class TodayBirthScreen extends StatelessWidget {
                 SizedBox(height: 8),
                 Text(
                   'Hoje não temos nenhum aniversariante',
+                  textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w500),
                 ),
               ],
@@ -141,7 +142,7 @@ class TodayBirthScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'Esta fazendo ${controller.getAge(user.dateOfBirth.toDate())} anos, deseje Feliz Aniversário para ele! 🎉',
+                              'esta fazendo ${controller.getAge(user.dateOfBirth.toDate())} anos, deseje feliz aniversário para ele! 🎉',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,

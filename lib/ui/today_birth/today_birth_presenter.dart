@@ -19,7 +19,7 @@ class _TodayBirthPresenterState extends State<TodayBirthPresenter> {
   void initState() {
     super.initState();
     controller = TodayBirthControllerImpl(
-      userRepository: Dependencies.instance.get<UserRepositoryImpl>(),
+      userRepository: getIt<UserRepositoryImpl>(),
       onShowMessage: onShowMessage,
     );
   }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:app_acampamentos_hallel/core/utils/internal_errors.dart';
@@ -9,38 +10,43 @@ String identifyError({required dynamic error, required String message}) {
   String messageError = message;
   if (error is FirebaseException) {
     if (error.code == 'invalid-credential') {
-      messageError = 'Credencial inválida.';
+      return messageError = 'Credencial inválida.';
     } else if (error.code == 'operation-not-allowed') {
-      messageError = 'Operação não permitida.';
+      return messageError = 'Operação não permitida.';
     } else if (error.code == 'user-disabled') {
-      messageError = 'Usuário desabilitado.';
+      return messageError = 'Usuário desabilitado.';
     } else if (error.code == 'user-not-found') {
-      messageError = 'Usuário não encontrado.';
+      return messageError = 'Usuário não encontrado.';
     } else if (error.code == 'wrong-password') {
-      messageError = 'Senha incorreta.';
+      return messageError = 'Senha incorreta.';
     } else if (error.code == 'email-already-in-use') {
-      messageError = 'E-mail já em uso.';
+      return messageError = 'E-mail já em uso.';
     } else if (error.code == 'invalid-email') {
-      messageError = 'E-mail inválido.';
+      return messageError = 'E-mail inválido.';
     } else if (error.code == 'weak-password') {
-      messageError = 'Senha fraca.';
+      return messageError = 'Senha fraca.';
     } else if (error.code == 'too-many-requests') {
-      messageError = 'Muitas tentativas. Tente novamente mais tarde.';
+      return messageError = 'Muitas tentativas. Tente novamente mais tarde.';
     } else if (error.code == 'network-request-failed') {
-      messageError = 'Falha na conexão. Verifique sua conexão com a internet.';
+      return messageError = 'Falha na conexão. Verifique sua conexão com a internet.';
     }
   }
   if (error is TypeError) {
-    messageError = 'Erro de tipo.';
+    return messageError = 'Erro de tipo.';
   }
 
   if (error is InternalErrors) {
-    messageError = error.message;
+    return messageError = error.message;
   }
 
   if (error is DioException && error.error is SocketException) {
-    messageError = 'Sem internet, por favor reconecte';
+    return messageError = 'Sem internet, por favor reconecte';
   }
+
+  if (error is TimeoutException) {
+    return messageError = 'Tempo esgotado. Verifique sua conexão com a internet.';
+  }
+
 
   return messageError;
 }
