@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/models/liturgy_model.dart';
-import 'package:app_acampamentos_hallel/core/services/liturgy_service.dart';
+import 'package:acamps_canaa/core/models/liturgy_model.dart';
+import 'package:acamps_canaa/core/services/liturgy_service.dart';
 
 abstract class LiturgyRepository {
   Future<LiturgyModel> getLiturgyByDate({required DateTime date});

@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/profile/profile_controller.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {

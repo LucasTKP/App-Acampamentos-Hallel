@@ -1,11 +1,11 @@
-import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/repositories/liturgy_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/generic_error/generic_error.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_controller.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_screen.dart';
+import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/models/async_state.dart';
+import 'package:acamps_canaa/core/repositories/liturgy_repository.dart';
+import 'package:acamps_canaa/core/utils/show_message.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/generic_error/generic_error.dart';
+import 'package:acamps_canaa/ui/liturgy/liturgy_controller.dart';
+import 'package:acamps_canaa/ui/liturgy/liturgy_screen.dart';
 import 'package:flutter/material.dart';
 
 class LiturgyPresenter extends StatefulWidget {

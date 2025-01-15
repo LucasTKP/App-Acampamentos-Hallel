@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/libs/permission_handler.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 void dialogNotificationDisabled(BuildContext context) {

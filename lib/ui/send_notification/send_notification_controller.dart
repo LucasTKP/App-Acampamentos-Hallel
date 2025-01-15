@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
-import 'package:app_acampamentos_hallel/ui/send_notification/send_notification_dto.dart';
+import 'package:acamps_canaa/core/repositories/user_repository.dart';
+import 'package:acamps_canaa/core/utils/identify_error.dart';
+import 'package:acamps_canaa/ui/send_notification/send_notification_dto.dart';
 import 'package:flutter/material.dart';
 
 abstract class SendNotificationController extends ChangeNotifier {

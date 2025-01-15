@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/models/liturgy_model.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_controller.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/widgets/liturgy_hero.dart';
+import 'package:acamps_canaa/core/models/liturgy_model.dart';
+import 'package:acamps_canaa/ui/liturgy/liturgy_controller.dart';
+import 'package:acamps_canaa/ui/liturgy/widgets/liturgy_hero.dart';
 import 'package:flutter/material.dart';
 
 class LiturgyPsalm extends StatelessWidget {

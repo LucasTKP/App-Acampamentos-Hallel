@@ -1,8 +1,8 @@
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/login/login_controller.dart';
-import 'package:app_acampamentos_hallel/ui/routes/routes.presenter.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_button.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_inputs.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/login/login_controller.dart';
+import 'package:acamps_canaa/ui/routes/routes.presenter.dart';
+import 'package:acamps_canaa/ui/widgets/custom_button.dart';
+import 'package:acamps_canaa/ui/widgets/custom_inputs.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {

@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/models/prayer.dart';
-import 'package:app_acampamentos_hallel/core/services/prayers_service.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_dto.dart';
+import 'package:acamps_canaa/core/models/prayer.dart';
+import 'package:acamps_canaa/core/services/prayers_service.dart';
+import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_dto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class PrayersRepository {

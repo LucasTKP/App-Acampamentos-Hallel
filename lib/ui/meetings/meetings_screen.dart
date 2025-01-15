@@ -1,7 +1,7 @@
-import 'package:app_acampamentos_hallel/ui/meetings/meetings_controller.dart';
-import 'package:app_acampamentos_hallel/ui/meetings/widgets/check_presence_meeting.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/card_meeting.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_button.dart';
+import 'package:acamps_canaa/ui/meetings/meetings_controller.dart';
+import 'package:acamps_canaa/ui/meetings/widgets/check_presence_meeting.dart';
+import 'package:acamps_canaa/ui/widgets/card_meeting.dart';
+import 'package:acamps_canaa/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class MeetingsScreen extends StatelessWidget {

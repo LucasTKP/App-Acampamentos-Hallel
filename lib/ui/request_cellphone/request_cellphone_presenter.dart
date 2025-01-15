@@ -1,12 +1,12 @@
-import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/core/utils/validate_cellphone.dart';
-import 'package:app_acampamentos_hallel/ui/request_cellphone/request_cellphone_controller.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_button.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_inputs.dart';
+import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/global_controllers/user_controller.dart';
+import 'package:acamps_canaa/core/repositories/user_repository.dart';
+import 'package:acamps_canaa/core/utils/show_message.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/core/utils/validate_cellphone.dart';
+import 'package:acamps_canaa/ui/request_cellphone/request_cellphone_controller.dart';
+import 'package:acamps_canaa/ui/widgets/custom_button.dart';
+import 'package:acamps_canaa/ui/widgets/custom_inputs.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 

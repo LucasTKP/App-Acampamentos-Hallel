@@ -1,11 +1,11 @@
-import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/libs/permission_handler.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_presenter.dart';
-import 'package:app_acampamentos_hallel/ui/examination_conscience/exame_conscience.dart';
-import 'package:app_acampamentos_hallel/ui/home/widgets/dialog_info.dart';
-import 'package:app_acampamentos_hallel/ui/home/widgets/dialog_notification_disabled.dart';
-import 'package:app_acampamentos_hallel/ui/today_birth/today_birth_presenter.dart';
+import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/libs/permission_handler.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_presenter.dart';
+import 'package:acamps_canaa/ui/examination_conscience/exame_conscience.dart';
+import 'package:acamps_canaa/ui/home/widgets/dialog_info.dart';
+import 'package:acamps_canaa/ui/home/widgets/dialog_notification_disabled.dart';
+import 'package:acamps_canaa/ui/today_birth/today_birth_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 

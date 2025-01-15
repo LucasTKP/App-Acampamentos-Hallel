@@ -1,9 +1,9 @@
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/models/liturgy_model.dart';
-import 'package:app_acampamentos_hallel/core/models/type_liturgy_enum.dart';
-import 'package:app_acampamentos_hallel/core/repositories/liturgy_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/core/models/async_state.dart';
+import 'package:acamps_canaa/core/models/liturgy_model.dart';
+import 'package:acamps_canaa/core/models/type_liturgy_enum.dart';
+import 'package:acamps_canaa/core/repositories/liturgy_repository.dart';
+import 'package:acamps_canaa/core/utils/identify_error.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 

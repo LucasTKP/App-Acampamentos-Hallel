@@ -1,7 +1,7 @@
-import 'package:app_acampamentos_hallel/core/extensions/date_time_extension.dart';
-import 'package:app_acampamentos_hallel/ui/meetings/meetings_controller.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_button.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_inputs.dart';
+import 'package:acamps_canaa/core/extensions/date_time_extension.dart';
+import 'package:acamps_canaa/ui/meetings/meetings_controller.dart';
+import 'package:acamps_canaa/ui/widgets/custom_button.dart';
+import 'package:acamps_canaa/ui/widgets/custom_inputs.dart';
 import 'package:flutter/material.dart';
 
 class CheckPresenceMeeting extends StatelessWidget {

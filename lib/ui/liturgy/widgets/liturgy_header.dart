@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/models/type_liturgy_enum.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_controller.dart';
+import 'package:acamps_canaa/core/models/type_liturgy_enum.dart';
+import 'package:acamps_canaa/ui/liturgy/liturgy_controller.dart';
 import 'package:flutter/material.dart';
 
 class LiturgyHeader extends StatelessWidget {

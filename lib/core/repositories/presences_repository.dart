@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/models/presence_model.dart';
-import 'package:app_acampamentos_hallel/core/services/presences_service.dart';
-import 'package:app_acampamentos_hallel/ui/meetings/presence_dto.dart';
+import 'package:acamps_canaa/core/models/presence_model.dart';
+import 'package:acamps_canaa/core/services/presences_service.dart';
+import 'package:acamps_canaa/ui/meetings/presence_dto.dart';
 
 abstract class PresencesRepository {
   Future<void> createPresence(PresenceDto presence);

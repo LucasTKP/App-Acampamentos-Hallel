@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/models/settings_model.dart';
-import 'package:app_acampamentos_hallel/core/services/settings_service.dart';
+import 'package:acamps_canaa/core/models/settings_model.dart';
+import 'package:acamps_canaa/core/services/settings_service.dart';
 
 abstract class SettingsRepository {
   Future<SettingsModel> getSettings();

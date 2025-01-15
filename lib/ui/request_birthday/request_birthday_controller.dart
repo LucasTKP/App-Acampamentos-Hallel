@@ -1,7 +1,7 @@
-import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
-import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
+import 'package:acamps_canaa/core/extensions/string_extension.dart';
+import 'package:acamps_canaa/core/global_controllers/user_controller.dart';
+import 'package:acamps_canaa/core/repositories/user_repository.dart';
+import 'package:acamps_canaa/core/utils/identify_error.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 

@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/services/auth_service.dart';
-import 'package:app_acampamentos_hallel/ui/register/register_user_dto.dart';
+import 'package:acamps_canaa/core/services/auth_service.dart';
+import 'package:acamps_canaa/ui/register/register_user_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthRepository {

@@ -1,10 +1,10 @@
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/models/user_model.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_controller.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/widgets/daily_prayer_skeleton.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/widgets/dialog_prayer.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/card_prayer.dart';
+import 'package:acamps_canaa/core/models/async_state.dart';
+import 'package:acamps_canaa/core/models/user_model.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_controller.dart';
+import 'package:acamps_canaa/ui/daily_prayer/widgets/daily_prayer_skeleton.dart';
+import 'package:acamps_canaa/ui/daily_prayer/widgets/dialog_prayer.dart';
+import 'package:acamps_canaa/ui/widgets/card_prayer.dart';
 import 'package:flutter/material.dart';
 
 class DailyPrayerScreen extends StatelessWidget {

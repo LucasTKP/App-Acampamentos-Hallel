@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:app_acampamentos_hallel/core/models/today_birth_model.dart';
-import 'package:app_acampamentos_hallel/core/models/user_model.dart';
-import 'package:app_acampamentos_hallel/core/services/user.service.dart';
-import 'package:app_acampamentos_hallel/core/utils/internal_errors.dart';
-import 'package:app_acampamentos_hallel/ui/register/register_user_dto.dart';
-import 'package:app_acampamentos_hallel/ui/send_notification/send_notification_dto.dart';
+import 'package:acamps_canaa/core/models/today_birth_model.dart';
+import 'package:acamps_canaa/core/models/user_model.dart';
+import 'package:acamps_canaa/core/services/user.service.dart';
+import 'package:acamps_canaa/core/utils/internal_errors.dart';
+import 'package:acamps_canaa/ui/register/register_user_dto.dart';
+import 'package:acamps_canaa/ui/send_notification/send_notification_dto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 

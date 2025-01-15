@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/ui/login/login_presenter.dart';
-import 'package:app_acampamentos_hallel/ui/register/register_user_presenter.dart';
+import 'package:acamps_canaa/ui/login/login_presenter.dart';
+import 'package:acamps_canaa/ui/register/register_user_presenter.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {

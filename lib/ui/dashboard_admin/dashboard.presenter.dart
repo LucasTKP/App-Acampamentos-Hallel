@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/ui/send_notification/send_notification_presenter.dart';
+import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/global_controllers/user_controller.dart';
+import 'package:acamps_canaa/ui/send_notification/send_notification_presenter.dart';
 import 'package:flutter/material.dart';
 
 class DashboardAdmin extends StatefulWidget {

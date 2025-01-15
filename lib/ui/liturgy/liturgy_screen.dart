@@ -1,10 +1,10 @@
-import 'package:app_acampamentos_hallel/core/models/type_liturgy_enum.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/liturgy_controller.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/widgets/liturgy_gospel.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/widgets/liturgy_header.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/widgets/liturgy_psalm.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/widgets/liturgy_primary.dart';
-import 'package:app_acampamentos_hallel/ui/liturgy/widgets/liturgy_second.dart';
+import 'package:acamps_canaa/core/models/type_liturgy_enum.dart';
+import 'package:acamps_canaa/ui/liturgy/liturgy_controller.dart';
+import 'package:acamps_canaa/ui/liturgy/widgets/liturgy_gospel.dart';
+import 'package:acamps_canaa/ui/liturgy/widgets/liturgy_header.dart';
+import 'package:acamps_canaa/ui/liturgy/widgets/liturgy_psalm.dart';
+import 'package:acamps_canaa/ui/liturgy/widgets/liturgy_primary.dart';
+import 'package:acamps_canaa/ui/liturgy/widgets/liturgy_second.dart';
 import 'package:flutter/material.dart';
 
 class LiturgyScreen extends StatelessWidget {

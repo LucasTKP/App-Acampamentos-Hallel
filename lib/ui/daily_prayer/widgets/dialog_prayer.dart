@@ -1,8 +1,8 @@
-import 'package:app_acampamentos_hallel/core/models/prayer.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_controller.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_button.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_inputs.dart';
+import 'package:acamps_canaa/core/models/prayer.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_controller.dart';
+import 'package:acamps_canaa/ui/widgets/custom_button.dart';
+import 'package:acamps_canaa/ui/widgets/custom_inputs.dart';
 import 'package:flutter/material.dart';
 
 void dialogPrayer({required BuildContext context, required DailyPrayerController controller, required PrayerModel? prayer}) {

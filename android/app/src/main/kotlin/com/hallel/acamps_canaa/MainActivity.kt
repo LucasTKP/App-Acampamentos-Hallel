@@ -1,4 +1,4 @@
-package com.example.app_acampamentos_hallel
+package com.hallel.acamps_canaa
 
 import io.flutter.embedding.android.FlutterActivity
 

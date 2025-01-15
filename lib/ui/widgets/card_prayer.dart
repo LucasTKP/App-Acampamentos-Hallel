@@ -1,8 +1,8 @@
-import 'package:app_acampamentos_hallel/core/models/prayer.dart';
-import 'package:app_acampamentos_hallel/core/models/user_model.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_controller.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/widgets/dialog_prayer.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/widgets/dialog_reactions.dart';
+import 'package:acamps_canaa/core/models/prayer.dart';
+import 'package:acamps_canaa/core/models/user_model.dart';
+import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_controller.dart';
+import 'package:acamps_canaa/ui/daily_prayer/widgets/dialog_prayer.dart';
+import 'package:acamps_canaa/ui/daily_prayer/widgets/dialog_reactions.dart';
 import 'package:flutter/material.dart';
 
 class CardPrayer extends StatelessWidget {

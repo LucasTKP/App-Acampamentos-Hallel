@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/extensions/time_stamp_extension.dart';
-import 'package:app_acampamentos_hallel/core/models/prayer.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/core/extensions/time_stamp_extension.dart';
+import 'package:acamps_canaa/core/models/prayer.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 void dialogReactions({required BuildContext context, required PrayerModel prayer}) {

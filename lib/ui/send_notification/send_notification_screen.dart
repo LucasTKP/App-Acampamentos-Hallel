@@ -1,7 +1,7 @@
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/send_notification/send_notification_controller.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_button.dart';
-import 'package:app_acampamentos_hallel/ui/widgets/custom_inputs.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/send_notification/send_notification_controller.dart';
+import 'package:acamps_canaa/ui/widgets/custom_button.dart';
+import 'package:acamps_canaa/ui/widgets/custom_inputs.dart';
 import 'package:flutter/material.dart';
 
 class SendNotificationScreen extends StatelessWidget {

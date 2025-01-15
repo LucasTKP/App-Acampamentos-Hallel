@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/models/meeting_model.dart';
-import 'package:app_acampamentos_hallel/core/services/meetings_service.dart';
+import 'package:acamps_canaa/core/models/meeting_model.dart';
+import 'package:acamps_canaa/core/services/meetings_service.dart';
 
 abstract class MeetingsRepository {
   Future<List<MeetingModel>> getMeetings(String? lastDocumentId);

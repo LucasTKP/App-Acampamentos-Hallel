@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
+import 'package:acamps_canaa/core/repositories/auth_repository.dart';
+import 'package:acamps_canaa/core/utils/identify_error.dart';
 import 'package:flutter/material.dart';
 
 abstract class LoginController extends ChangeNotifier {

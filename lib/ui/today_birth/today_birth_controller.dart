@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/models/today_birth_model.dart';
-import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
+import 'package:acamps_canaa/core/models/async_state.dart';
+import 'package:acamps_canaa/core/models/today_birth_model.dart';
+import 'package:acamps_canaa/core/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 

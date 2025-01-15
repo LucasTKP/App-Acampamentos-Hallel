@@ -1,7 +1,7 @@
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/today_birth/today_birth_controller.dart';
-import 'package:app_acampamentos_hallel/ui/today_birth/widgets/users_birth_loading.dart';
+import 'package:acamps_canaa/core/models/async_state.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/today_birth/today_birth_controller.dart';
+import 'package:acamps_canaa/ui/today_birth/widgets/users_birth_loading.dart';
 import 'package:flutter/material.dart';
 
 class TodayBirthScreen extends StatelessWidget {

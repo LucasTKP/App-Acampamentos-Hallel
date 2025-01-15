@@ -1,8 +1,8 @@
-import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
-import 'package:app_acampamentos_hallel/ui/login/login_controller.dart';
-import 'package:app_acampamentos_hallel/ui/login/login_screen.dart';
+import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/repositories/auth_repository.dart';
+import 'package:acamps_canaa/core/utils/show_message.dart';
+import 'package:acamps_canaa/ui/login/login_controller.dart';
+import 'package:acamps_canaa/ui/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginPresenter extends StatefulWidget {

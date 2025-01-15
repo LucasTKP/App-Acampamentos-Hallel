@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:app_acampamentos_hallel/core/services/api_client.dart';
+import 'package:acamps_canaa/core/services/api_client.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';

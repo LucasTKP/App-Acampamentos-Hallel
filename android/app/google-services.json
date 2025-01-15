@@ -23,6 +23,44 @@
           "other_platform_oauth_client": []
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238964277898:android:0f496d52671cfa91ac2373",
+        "android_client_info": {
+          "package_name": "com.hallel.acamps_canaa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNpnZiRGDPY4dVfvkn8ULCf3NfNLrJEp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238964277898:android:6a85214ec7055690ac2373",
+        "android_client_info": {
+          "package_name": "com.hallel.app_acampamentos_hallel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNpnZiRGDPY4dVfvkn8ULCf3NfNLrJEp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
     }
   ],
   "configuration_version": "1"

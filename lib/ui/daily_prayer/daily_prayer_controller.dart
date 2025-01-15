@@ -1,11 +1,11 @@
-import 'package:app_acampamentos_hallel/core/extensions/date_time_extension.dart';
-import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/models/prayer.dart';
-import 'package:app_acampamentos_hallel/core/repositories/prayers_repository.dart';
-import 'package:app_acampamentos_hallel/core/services/message_service.dart';
-import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_dto.dart';
+import 'package:acamps_canaa/core/extensions/date_time_extension.dart';
+import 'package:acamps_canaa/core/global_controllers/user_controller.dart';
+import 'package:acamps_canaa/core/models/async_state.dart';
+import 'package:acamps_canaa/core/models/prayer.dart';
+import 'package:acamps_canaa/core/repositories/prayers_repository.dart';
+import 'package:acamps_canaa/core/services/message_service.dart';
+import 'package:acamps_canaa/core/utils/identify_error.dart';
+import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_dto.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 

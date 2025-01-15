@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/models/settings_model.dart';
-import 'package:app_acampamentos_hallel/core/repositories/settings_repository.dart';
+import 'package:acamps_canaa/core/models/settings_model.dart';
+import 'package:acamps_canaa/core/repositories/settings_repository.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 

@@ -1,13 +1,13 @@
-import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/repositories/meetings_repository.dart';
-import 'package:app_acampamentos_hallel/core/repositories/presences_repository.dart';
-import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/show_message.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
-import 'package:app_acampamentos_hallel/ui/meetings/meetings_controller.dart';
-import 'package:app_acampamentos_hallel/ui/meetings/meetings_screen.dart';
+import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/global_controllers/user_controller.dart';
+import 'package:acamps_canaa/core/models/async_state.dart';
+import 'package:acamps_canaa/core/repositories/meetings_repository.dart';
+import 'package:acamps_canaa/core/repositories/presences_repository.dart';
+import 'package:acamps_canaa/core/repositories/user_repository.dart';
+import 'package:acamps_canaa/core/utils/show_message.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/ui/meetings/meetings_controller.dart';
+import 'package:acamps_canaa/ui/meetings/meetings_screen.dart';
 import 'package:flutter/material.dart';
 
 class MeetingsPresenter extends StatefulWidget {

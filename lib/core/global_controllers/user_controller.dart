@@ -1,4 +1,4 @@
-import 'package:app_acampamentos_hallel/core/models/user_model.dart';
+import 'package:acamps_canaa/core/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class UserController extends ChangeNotifier {

@@ -1,9 +1,9 @@
-import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
-import 'package:app_acampamentos_hallel/core/models/dropdown.dart';
-import 'package:app_acampamentos_hallel/core/repositories/auth_repository.dart';
-import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
-import 'package:app_acampamentos_hallel/ui/register/register_user_dto.dart';
+import 'package:acamps_canaa/core/extensions/string_extension.dart';
+import 'package:acamps_canaa/core/models/dropdown.dart';
+import 'package:acamps_canaa/core/repositories/auth_repository.dart';
+import 'package:acamps_canaa/core/repositories/user_repository.dart';
+import 'package:acamps_canaa/core/utils/identify_error.dart';
+import 'package:acamps_canaa/ui/register/register_user_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;

@@ -1,7 +1,7 @@
-import 'package:app_acampamentos_hallel/core/dependencies_injection.dart';
-import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_controller.dart';
-import 'package:app_acampamentos_hallel/ui/daily_prayer/daily_prayer_screen.dart';
+import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/global_controllers/user_controller.dart';
+import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_controller.dart';
+import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_screen.dart';
 import 'package:flutter/material.dart';
 
 class DailyPrayerPresenter extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:app_acampamentos_hallel/core/models/dropdown.dart';
-import 'package:app_acampamentos_hallel/core/utils/theme_colors.dart';
+import 'package:acamps_canaa/core/models/dropdown.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropDown {

@@ -1,14 +1,14 @@
-import 'package:app_acampamentos_hallel/core/extensions/string_extension.dart';
-import 'package:app_acampamentos_hallel/core/global_controllers/user_controller.dart';
-import 'package:app_acampamentos_hallel/core/models/async_state.dart';
-import 'package:app_acampamentos_hallel/core/models/meeting_model.dart';
-import 'package:app_acampamentos_hallel/core/models/presence_model.dart';
-import 'package:app_acampamentos_hallel/core/models/status_presence_meeting.dart';
-import 'package:app_acampamentos_hallel/core/repositories/meetings_repository.dart';
-import 'package:app_acampamentos_hallel/core/repositories/presences_repository.dart';
-import 'package:app_acampamentos_hallel/core/repositories/user_repository.dart';
-import 'package:app_acampamentos_hallel/core/utils/identify_error.dart';
-import 'package:app_acampamentos_hallel/ui/meetings/presence_dto.dart';
+import 'package:acamps_canaa/core/extensions/string_extension.dart';
+import 'package:acamps_canaa/core/global_controllers/user_controller.dart';
+import 'package:acamps_canaa/core/models/async_state.dart';
+import 'package:acamps_canaa/core/models/meeting_model.dart';
+import 'package:acamps_canaa/core/models/presence_model.dart';
+import 'package:acamps_canaa/core/models/status_presence_meeting.dart';
+import 'package:acamps_canaa/core/repositories/meetings_repository.dart';
+import 'package:acamps_canaa/core/repositories/presences_repository.dart';
+import 'package:acamps_canaa/core/repositories/user_repository.dart';
+import 'package:acamps_canaa/core/utils/identify_error.dart';
+import 'package:acamps_canaa/ui/meetings/presence_dto.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 

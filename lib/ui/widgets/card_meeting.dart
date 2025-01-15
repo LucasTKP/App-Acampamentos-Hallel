@@ -1,6 +1,6 @@
-import 'package:app_acampamentos_hallel/core/extensions/date_time_extension.dart';
-import 'package:app_acampamentos_hallel/core/models/meeting_model.dart';
-import 'package:app_acampamentos_hallel/core/models/status_presence_meeting.dart';
+import 'package:acamps_canaa/core/extensions/date_time_extension.dart';
+import 'package:acamps_canaa/core/models/meeting_model.dart';
+import 'package:acamps_canaa/core/models/status_presence_meeting.dart';
 import 'package:flutter/material.dart';
 
 class CardMeeting extends StatelessWidget {
