@@ -1,5 +1,5 @@
 name: acamps_canaa
-description: "A new Flutter project."
+description: "Aplicativo desenvolvido para o Acampamento Canaã"
 publish_to: 'none'
 version: 1.0.2+2
 
@@ -79,4 +79,19 @@ flutter:
       - asset: assets/fonts/Poppins-ThinItalic.ttf
         style: italic
         weight: 100
+  
+flutter_native_splash:
+  android: true
+  ios: true
+  web: true
+
+  color: "#ffffff"
+  image: assets/logos/canaa/splash_canaa.png
+
+  android_12:
+    color: "#ffffff"
+    image: assets/logos/canaa/splash_canaa.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/logos/canaa/splash_canaa.png  # opcional
+    color_dark: "#ffffff"  # opcional
 

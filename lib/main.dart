@@ -21,11 +21,10 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
-
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await dotenv.load(fileName: ".env");
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -33,7 +32,7 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  await NotificationController.localNotiInit(); 
+  await NotificationController.localNotiInit();
   await NotificationController.init();
   await setupDependencies();
   runApp(const MainApp());

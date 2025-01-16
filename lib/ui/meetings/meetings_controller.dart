@@ -74,10 +74,10 @@ class MeetingsControllerImpl extends MeetingsController {
     if (buttonGetMeetingsPaginationIsLoading) {
       return;
     }
-    setButtonCheckPresenceIsLoading(true);
+    setButtonGetMeetingsPaginationIsLoading(true);
     await getMeetingsPagination();
     await getPresencesPagination();
-    setButtonCheckPresenceIsLoading(false);
+    setButtonGetMeetingsPaginationIsLoading(false);
   }
 
   @override

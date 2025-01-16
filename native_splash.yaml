@@ -9,3 +9,7 @@ flutter_native_splash:
   android_12:
     color: "#ffffff"
     image: assets/logos/canaa/splash_canaa.png
+    icon_background_color: "#ffffff"
+    branding: assets/logos/canaa/splash_canaa.png  # opcional
+    image_dark: assets/logos/canaa/splash_canaa.png  # opcional
+    color_dark: "#ffffff"  # opcional
