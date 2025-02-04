@@ -16,18 +16,7 @@ class MeetingsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Reuniões', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
-              InkWell(
-                onTap: () {
-                  controller.init();
-                },
-                child: const Icon(Icons.refresh, color: Colors.black87),
-              ),
-            ],
-          ),
+          const Text('Reuniões', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
           ExpansionTile(
             shape: Border.all(color: Colors.transparent, width: 0),
             tilePadding: const EdgeInsets.all(0),

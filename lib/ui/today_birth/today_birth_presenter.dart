@@ -1,6 +1,4 @@
 import 'package:acamps_canaa/core/dependencies_injection.dart';
-import 'package:acamps_canaa/core/repositories/user_repository.dart';
-import 'package:acamps_canaa/core/utils/show_message.dart';
 import 'package:acamps_canaa/ui/today_birth/today_birth_controller.dart';
 import 'package:acamps_canaa/ui/today_birth/today_birth_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +16,7 @@ class _TodayBirthPresenterState extends State<TodayBirthPresenter> {
   @override
   void initState() {
     super.initState();
-    controller = TodayBirthControllerImpl(
-      userRepository: getIt<UserRepositoryImpl>(),
-      onShowMessage: onShowMessage,
-    );
+    controller = getIt<TodayBirthControllerImpl>();
   }
 
   @override
@@ -32,9 +27,5 @@ class _TodayBirthPresenterState extends State<TodayBirthPresenter> {
         return TodayBirthScreen(controller: controller);
       },
     );
-  }
-
-  void onShowMessage({required String message, required Color color}) {
-    showMessage(context: context, message: message, color: color);
   }
 }

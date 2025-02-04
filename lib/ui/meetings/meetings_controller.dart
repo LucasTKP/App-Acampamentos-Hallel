@@ -140,6 +140,12 @@ class MeetingsControllerImpl extends MeetingsController {
       setButtonCheckPresenceIsLoading(true);
       await createPresence(meeting.id, meeting.date);
       await updatePresenceUser(meeting.date);
+      userController.setUser(
+        userController.userLogged.copyWith(
+          lastPresence: meeting.date,
+          totalPresence: userController.userLogged.totalPresence + 1,
+        ),
+      );
       onShowMessage(message: 'Presença confirmada', color: Colors.green);
       passwordController.clear();
       init();

@@ -20,6 +20,7 @@ import 'package:acamps_canaa/core/services/presences_service.dart';
 import 'package:acamps_canaa/core/services/settings_service.dart';
 import 'package:acamps_canaa/core/services/user.service.dart';
 import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_controller.dart';
+import 'package:acamps_canaa/ui/today_birth/today_birth_controller.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -65,4 +66,9 @@ Future<void> setupDependencies() async {
   getIt.registerLazySingleton(() => PrayersRepositoryImpl(service: getIt<PrayersServiceImpl>()));
 
   getIt.registerLazySingleton(() => DailyPrayerControllerImpl(messageService: getIt<MessageService>(), repository: getIt<PrayersRepositoryImpl>(), userController: getIt<UserControllerImpl>()));
+
+  getIt.registerLazySingleton(() => TodayBirthControllerImpl(
+        userRepository: getIt<UserRepositoryImpl>(),
+        onShowMessage: getIt<MessageService>().showMessage,
+      ));
 }

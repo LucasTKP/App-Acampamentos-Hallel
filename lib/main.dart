@@ -54,7 +54,12 @@ class MainApp extends StatelessWidget {
           fontFamily: 'Poppins',
           scaffoldBackgroundColor: const Color(0xFFF3F3F3),
           useMaterial3: true,
-          appBarTheme: const AppBarTheme(titleTextStyle: TextStyle(fontSize: 22, color: Colors.white), iconTheme: IconThemeData(color: Colors.white), centerTitle: true, backgroundColor: ThemeColors.primaryColor),
+          appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(fontSize: 22, color: Colors.white),
+            iconTheme: IconThemeData(color: Colors.white),
+            centerTitle: true,
+            backgroundColor: ThemeColors.primaryColor,
+          ),
         ),
         home: const InjectionPage(),
         localizationsDelegates: const [

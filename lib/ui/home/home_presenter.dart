@@ -72,8 +72,8 @@ class _HomePresenterState extends State<HomePresenter> with WidgetsBindingObserv
                               Transform.translate(
                                 offset: const Offset(0, -6),
                                 child: Container(
-                                  width: 80,
-                                  height: 5,
+                                  width: 75,
+                                  height: 3.5,
                                   color: ThemeColors.primaryColor,
                                 ),
                               ),

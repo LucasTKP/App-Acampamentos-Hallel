@@ -13,31 +13,18 @@ class TodayBirthScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Aniversariantes',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF535353),
-                  ),
-                ),
-              ],
+            Text(
+              'Aniversariantes',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF535353),
+              ),
             ),
-            if (controller.state != AsyncState.loading)
-              InkWell(
-                onTap: () async {
-                  await controller.getUsersBirthday();
-                },
-                child: const Icon(Icons.refresh, color: Color(0xFF535353)),
-              )
           ],
         ),
         _buildContent(context),
@@ -86,7 +73,7 @@ class TodayBirthScreen extends StatelessWidget {
                 Text(
                   'Hoje não temos nenhum aniversariante',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w500),
+                  style: TextStyle(color: Colors.black54, fontSize: 14, fontWeight: FontWeight.w500),
                 ),
               ],
             ),

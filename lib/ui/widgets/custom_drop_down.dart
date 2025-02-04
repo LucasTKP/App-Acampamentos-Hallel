@@ -30,6 +30,7 @@ class CustomDropDown {
           ),
         );
       }).toList(),
+      validator: validator,
       decoration: InputDecoration(
         prefixIconColor: enabled ? ThemeColors.primaryColor : Colors.grey,
         contentPadding: contentPadding,
@@ -52,7 +53,7 @@ class CustomDropDown {
         ),
       ),
       icon: Icon(
-        Icons.arrow_drop_down, 
+        Icons.arrow_drop_down,
         color: enabled ? ThemeColors.primaryColor : Colors.grey,
       ),
     );

@@ -20,7 +20,7 @@ class LiturgyHero extends StatelessWidget {
                 context: context,
                 initialDate: controller.dateSelected,
                 firstDate: DateTime(2020),
-                lastDate: DateTime.now(),
+                lastDate: DateTime.now().add(const Duration(days: 30)),
                 locale: const Locale('pt', 'BR'),
                 builder: (context, child) => Theme(
                   data: ThemeData.light().copyWith(
