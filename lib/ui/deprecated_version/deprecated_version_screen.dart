@@ -6,7 +6,7 @@ class DeprecatedVersionScreen extends StatelessWidget {
   const DeprecatedVersionScreen({super.key});
 
   Future<void> sendToGooglePlay() async {
-    final Uri url = Uri.parse('https://acampscanaa.vercel.app/');
+    final Uri url = Uri.parse('https://play.google.com/store/apps/details?id=com.hallel.acamps_canaa');
 
     if (!await launchUrl(url)) {
       throw Exception(url);
