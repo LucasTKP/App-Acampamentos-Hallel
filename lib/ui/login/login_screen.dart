@@ -4,6 +4,7 @@ import 'package:acamps_canaa/ui/routes/routes.presenter.dart';
 import 'package:acamps_canaa/ui/widgets/custom_button.dart';
 import 'package:acamps_canaa/ui/widgets/custom_inputs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LoginScreen extends StatelessWidget {
   final LoginController controller;
@@ -57,7 +58,9 @@ class LoginScreen extends StatelessWidget {
                             obscureText: false,
                             prefixIcon: Icons.person,
                             suffixIcon: null,
+                            keyboardType: TextInputType.emailAddress,
                             validator: (value) {
+                              value = value?.trim();
                               if (value == null || value.isEmpty) {
                                 return 'Campo obrigatório';
                               }
@@ -72,6 +75,7 @@ class LoginScreen extends StatelessWidget {
                           CustomInputs.standard(
                             controller: controller.passwordController,
                             label: 'Senha',
+                            keyboardType: TextInputType.visiblePassword,
                             obscureText: controller.isObscurePassword,
                             prefixIcon: Icons.lock,
                             suffixIcon: IconButton(

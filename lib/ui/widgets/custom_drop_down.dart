@@ -34,6 +34,7 @@ class CustomDropDown {
       decoration: InputDecoration(
         prefixIconColor: enabled ? ThemeColors.primaryColor : Colors.grey,
         contentPadding: contentPadding,
+        alignLabelWithHint: true,
         filled: true,
         fillColor: const Color(0XFFE9E9E9),
         labelText: textLabel,

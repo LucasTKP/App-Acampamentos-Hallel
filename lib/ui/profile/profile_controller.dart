@@ -128,7 +128,9 @@ class ProfileControllerImpl extends ProfileController {
     final imageCropped = await ImageCropper().cropImage(
       sourcePath: image.path,
       compressFormat: ImageCompressFormat.jpg,
-      compressQuality: 100,
+      compressQuality: 50,
+      maxWidth: 500,
+      maxHeight: 500,
       aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
       uiSettings: [
         AndroidUiSettings(

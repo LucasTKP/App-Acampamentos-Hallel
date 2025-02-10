@@ -1,8 +1,10 @@
 import 'package:acamps_canaa/core/models/prayer.dart';
 import 'package:acamps_canaa/core/models/user_model.dart';
+import 'package:acamps_canaa/core/utils/theme_colors.dart';
 import 'package:acamps_canaa/ui/daily_prayer/daily_prayer_controller.dart';
 import 'package:acamps_canaa/ui/daily_prayer/widgets/dialog_prayer.dart';
 import 'package:acamps_canaa/ui/daily_prayer/widgets/dialog_reactions.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CardPrayer extends StatelessWidget {
@@ -42,19 +44,17 @@ class CardPrayer extends StatelessWidget {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child: Image.network(
-                              prayer.userRequest.photoUrl,
+                            child: CachedNetworkImage(
+                              imageUrl: prayer.userRequest.photoUrl,
+                              fit: BoxFit.cover,
                               width: 20,
                               height: 20,
-                              errorBuilder: (context, error, stackTrace) => Image.asset(
-                                'assets/images/jesus.jpg',
-                                width: 20,
-                                height: 20,
-                              ),
+                              placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor)),
+                              errorWidget: (context, url, error) => Image.asset('assets/images/jesus.jpg', width: 35, height: 35),
                             ),
                           ),
                           const SizedBox(width: 8),
-                           Expanded(
+                          Expanded(
                             child: Text(
                               prayer.userRequest.name,
                               style: const TextStyle(
@@ -154,32 +154,6 @@ class CardPrayer extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget userReaction(UserPrayer reaction) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(50),
-          child: Image.network(
-            reaction.photo,
-            width: 20,
-            height: 20,
-            errorBuilder: (context, error, stackTrace) => Image.asset(
-              'assets/images/jesus.jpg',
-              width: 20,
-              height: 20,
-            ),
-          ),
-        ),
-        const SizedBox(width: 8),
-        Text(
-          reaction.name,
-          style: const TextStyle(fontSize: 12, color: Color(0xFF737373)),
-        ),
-      ],
     );
   }
 }

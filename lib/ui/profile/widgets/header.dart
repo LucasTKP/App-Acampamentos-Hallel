@@ -1,5 +1,6 @@
 import 'package:acamps_canaa/core/utils/theme_colors.dart';
 import 'package:acamps_canaa/ui/profile/profile_controller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -44,21 +45,19 @@ class Header extends StatelessWidget {
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
-                        Image.network(
-                          controller.urlImage,
+                        CachedNetworkImage(
+                          imageUrl: controller.urlImage,
                           fit: BoxFit.cover,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return const Center(
-                              child: CircularProgressIndicator(color: ThemeColors.primaryColor),
-                            );
-                          },
-                          errorBuilder: (context, error, stackTrace) => Image.asset(
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(color: ThemeColors.primaryColor),
+                          ),
+                          errorWidget: (context, url, error) => Image.asset(
                             'assets/images/jesus.jpg',
                             width: 120,
                             height: 120,
                           ),
                         ),
+                        
                         Positioned(
                           bottom: 0,
                           right: 0,

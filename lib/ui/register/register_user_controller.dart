@@ -74,8 +74,8 @@ class RegisterUserControllerImpl extends RegisterUserController {
   Future<void> onRegisterUserFirestore(String id) async {
     final userFirestore = RegisteUserDto(
       id: id,
-      name: name.text,
-      email: email.text,
+      name: name.text.trim(),
+      email: email.text.trim(),
       madeCane: bool.parse(madeCamping.value),
       namePhoto: 'jesus.jpg',
       photoUrl: 'https://firebasestorage.googleapis.com/v0/b/canaa-afb9f.appspot.com/o/imageProfile%2Fjesus.jpg?alt=media&token=2c88b915-676a-46d4-8b5a-887c11ea714c',

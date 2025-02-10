@@ -49,6 +49,7 @@ class RegisterUserScreen extends StatelessWidget {
                   CustomInputs.standard(
                     controller: controller.name,
                     contentPadding: EdgeInsets.zero,
+                    keyboardType: TextInputType.name,
                     label: 'Nome Completo',
                     obscureText: false,
                     validator: (value) {
@@ -64,9 +65,11 @@ class RegisterUserScreen extends StatelessWidget {
                   CustomInputs.standard(
                     controller: controller.email,
                     contentPadding: EdgeInsets.zero,
+                    keyboardType: TextInputType.emailAddress,
                     label: 'E-mail',
                     obscureText: false,
                     validator: (value) {
+                      value = value?.trim();
                       if (value == null || value.isEmpty) {
                         return 'Campo obrigatório';
                       }
@@ -99,6 +102,7 @@ class RegisterUserScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   CustomInputs.standard(
                     controller: controller.password,
+                    keyboardType: TextInputType.visiblePassword,
                     label: 'Senha',
                     obscureText: !controller.passwordVisible,
                     contentPadding: EdgeInsets.zero,
@@ -123,6 +127,7 @@ class RegisterUserScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   CustomInputs.standard(
                     controller: controller.confirmPassword,
+                    keyboardType: TextInputType.visiblePassword,
                     label: 'Confirme a senha',
                     obscureText: !controller.passwordVisible,
                     contentPadding: EdgeInsets.zero,

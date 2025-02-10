@@ -40,16 +40,16 @@ class LoginControllerImpl extends LoginController {
   }
 
   @override
-  Future<void> forgotPassword() async{
+  Future<void> forgotPassword() async {
     try {
       final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
 
-      if (emailController.text.isEmpty || !emailRegex.hasMatch(emailController.text)) {
+      if (emailController.text.isEmpty || !emailRegex.hasMatch(emailController.text.trim())) {
         onShowMessage(message: 'Informe o email válido para redefinir a senha', color: Colors.red);
         return;
       }
 
-      await authRepository.forgotPassword(email: emailController.text);
+      await authRepository.forgotPassword(email: emailController.text.trim());
       onShowMessage(message: 'Enviamos um email para redefinir a senha', color: Colors.green);
     } catch (e) {
       onShowMessage(message: identifyError(error: e, message: 'Erro ao enviar email de redefinição'), color: Colors.red);

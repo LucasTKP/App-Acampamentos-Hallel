@@ -15,6 +15,7 @@ class CustomInputs {
     List<TextInputFormatter>? inputFormatters,
     bool enabled = true,
     int maxLines = 1,
+    TextInputType keyboardType = TextInputType.text,
   }) {
     return TextFormField(
       controller: controller,
@@ -22,6 +23,7 @@ class CustomInputs {
       obscureText: obscureText,
       inputFormatters: inputFormatters,
       enabled: enabled,
+      keyboardType: keyboardType,
       style: TextStyle(color: enabled ? ThemeColors.primaryColor : Colors.grey, fontWeight: FontWeight.w500),
       maxLines: maxLines,
       decoration: InputDecoration(

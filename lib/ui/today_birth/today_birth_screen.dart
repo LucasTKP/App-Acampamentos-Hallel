@@ -2,6 +2,7 @@ import 'package:acamps_canaa/core/models/async_state.dart';
 import 'package:acamps_canaa/core/utils/theme_colors.dart';
 import 'package:acamps_canaa/ui/today_birth/today_birth_controller.dart';
 import 'package:acamps_canaa/ui/today_birth/widgets/users_birth_loading.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class TodayBirthScreen extends StatelessWidget {
@@ -102,13 +103,12 @@ class TodayBirthScreen extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: CircleAvatar(
-                          backgroundImage: NetworkImage(user.photoUrl),
                           radius: 40,
-                          child: Image.network(
-                            user.photoUrl,
-                            errorBuilder: (context, error, stackTrace) => Image.asset(
-                              'assets/images/jesus.jpg',
-                            ),
+                          child: CachedNetworkImage(
+                            imageUrl: user.photoUrl,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor)),
+                            errorWidget: (context, url, error) => Image.asset('assets/images/jesus.jpg'),
                           ),
                         ),
                       ),

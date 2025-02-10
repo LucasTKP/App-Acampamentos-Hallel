@@ -1,4 +1,5 @@
 import 'package:acamps_canaa/core/dependencies_injection.dart';
+import 'package:acamps_canaa/core/functions/verify_version_app.dart';
 import 'package:acamps_canaa/core/global_controllers/settigs_controller.dart';
 import 'package:acamps_canaa/core/global_controllers/user_controller.dart';
 import 'package:acamps_canaa/core/libs/firebase_options.dart';
@@ -109,7 +110,7 @@ class _InjectionPageState extends State<InjectionPage> {
 
   Widget getChild() {
     FlutterNativeSplash.remove();
-    if (settingsController.allSettings.versionApp != VersionApp().getVersion()) {
+    if (verifyVersionApp(atual: VersionApp().getVersion(), minima: settingsController.allSettings.versionApp) == false) {
       return const DeprecatedVersionScreen();
     }
 
