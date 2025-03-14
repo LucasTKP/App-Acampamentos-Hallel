@@ -131,11 +131,11 @@ class ProfileControllerImpl extends ProfileController {
       compressQuality: 50,
       maxWidth: 500,
       maxHeight: 500,
-      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: 'Selecionar Área',
-          hideBottomControls: true,
+          // hideBottomControls: true,
           toolbarColor: ThemeColors.primaryColor,
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.square,

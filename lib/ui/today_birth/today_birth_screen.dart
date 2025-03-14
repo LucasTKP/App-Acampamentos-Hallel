@@ -129,11 +129,8 @@ class TodayBirthScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'esta fazendo ${controller.getAge(user.dateOfBirth.toDate())} anos, deseje feliz aniversário para ele! 🎉',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
+                              'Esta fazendo ${controller.getAge(user.dateOfBirth.toDate())} anos, deseje feliz aniversário para ele(a)! 🎉',
+                              style: const TextStyle(color: Colors.white, fontSize: 14),
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                             ),
