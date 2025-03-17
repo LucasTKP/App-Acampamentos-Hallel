@@ -55,6 +55,7 @@ class RoutesControllerImpl extends RoutesController {
       if (userAuth != null) {
         final user = await userRepository.getUser(userAuth.uid);
         userController.setUser(user);
+        // final fcmToken = await FirebaseMessaging.instance.getToken(); Token do celular
         await subscribeToTopic();
         return true;
       }

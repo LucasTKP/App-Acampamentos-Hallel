@@ -56,9 +56,11 @@ class TodayBirthControllerImpl extends TodayBirthController {
   @override
   String getName(String name) {
     final names = name.split(' ');
+    if (names.length == 1) return names.first; 
+
     final firstName = names.first;
-    final secondName = names.length > 1 ? names[1] : '';
-    return '$firstName $secondName'.trim();
+    final lastName = names.last; 
+    return '$firstName $lastName';
   }
 
   @override

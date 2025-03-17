@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:developer' as developer;
 
+
+
+@pragma('vm:entry-point')
 class NotificationController {
   static final _firebaseMessaging = FirebaseMessaging.instance;
   static final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  // Constantes para configuração do canal de notificação
   static const _channelId = 'your_channel_id';
   static const _channelName = 'your_channel_name';
   static const _channelDesc = 'your_channel_description';
 
-  // Solicitar permissão de notificação
   static Future<void> init() async {
-    // Solicita permissões para enviar notificações
     final settings = await _firebaseMessaging.requestPermission(
       alert: true,
       announcement: true,
@@ -28,23 +28,20 @@ class NotificationController {
 
     developer.log('User granted permission: ${settings.authorizationStatus}');
 
-    // Configurar o gerenciador de mensagens em segundo plano
     FirebaseMessaging.onBackgroundMessage(firebaseBackgroundMessage);
 
-    // Lidar com notificação quando o aplicativo está em segundo plano e o usuário toca nele
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       developer.log("App opened from background via notification");
-      _handleMessage(message, isBackground: true);
+      _handleMessage(message);
     });
 
-    // Lidar com notificação quando o aplicativo estiver em primeiro plano
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       developer.log("Got a message in foreground");
-      _handleMessage(message, isBackground: false);
+      _handleMessage(message);
     });
   }
 
-  static void _handleMessage(RemoteMessage message, {required bool isBackground}) {
+  static void _handleMessage(RemoteMessage message) {
     if (message.notification != null) {
       final payload = jsonEncode(message.data);
       showSimpleNotification(
@@ -52,15 +49,9 @@ class NotificationController {
         body: message.notification!.body!,
         payload: payload,
       );
-
-      // Lida com qualquer lógica adicional baseada em if background/foreground
-      if (isBackground) {
-        // Navega para uma tela específica ou controla o toque em segundo plano
-      }
     }
   }
 
-  // Inicialize notificações locais
   static Future<void> localNotiInit() async {
     const androidSettings = AndroidInitializationSettings('@drawable/launcher_icon');
     const iosSettings = DarwinInitializationSettings();
@@ -68,7 +59,6 @@ class NotificationController {
 
     const initSettings = InitializationSettings(android: androidSettings, iOS: iosSettings, linux: linuxSettings);
 
-    // Solicitar permissão de notificação do Android 13+
     await _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
 
     await _flutterLocalNotificationsPlugin.initialize(
@@ -78,22 +68,13 @@ class NotificationController {
     );
   }
 
-  // Lidar com toque de notificação
   static void onNotificationTap(NotificationResponse response) {
-    // Analisar a carga útil
     if (response.payload != null) {
       final data = jsonDecode(response.payload!);
       developer.log('Notification tapped with payload: $data');
-
-      // Navegue até a tela apropriada com base na carga útil
-      // Example:
-      // if (data['screen'] != null) {
-      //   Navigator.pushNamed(context, data['screen']);
-      // }
     }
   }
 
-  // Mostrar uma notificação simples
   static Future<void> showSimpleNotification({
     required String title,
     required String body,
@@ -119,7 +100,7 @@ class NotificationController {
     const details = NotificationDetails(android: androidDetails);
 
     await _flutterLocalNotificationsPlugin.show(
-        0, // ID da notificação
+        0,
         title,
         body,
         details,
@@ -139,3 +120,4 @@ class NotificationController {
     }
   }
 }
+
