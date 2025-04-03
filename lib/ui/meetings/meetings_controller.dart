@@ -84,8 +84,8 @@ class MeetingsControllerImpl extends MeetingsController {
   Future<void> getMeetings() async {
     try {
       final meetings = await meetingsRepository.getMeetings(null);
-      setMeetingsOpen(meetings.where((element) => element.isOpen).toList());
-      setMeetingsClosed(meetings.where((element) => !element.isOpen).toList());
+      setMeetingsOpen(meetings.where((element) => element.isOpen && element.isVisible).toList());
+      setMeetingsClosed(meetings.where((element) => !element.isOpen && element.isVisible).toList());
     } catch (e) {
       onShowMessage(message: 'Erro ao buscar reuniões', color: Colors.red);
       developer.log(e.toString());
@@ -100,8 +100,8 @@ class MeetingsControllerImpl extends MeetingsController {
     }
     try {
       final meetings = await meetingsRepository.getMeetings(lastDocumentId);
-      setMeetingsOpen(meetingsOpen..addAll(meetings.where((element) => element.isOpen).toList()));
-      setMeetingsClosed(meetingsClosed..addAll(meetings.where((element) => !element.isOpen).toList()));
+      setMeetingsOpen(meetingsOpen..addAll(meetings.where((element) => element.isOpen && element.isVisible).toList()));
+      setMeetingsClosed(meetingsClosed..addAll(meetings.where((element) => !element.isOpen && element.isVisible).toList()));
     } catch (e) {
       onShowMessage(message: 'Erro ao buscar reuniões', color: Colors.red);
       developer.log(e.toString());
